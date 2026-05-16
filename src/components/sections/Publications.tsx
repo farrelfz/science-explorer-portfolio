@@ -1,120 +1,104 @@
-import { FileText, Award, ExternalLink, Trophy } from "lucide-react";
-import { publications, achievements } from "@/data/portfolio";
-import { useInView } from "@/hooks/useInView";
-import { cn } from "@/lib/utils";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { publications } from "@/data/portfolio";
+import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { ArrowRight, BookMarked, ExternalLink, Quote } from "lucide-react";
+
+const typeColors: Record<string, string> = {
+  "Journal Article": "from-blue-500/15 to-indigo-500/15 border-blue-500/20 text-blue-600 dark:text-blue-400",
+  "Conference Paper": "from-violet-500/15 to-purple-500/15 border-violet-500/20 text-violet-600 dark:text-violet-400",
+};
 
 export function Publications() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
-
   return (
     <section id="publications" className="section-padding">
-      <div className="container-wide" ref={ref}>
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <span 
-            className={cn(
-              "inline-block text-sm font-semibold text-accent uppercase tracking-wider mb-4 opacity-0",
-              isInView && "animate-fade-in"
-            )}
-          >
-            Publikasi & Penghargaan
-          </span>
-          <h2 
-            className={cn(
-              "heading-2 text-foreground mb-4 opacity-0",
-              isInView && "animate-fade-in"
-            )}
-            style={{ animationDelay: "0.1s" }}
-          >
-            Kontribusi & Pencapaian
-          </h2>
-          <p 
-            className={cn(
-              "body-large max-w-2xl mx-auto opacity-0",
-              isInView && "animate-fade-in"
-            )}
-            style={{ animationDelay: "0.2s" }}
-          >
-            Publikasi riset dan penghargaan yang telah diraih
-          </p>
+      <div className="container-max">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div>
+            <SectionLabel>Academic Work</SectionLabel>
+            <FadeIn delay={0.1}>
+              <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2">
+                Publications &{" "}
+                <span className="text-gradient-warm">Research</span>
+              </h2>
+            </FadeIn>
+          </div>
+          <FadeIn delay={0.2} direction="left">
+            <Link
+              to="/publications"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group whitespace-nowrap"
+            >
+              View all publications
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </FadeIn>
         </div>
 
-        <div 
-          className={cn(
-            "max-w-4xl mx-auto opacity-0",
-            isInView && "animate-fade-in"
-          )}
-          style={{ animationDelay: "0.3s" }}
-        >
-          <Tabs defaultValue="publications" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="publications" className="flex items-center gap-2">
-                <FileText className="h-4 w-4" />
-                Publikasi
-              </TabsTrigger>
-              <TabsTrigger value="achievements" className="flex items-center gap-2">
-                <Trophy className="h-4 w-4" />
-                Penghargaan
-              </TabsTrigger>
-            </TabsList>
+        {/* Publications list */}
+        <StaggerContainer className="flex flex-col gap-4">
+          {publications.map((pub, i) => (
+            <StaggerItem key={pub.id}>
+              <motion.div
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                className="group flex flex-col sm:flex-row gap-5 p-6 rounded-2xl border bg-card hover:shadow-md transition-all duration-300"
+              >
+                {/* Index */}
+                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-muted flex items-center justify-center">
+                  <span className="text-xs font-bold text-muted-foreground font-mono">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
 
-            <TabsContent value="publications" className="space-y-4">
-              {publications.map((pub) => (
-                <div
-                  key={pub.id}
-                  className="card-elevated p-5 group hover:border-accent/50 transition-colors"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="badge-tech">{pub.type}</span>
-                        <span className="text-sm text-muted-foreground">{pub.year}</span>
-                      </div>
-                      <h3 className="font-semibold text-foreground mb-1 group-hover:text-accent transition-colors">
-                        {pub.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-2">{pub.authors}</p>
-                      <p className="text-sm text-accent">{pub.journal}</p>
-                    </div>
-                    <a
-                      href={`https://doi.org/${pub.doi}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-shrink-0 p-2 rounded-lg hover:bg-accent/10 transition-colors"
-                      aria-label="View DOI"
-                    >
-                      <ExternalLink className="h-5 w-5 text-muted-foreground hover:text-accent" />
-                    </a>
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold border bg-gradient-to-r ${typeColors[pub.type] || ""}`}>
+                      {pub.type}
+                    </span>
+                    <span className="text-xs text-muted-foreground font-mono">{pub.year}</span>
+                  </div>
+
+                  <h3 className="text-sm font-bold text-foreground leading-snug mb-2 group-hover:text-[hsl(180_70%_30%)] dark:group-hover:text-[hsl(180_70%_60%)] transition-colors">
+                    {pub.title}
+                  </h3>
+
+                  <p className="text-xs text-muted-foreground mb-1">
+                    <span className="font-medium">{pub.authors}</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground italic mb-3">{pub.journal}</p>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {pub.tags.map((tag) => (
+                      <span key={tag} className="badge-tag text-[10px]">{tag}</span>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </TabsContent>
 
-            <TabsContent value="achievements" className="space-y-4">
-              {achievements.map((ach) => (
-                <div
-                  key={ach.id}
-                  className="card-elevated p-5"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-cta/20 to-accent/20 flex items-center justify-center">
-                      <Award className="h-6 w-6 text-cta" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-medium text-accent">{ach.year}</span>
-                      </div>
-                      <h3 className="font-semibold text-foreground mb-1">{ach.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-1">{ach.organization}</p>
-                      <p className="text-sm text-muted-foreground">{ach.description}</p>
-                    </div>
-                  </div>
+                {/* Actions */}
+                <div className="flex sm:flex-col items-center gap-2 flex-shrink-0">
+                  <a
+                    href={`https://doi.org/${pub.doi}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all"
+                    title="View DOI"
+                  >
+                    <ExternalLink size={13} />
+                  </a>
+                  <button
+                    className="w-8 h-8 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all"
+                    title="Cite"
+                  >
+                    <Quote size={13} />
+                  </button>
                 </div>
-              ))}
-            </TabsContent>
-          </Tabs>
-        </div>
+              </motion.div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );

@@ -1,239 +1,162 @@
 import { useState } from "react";
-import { Mail, Send, Github, Linkedin, BookOpen, MapPin, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { profile } from "@/data/portfolio";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { useInView } from "@/hooks/useInView";
-import { cn } from "@/lib/utils";
-import { useToast } from "@/hooks/use-toast";
+import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { Github, Instagram, Linkedin, Mail, MapPin, MessageSquare, Send } from "lucide-react";
 
 export function Contact() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission (since no backend)
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    toast({
-      title: "Pesan Terkirim!",
-      description: "Terima kasih telah menghubungi. Saya akan membalas secepatnya.",
-    });
-
-    // Reset form after delay
-    setTimeout(() => setIsSubmitted(false), 3000);
+    // Build mailto link
+    const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`From: ${form.name} (${form.email})\n\n${form.message}`)}`;
+    window.location.href = mailto;
+    setSubmitted(true);
   };
 
-  const socialLinks = [
-    { icon: Github, label: "GitHub", href: profile.socials.github },
-    { icon: Linkedin, label: "LinkedIn", href: profile.socials.linkedin },
-    { icon: BookOpen, label: "Google Scholar", href: profile.socials.googleScholar },
-    { icon: Mail, label: "Email", href: `mailto:${profile.email}` },
-  ];
-
   return (
-    <section id="contact" className="section-padding">
-      <div className="container-wide" ref={ref}>
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <span 
-            className={cn(
-              "inline-block text-sm font-semibold text-accent uppercase tracking-wider mb-4 opacity-0",
-              isInView && "animate-fade-in"
-            )}
-          >
-            Kontak
-          </span>
-          <h2 
-            className={cn(
-              "heading-2 text-foreground mb-4 opacity-0",
-              isInView && "animate-fade-in"
-            )}
-            style={{ animationDelay: "0.1s" }}
-          >
-            Mari Berkolaborasi
-          </h2>
-          <p 
-            className={cn(
-              "body-large max-w-2xl mx-auto opacity-0",
-              isInView && "animate-fade-in"
-            )}
-            style={{ animationDelay: "0.2s" }}
-          >
-            Tertarik untuk bekerja sama atau punya pertanyaan? Jangan ragu untuk menghubungi saya.
-          </p>
-        </div>
+    <section id="contact" className="section-padding bg-muted/20">
+      <div className="container-max">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-14">
+          {/* Left info */}
+          <div className="lg:col-span-2">
+            <SectionLabel>Contact</SectionLabel>
+            <FadeIn delay={0.1}>
+              <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 mb-6 leading-tight">
+                Let's <span className="text-gradient-science">Connect</span>
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+                Whether you're a researcher, educator, institution, or fellow builder — I'm always
+                open to meaningful conversations about physics education, EdTech, and collaborative work.
+              </p>
+            </FadeIn>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Info */}
-          <div 
-            className={cn(
-              "opacity-0",
-              isInView && "animate-fade-in"
-            )}
-            style={{ animationDelay: "0.3s" }}
-          >
-            <div className="bg-gradient-to-br from-accent/10 via-transparent to-cta/10 rounded-2xl p-8 border border-accent/20 h-full">
-              <h3 className="heading-3 text-foreground mb-6">Hubungi Saya</h3>
-              
-              <div className="space-y-6">
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-5 w-5 text-accent" />
+            {/* Contact details */}
+            <FadeIn delay={0.3}>
+              <div className="flex flex-col gap-4 mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
+                    <Mail size={15} className="text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground mb-1">Email</p>
-                    <a 
-                      href={`mailto:${profile.email}`}
-                      className="text-muted-foreground hover:text-accent transition-colors"
-                    >
+                    <div className="text-xs text-muted-foreground">Email</div>
+                    <a href={`mailto:${profile.email}`} className="text-sm font-medium text-foreground hover:text-[hsl(180_70%_38%)] transition-colors">
                       {profile.email}
                     </a>
                   </div>
                 </div>
-
-                {/* Location */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-5 w-5 text-accent" />
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
+                    <MapPin size={15} className="text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-medium text-foreground mb-1">Lokasi</p>
-                    <p className="text-muted-foreground">{profile.location}</p>
+                    <div className="text-xs text-muted-foreground">Location</div>
+                    <div className="text-sm font-medium text-foreground">{profile.location}</div>
                   </div>
                 </div>
               </div>
+            </FadeIn>
 
-              {/* Social Links */}
-              <div className="mt-10">
-                <p className="text-sm font-medium text-foreground mb-4">Temukan saya di</p>
-                <div className="flex flex-wrap gap-3">
-                  {socialLinks.map((social) => {
-                    const Icon = social.icon;
-                    return (
-                      <a
-                        key={social.label}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-xl bg-secondary hover:bg-accent/10 flex items-center justify-center transition-colors group"
-                        aria-label={social.label}
-                      >
-                        <Icon className="h-5 w-5 text-muted-foreground group-hover:text-accent transition-colors" />
-                      </a>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div 
-            className={cn(
-              "opacity-0",
-              isInView && "animate-fade-in"
-            )}
-            style={{ animationDelay: "0.4s" }}
-          >
-            <form 
-              onSubmit={handleSubmit}
-              className="card-elevated p-8"
-            >
-              <div className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Nama</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      placeholder="Nama Anda"
-                      required
-                      className="bg-background"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="email@contoh.com"
-                      required
-                      className="bg-background"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Subjek</Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    placeholder="Subjek pesan"
-                    required
-                    className="bg-background"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">Pesan</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Tulis pesan Anda..."
-                    rows={5}
-                    required
-                    className="bg-background resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
-                  disabled={isSubmitting || isSubmitted}
-                >
-                  {isSubmitted ? (
-                    <>
-                      <CheckCircle2 className="mr-2 h-4 w-4" />
-                      Terkirim!
-                    </>
-                  ) : isSubmitting ? (
-                    <>
-                      <span className="animate-pulse">Mengirim...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="mr-2 h-4 w-4" />
-                      Kirim Pesan
-                    </>
-                  )}
-                </Button>
-
-                <p className="text-xs text-center text-muted-foreground">
-                  Atau langsung email ke{" "}
-                  <a 
-                    href={`mailto:${profile.email}`}
-                    className="text-accent hover:underline"
-                  >
-                    {profile.email}
+            {/* Socials */}
+            <FadeIn delay={0.4}>
+              <div className="flex items-center gap-2">
+                {[
+                  { icon: Github, href: profile.socials.github, label: "GitHub" },
+                  { icon: Linkedin, href: profile.socials.linkedin, label: "LinkedIn" },
+                  { icon: Instagram, href: profile.socials.instagram, label: "Instagram" },
+                ].map(({ icon: Icon, href, label }) => (
+                  <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-2 rounded-xl border text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted text-xs font-medium transition-all">
+                    <Icon size={13} />
+                    {label}
                   </a>
-                </p>
+                ))}
               </div>
-            </form>
+            </FadeIn>
           </div>
+
+          {/* Right: form */}
+          <FadeIn delay={0.2} direction="left" className="lg:col-span-3">
+            <div className="p-6 sm:p-8 rounded-3xl border bg-card shadow-sm">
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex flex-col items-center justify-center py-12 text-center"
+                >
+                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-4 text-2xl">✅</div>
+                  <h3 className="text-lg font-bold text-foreground mb-2">Message Sent!</h3>
+                  <p className="text-sm text-muted-foreground">Your email client should have opened. Looking forward to connecting.</p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="name" className="text-xs font-semibold text-foreground">Name</label>
+                      <input
+                        id="name"
+                        type="text"
+                        required
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        placeholder="Your name"
+                        className="w-full px-4 py-3 rounded-xl border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(180_70%_38%/0.4)] transition-all"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="email" className="text-xs font-semibold text-foreground">Email</label>
+                      <input
+                        id="email"
+                        type="email"
+                        required
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        placeholder="your@email.com"
+                        className="w-full px-4 py-3 rounded-xl border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(180_70%_38%/0.4)] transition-all"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="subject" className="text-xs font-semibold text-foreground">Subject</label>
+                    <input
+                      id="subject"
+                      type="text"
+                      required
+                      value={form.subject}
+                      onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                      placeholder="Research collaboration, partnership, etc."
+                      className="w-full px-4 py-3 rounded-xl border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(180_70%_38%/0.4)] transition-all"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="message" className="text-xs font-semibold text-foreground">Message</label>
+                    <textarea
+                      id="message"
+                      required
+                      rows={5}
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      placeholder="Tell me about your project, research, or idea..."
+                      className="w-full px-4 py-3 rounded-xl border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(180_70%_38%/0.4)] transition-all resize-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    id="contact-submit"
+                    className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                    style={{ background: "linear-gradient(135deg, hsl(180 70% 35%), hsl(217 91% 55%))" }}
+                  >
+                    <Send size={15} />
+                    Send Message
+                  </button>
+                </form>
+              )}
+            </div>
+          </FadeIn>
         </div>
       </div>
     </section>

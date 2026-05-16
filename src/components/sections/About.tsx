@@ -1,142 +1,130 @@
-import { MapPin, BookOpen, Lightbulb, Target } from "lucide-react";
-import { profile, education } from "@/data/portfolio";
-import { useInView } from "@/hooks/useInView";
-import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { profile } from "@/data/portfolio";
+import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { GraduationCap, MapPin, Microscope, Sparkles } from "lucide-react";
+
+const identityPillars = [
+  { icon: Microscope, label: "Researcher", desc: "Physics Education & Learning Science" },
+  { icon: GraduationCap, label: "Educator", desc: "Pedagogy & Curriculum Design" },
+  { icon: Sparkles, label: "Builder", desc: "EdTech Platforms & AI Tools" },
+];
 
 export function About() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
-
   return (
-    <section id="about" className="section-padding bg-secondary/30">
-      <div className="container-wide" ref={ref}>
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left: Bio & Values */}
-          <div>
-            <span 
-              className={cn(
-                "inline-block text-sm font-semibold text-accent uppercase tracking-wider mb-4 opacity-0",
-                isInView && "animate-fade-in"
-              )}
-            >
-              Tentang Saya
-            </span>
-            
-            <h2 
-              className={cn(
-                "heading-2 text-foreground mb-6 opacity-0",
-                isInView && "animate-fade-in"
-              )}
-              style={{ animationDelay: "0.1s" }}
-            >
-              Membangun jembatan antara sains dan teknologi
-            </h2>
-
-            {/* Avatar & Location */}
-            <div 
-              className={cn(
-                "flex items-center gap-4 mb-8 opacity-0",
-                isInView && "animate-fade-in"
-              )}
-              style={{ animationDelay: "0.2s" }}
-            >
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-accent to-cta flex items-center justify-center text-white text-2xl font-bold">
-                {profile.name.split(" ").map(n => n[0]).join("")}
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">{profile.name}</p>
-                <p className="flex items-center gap-1 text-sm text-muted-foreground">
-                  <MapPin className="h-4 w-4" />
-                  {profile.location}
-                </p>
-              </div>
-            </div>
-
-            <p 
-              className={cn(
-                "body-regular mb-6 opacity-0",
-                isInView && "animate-fade-in"
-              )}
-              style={{ animationDelay: "0.3s" }}
-            >
-              {profile.bio}
-            </p>
-
-            {/* Values */}
-            <div 
-              className={cn(
-                "bg-card p-6 rounded-xl border shadow-card opacity-0",
-                isInView && "animate-fade-in"
-              )}
-              style={{ animationDelay: "0.4s" }}
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <Lightbulb className="h-5 w-5 text-accent" />
-                <h3 className="font-semibold text-foreground">Nilai & Fokus</h3>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {profile.values}
-              </p>
-            </div>
-          </div>
-
-          {/* Right: Education & Interests */}
-          <div>
-            {/* Education Timeline */}
-            <div 
-              className={cn(
-                "mb-10 opacity-0",
-                isInView && "animate-fade-in-right"
-              )}
-              style={{ animationDelay: "0.3s" }}
-            >
-              <div className="flex items-center gap-2 mb-6">
-                <BookOpen className="h-5 w-5 text-accent" />
-                <h3 className="heading-3 text-foreground">Pendidikan</h3>
-              </div>
-
-              <div className="space-y-6">
-                {education.map((edu, index) => (
-                  <div key={edu.id} className="relative pl-6 border-l-2 border-accent/30">
-                    <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-accent" />
-                    <p className="text-sm text-accent font-medium">{edu.period}</p>
-                    <h4 className="font-semibold text-foreground">{edu.degree}</h4>
-                    <p className="text-muted-foreground">{edu.institution}</p>
-                    <p className="text-sm text-muted-foreground mt-1">{edu.description}</p>
+    <section id="about" className="section-padding bg-muted/20">
+      <div className="container-max">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left: visual identity block */}
+          <FadeIn direction="right">
+            <div className="relative">
+              {/* Main card */}
+              <div className="relative z-10 p-8 rounded-3xl border bg-card shadow-xl">
+                {/* Avatar placeholder + initials */}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0"
+                    style={{ background: "linear-gradient(135deg, hsl(180 70% 38%), hsl(217 91% 60%), hsl(263 70% 60%))" }}>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-white font-bold text-xl">FD</span>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div>
+                    <div className="text-sm font-bold text-foreground">{profile.shortName}</div>
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-0.5">
+                      <MapPin size={11} />
+                      {profile.location}
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{profile.department} · {profile.institution}</div>
+                  </div>
+                </div>
 
-            {/* Research Interests */}
-            <div 
-              className={cn(
-                "bg-card p-6 rounded-xl border shadow-card opacity-0",
-                isInView && "animate-fade-in-right"
-              )}
-              style={{ animationDelay: "0.5s" }}
-            >
-              <div className="flex items-center gap-2 mb-4">
-                <Target className="h-5 w-5 text-accent" />
-                <h3 className="font-semibold text-foreground">Minat Riset</h3>
+                {/* Identity pillars */}
+                <div className="flex flex-col gap-3">
+                  {identityPillars.map(({ icon: Icon, label, desc }) => (
+                    <div key={label} className="flex items-center gap-3 p-3 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[hsl(180_70%_38%/0.15)] to-[hsl(217_91%_60%/0.15)] flex items-center justify-center">
+                        <Icon size={15} className="text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)]" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-bold text-foreground">{label}</div>
+                        <div className="text-[10px] text-muted-foreground">{desc}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Decorative orbs */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full opacity-20 dark:opacity-10 blur-xl pointer-events-none"
+                  style={{ background: "hsl(263 70% 60%)" }} />
+                <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full opacity-15 dark:opacity-10 blur-2xl pointer-events-none"
+                  style={{ background: "hsl(217 91% 60%)" }} />
               </div>
+
+              {/* Floating stat pills */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -right-6 top-8 z-20 px-4 py-2.5 rounded-2xl border bg-card shadow-lg"
+              >
+                <div className="text-xs font-bold text-foreground">{profile.stats.studentsImpacted}</div>
+                <div className="text-[10px] text-muted-foreground">Students Reached</div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -left-6 bottom-16 z-20 px-4 py-2.5 rounded-2xl border bg-card shadow-lg"
+              >
+                <div className="text-xs font-bold text-foreground">{profile.stats.publications} Papers</div>
+                <div className="text-[10px] text-muted-foreground">Published</div>
+              </motion.div>
+            </div>
+          </FadeIn>
+
+          {/* Right: bio */}
+          <div>
+            <SectionLabel>About</SectionLabel>
+            <FadeIn delay={0.1}>
+              <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 mb-6 leading-tight">
+                At the Edge of{" "}
+                <span className="h-editorial italic text-gradient-primary">Physics</span>
+                {" "}&amp;{" "}
+                <span className="h-editorial italic text-gradient-science">Technology</span>
+              </h2>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                {profile.bio}
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={0.3}>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-8">
+                My interdisciplinary work spans <strong className="text-foreground font-semibold">Physics Education Research</strong>,{" "}
+                <strong className="text-foreground font-semibold">AI-augmented learning systems</strong>,{" "}
+                <strong className="text-foreground font-semibold">interactive simulation engineering</strong>, and{" "}
+                <strong className="text-foreground font-semibold">human-centered EdTech product design</strong>.
+                Every project I undertake is grounded in evidence, driven by curiosity, and designed for real impact.
+              </p>
+            </FadeIn>
+
+            {/* Core identity tags */}
+            <FadeIn delay={0.4}>
               <div className="flex flex-wrap gap-2">
                 {[
-                  "Physics Education Research",
-                  "Interactive Simulations",
-                  "Virtual Laboratories",
-                  "Model-Based Learning",
-                  "Data Literacy Education",
+                  "Physics Education",
                   "AI in Education",
-                ].map((interest) => (
-                  <span
-                    key={interest}
-                    className="badge-tech"
-                  >
-                    {interest}
-                  </span>
+                  "Learning Science",
+                  "HCI",
+                  "Interactive Simulation",
+                  "Scientific Visualization",
+                  "Research Automation",
+                  "Product Strategy",
+                ].map((tag) => (
+                  <span key={tag} className="badge-tag text-xs">{tag}</span>
                 ))}
               </div>
-            </div>
+            </FadeIn>
           </div>
         </div>
       </div>

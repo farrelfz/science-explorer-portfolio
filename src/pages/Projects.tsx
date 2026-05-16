@@ -1,244 +1,178 @@
-import { useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ExternalLink, Github, X, ChevronLeft, ChevronRight } from "lucide-react";
-import { projects, categories, siteConfig } from "@/data/portfolio";
-import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
-import { useEffect } from "react";
+import { projects } from "@/data/portfolio";
+import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { ArrowRight, ExternalLink, Github, Layers, Zap } from "lucide-react";
 
-type Project = typeof projects[0];
+const statusColors: Record<string, string> = {
+  Active: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+  Beta: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+  Complete: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
+  "In Development": "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+  "Research Phase": "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
+};
 
-const Projects = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+const allCategories = ["All", ...Array.from(new Set(projects.map((p) => p.category)))];
+
+const ProjectsPage = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
 
   useEffect(() => {
-    document.title = `Proyek | ${siteConfig.name}`;
+    document.title = "Projects — Farrel Dava | EdTech Builder";
   }, []);
 
-  const filteredProjects = useMemo(() => {
-    if (!selectedCategory) return projects;
-    return projects.filter((p) => p.category.includes(selectedCategory));
-  }, [selectedCategory]);
+  const filtered = activeCategory === "All"
+    ? projects
+    : projects.filter((p) => p.category === activeCategory);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
-      <main className="pt-28 pb-20">
-        <div className="container-wide">
-          {/* Header */}
-          <div className="mb-12">
-            <Link
-              to="/"
-              className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Kembali ke Beranda
-            </Link>
-
-            <h1 className="heading-1 text-foreground mb-4">Semua Proyek</h1>
-            <p className="body-large max-w-2xl">
-              Koleksi proyek yang mencakup pengembangan web, simulasi fisika, platform edukasi, dan riset pendidikan.
-            </p>
+      <main>
+        {/* Hero */}
+        <section className="pt-32 pb-16 bg-hero-light relative overflow-hidden">
+          <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
+          <div className="container-max relative z-10">
+            <FadeIn>
+              <div className="label-science mb-6 w-fit">⚗️ Engineering Lab</div>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <h1 className="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-5 leading-tight">
+                Things I've <span className="text-gradient-science">Built</span>
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-base text-muted-foreground max-w-xl leading-relaxed">
+                Six flagship products at the intersection of physics education, AI, and interactive simulation —
+                each grounded in research and designed for real-world impact.
+              </p>
+            </FadeIn>
           </div>
+        </section>
 
-          {/* Filter Chips */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={cn(
-                "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                !selectedCategory
-                  ? "bg-accent text-accent-foreground shadow-md"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-              )}
-            >
-              Semua
-            </button>
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                  selectedCategory === category
-                    ? "bg-accent text-accent-foreground shadow-md"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                )}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project, index) => (
-              <div
-                key={project.id}
-                className="group card-elevated overflow-hidden cursor-pointer opacity-0 animate-fade-in"
-                style={{ animationDelay: `${index * 0.05}s` }}
-                onClick={() => setSelectedProject(project)}
-              >
-                {/* Thumbnail */}
-                <div className="aspect-video bg-gradient-to-br from-accent/20 to-cta/20 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-accent/30">
-                      {project.title.charAt(0)}
-                    </span>
-                  </div>
-                  {project.featured && (
-                    <div className="absolute top-3 right-3 px-2 py-1 bg-cta text-cta-foreground text-xs font-medium rounded">
-                      Featured
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  {/* Categories */}
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.category.map((cat) => (
-                      <span key={cat} className="text-xs font-medium text-accent">
-                        {cat}
-                      </span>
-                    ))}
-                  </div>
-
-                  <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                    {project.summary}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.techStack.slice(0, 4).map((tech) => (
-                      <span key={tech} className="badge-tech text-xs">
-                        {tech}
-                      </span>
-                    ))}
-                    {project.techStack.length > 4 && (
-                      <span className="badge-tech text-xs">
-                        +{project.techStack.length - 4}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-muted-foreground">Tidak ada proyek dalam kategori ini.</p>
+        {/* Filter */}
+        <section className="py-8 border-b sticky top-[64px] z-30 bg-background/90 backdrop-blur-xl">
+          <div className="container-max">
+            <div className="flex flex-wrap gap-2">
+              {allCategories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 border ${
+                    activeCategory === cat
+                      ? "bg-foreground text-background border-foreground"
+                      : "bg-card text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
             </div>
-          )}
-        </div>
-      </main>
+          </div>
+        </section>
 
-      {/* Project Detail Modal */}
-      <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-          {selectedProject && (
-            <>
-              <DialogHeader>
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {selectedProject.category.map((cat) => (
-                    <span key={cat} className="badge-category text-xs">
-                      {cat}
-                    </span>
+        {/* Projects */}
+        <section className="section-padding">
+          <div className="container-max">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeCategory}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {filtered.map((project) => (
+                    <StaggerItem key={project.id}>
+                      <motion.div
+                        whileHover={{ y: -4 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="group flex flex-col rounded-2xl border bg-card overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                      >
+                        {/* Gradient bar */}
+                        <div className={`h-1.5 bg-gradient-to-r ${project.color}`} />
+
+                        <div className="flex flex-col flex-1 p-7">
+                          {/* Meta */}
+                          <div className="flex items-center justify-between mb-5">
+                            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border ${statusColors[project.status]}`}>
+                              {project.status}
+                            </span>
+                            <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
+                          </div>
+
+                          <h2 className="text-xl font-bold text-foreground mb-1">{project.title}</h2>
+                          <p className="text-xs font-medium text-muted-foreground mb-3">{project.subtitle}</p>
+                          <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5">{project.summary}</p>
+
+                          {/* Research basis excerpt */}
+                          <div className="p-3.5 rounded-xl bg-muted/50 border border-border/60 mb-5">
+                            <div className="flex items-start gap-2">
+                              <span className="text-xs font-bold text-muted-foreground shrink-0">Research basis:</span>
+                              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{project.researchBasis}</p>
+                            </div>
+                          </div>
+
+                          {/* Impact */}
+                          <div className="flex flex-col gap-1.5 mb-5">
+                            {project.impact.slice(0, 2).map((imp) => (
+                              <div key={imp} className="flex items-start gap-2">
+                                <Zap size={11} className="text-amber-500 flex-shrink-0 mt-0.5" />
+                                <span className="text-xs text-muted-foreground">{imp}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Tech */}
+                          <div className="flex flex-wrap gap-1.5 mb-5">
+                            {project.techStack.slice(0, 5).map((t) => (
+                              <span key={t} className="badge-tag text-[10px]">{t}</span>
+                            ))}
+                            {project.techStack.length > 5 && (
+                              <span className="badge-tag text-[10px]">+{project.techStack.length - 5}</span>
+                            )}
+                          </div>
+
+                          {/* Footer */}
+                          <div className="flex items-center gap-3 pt-4 border-t border-border">
+                            <Link to={`/projects/${project.id}`}
+                              className="flex items-center gap-1.5 text-xs font-semibold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group/l">
+                              <Layers size={12} />
+                              Full Case Study
+                              <ArrowRight size={11} className="transition-transform group-hover/l:translate-x-0.5" />
+                            </Link>
+                            <div className="flex items-center gap-2 ml-auto">
+                              {project.githubUrl && (
+                                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                                  className="w-7 h-7 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground transition-all">
+                                  <Github size={12} />
+                                </a>
+                              )}
+                              {project.demoUrl && (
+                                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer"
+                                  className="w-7 h-7 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground transition-all">
+                                  <ExternalLink size={12} />
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </StaggerItem>
                   ))}
-                </div>
-                <DialogTitle className="text-2xl">{selectedProject.title}</DialogTitle>
-                <DialogDescription>{selectedProject.summary}</DialogDescription>
-              </DialogHeader>
-
-              <div className="space-y-6 mt-4">
-                {/* Thumbnail */}
-                <div className="aspect-video bg-gradient-to-br from-accent/20 to-cta/20 rounded-lg flex items-center justify-center">
-                  <span className="text-6xl font-bold text-accent/30">
-                    {selectedProject.title.charAt(0)}
-                  </span>
-                </div>
-
-                {/* Problem & Solution */}
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="bg-secondary/50 rounded-lg p-4">
-                    <h4 className="font-semibold text-foreground mb-2">🎯 Problem</h4>
-                    <p className="text-sm text-muted-foreground">{selectedProject.problem}</p>
-                  </div>
-                  <div className="bg-accent/10 rounded-lg p-4">
-                    <h4 className="font-semibold text-foreground mb-2">💡 Solution</h4>
-                    <p className="text-sm text-muted-foreground">{selectedProject.solution}</p>
-                  </div>
-                </div>
-
-                {/* Role */}
-                <div>
-                  <h4 className="font-semibold text-foreground mb-2">👤 My Role</h4>
-                  <p className="text-muted-foreground">{selectedProject.role}</p>
-                </div>
-
-                {/* Impact */}
-                <div>
-                  <h4 className="font-semibold text-foreground mb-3">📈 Impact & Results</h4>
-                  <ul className="space-y-2">
-                    {selectedProject.impact.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="text-accent mt-1">✓</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Tech Stack */}
-                <div>
-                  <h4 className="font-semibold text-foreground mb-3">🛠 Tech Stack</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.techStack.map((tech) => (
-                      <span key={tech} className="badge-tech">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex flex-wrap gap-3 pt-4 border-t">
-                  {selectedProject.demoUrl && (
-                    <Button asChild>
-                      <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Live Demo
-                      </a>
-                    </Button>
-                  )}
-                  {selectedProject.githubUrl && (
-                    <Button variant="outline" asChild>
-                      <a href={selectedProject.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" />
-                        View Code
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
-
+                </StaggerContainer>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
+      </main>
       <Footer />
     </div>
   );
 };
 
-export default Projects;
+export default ProjectsPage;

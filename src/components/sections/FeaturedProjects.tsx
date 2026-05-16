@@ -1,160 +1,138 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import { Link } from "react-router-dom";
-import { projects, callout } from "@/data/portfolio";
-import { Button } from "@/components/ui/button";
-import { useInView } from "@/hooks/useInView";
-import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { projects } from "@/data/portfolio";
+import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { ArrowRight, ExternalLink, Github, Layers, Zap } from "lucide-react";
+
+const statusColors: Record<string, string> = {
+  Active: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+  Beta: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+  Complete: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
+  "In Development": "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+  "Research Phase": "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
+};
 
 export function FeaturedProjects() {
-  const { ref, isInView } = useInView({ threshold: 0.1 });
-  const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+  const featured = projects.filter((p) => p.featured);
 
   return (
-    <section id="projects" className="section-padding">
-      <div className="container-wide" ref={ref}>
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <span 
-            className={cn(
-              "inline-block text-sm font-semibold text-accent uppercase tracking-wider mb-4 opacity-0",
-              isInView && "animate-fade-in"
-            )}
-          >
-            Proyek Unggulan
-          </span>
-          <h2 
-            className={cn(
-              "heading-2 text-foreground mb-4 opacity-0",
-              isInView && "animate-fade-in"
-            )}
-            style={{ animationDelay: "0.1s" }}
-          >
-            Karya Terbaru
-          </h2>
-          <p 
-            className={cn(
-              "body-large max-w-2xl mx-auto opacity-0",
-              isInView && "animate-fade-in"
-            )}
-            style={{ animationDelay: "0.2s" }}
-          >
-            Proyek-proyek yang menggabungkan teknologi modern dengan pedagogi berbasis riset
-          </p>
-        </div>
-
-        {/* Callout Banner */}
-        <div 
-          className={cn(
-            "bg-gradient-to-r from-accent/10 via-accent/5 to-cta/10 rounded-2xl p-6 md:p-8 mb-12 border border-accent/20 opacity-0",
-            isInView && "animate-fade-in"
-          )}
-          style={{ animationDelay: "0.3s" }}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div>
-              <h3 className="text-lg font-semibold text-foreground mb-1">
-                {callout.title}
-              </h3>
-              <p className="text-muted-foreground">{callout.description}</p>
-            </div>
-            <Button
-              variant="outline"
-              className="whitespace-nowrap border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-              onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              {callout.cta.label}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+    <section id="projects" className="section-padding bg-muted/20">
+      <div className="container-max">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+          <div>
+            <SectionLabel>Flagship Projects</SectionLabel>
+            <FadeIn delay={0.1}>
+              <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 leading-tight">
+                Things I've <span className="text-gradient-science">Built</span>
+              </h2>
+            </FadeIn>
           </div>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {featuredProjects.map((project, index) => (
-            <div
-              key={project.id}
-              className={cn(
-                "group card-elevated overflow-hidden opacity-0",
-                isInView && "animate-fade-in"
-              )}
-              style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+          <FadeIn delay={0.2} direction="left">
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors group whitespace-nowrap"
             >
-              {/* Thumbnail */}
-              <div className="aspect-video bg-gradient-to-br from-accent/20 to-cta/20 relative overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-accent/30">
-                    {project.title.charAt(0)}
-                  </span>
-                </div>
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                {/* Categories */}
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {project.category.slice(0, 2).map((cat) => (
-                    <span key={cat} className="text-xs font-medium text-accent">
-                      {cat}
-                    </span>
-                  ))}
-                </div>
-
-                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {project.summary}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.techStack.slice(0, 4).map((tech) => (
-                    <span key={tech} className="badge-tech text-xs">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Actions */}
-                <div className="flex items-center gap-2">
-                  {project.demoUrl && (
-                    <Button variant="outline" size="sm" asChild className="flex-1">
-                      <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
-                        Demo
-                      </a>
-                    </Button>
-                  )}
-                  {project.githubUrl && (
-                    <Button variant="ghost" size="sm" asChild>
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4" />
-                      </a>
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* View All Button */}
-        <div 
-          className={cn(
-            "text-center opacity-0",
-            isInView && "animate-fade-in"
-          )}
-          style={{ animationDelay: "0.7s" }}
-        >
-          <Button asChild size="lg" variant="outline">
-            <Link to="/projects">
-              Lihat Semua Proyek
-              <ArrowRight className="ml-2 h-4 w-4" />
+              View all projects
+              <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
             </Link>
-          </Button>
+          </FadeIn>
         </div>
+
+        {/* Projects grid */}
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {featured.map((project, i) => (
+            <StaggerItem key={project.id}>
+              <ProjectCard project={project} index={i} />
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
+  );
+}
+
+function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+  const isLarge = index === 0;
+
+  return (
+    <motion.div
+      whileHover={{ y: -4 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className={`group relative flex flex-col rounded-2xl border bg-card overflow-hidden transition-shadow duration-300 hover:shadow-xl ${
+        isLarge ? "md:col-span-2 lg:col-span-1" : ""
+      }`}
+    >
+      {/* Gradient header */}
+      <div
+        className={`h-2 w-full bg-gradient-to-r ${project.color} opacity-80`}
+      />
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-6">
+        {/* Meta row */}
+        <div className="flex items-center justify-between mb-4">
+          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border ${statusColors[project.status] || ""}`}>
+            {project.status}
+          </span>
+          <span className="text-xs text-muted-foreground font-mono">{project.year}</span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-lg font-bold text-foreground mb-1 leading-snug group-hover:text-gradient-science transition-all">
+          {project.title}
+        </h3>
+        <p className="text-xs font-medium text-muted-foreground mb-3">{project.subtitle}</p>
+
+        {/* Summary */}
+        <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5">
+          {project.summary}
+        </p>
+
+        {/* Impact bullets */}
+        {project.impact.slice(0, 2).map((imp) => (
+          <div key={imp} className="flex items-start gap-2 mb-1.5">
+            <Zap size={11} className="text-amber-500 flex-shrink-0 mt-0.5" />
+            <span className="text-xs text-muted-foreground">{imp}</span>
+          </div>
+        ))}
+
+        {/* Tech stack */}
+        <div className="flex flex-wrap gap-1.5 mt-4 mb-5">
+          {project.techStack.slice(0, 4).map((tech) => (
+            <span key={tech} className="badge-tag text-[11px]">{tech}</span>
+          ))}
+          {project.techStack.length > 4 && (
+            <span className="badge-tag text-[11px]">+{project.techStack.length - 4}</span>
+          )}
+        </div>
+
+        {/* Footer actions */}
+        <div className="flex items-center gap-3 pt-4 border-t border-border">
+          <Link
+            to={`/projects/${project.id}`}
+            className="flex items-center gap-1.5 text-xs font-semibold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group/link"
+          >
+            <Layers size={12} />
+            Case Study
+            <ArrowRight size={11} className="transition-transform group-hover/link:translate-x-0.5" />
+          </Link>
+          <div className="flex items-center gap-2 ml-auto">
+            {project.githubUrl && (
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                className="w-7 h-7 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all">
+                <Github size={12} />
+              </a>
+            )}
+            {project.demoUrl && (
+              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer"
+                className="w-7 h-7 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all">
+                <ExternalLink size={12} />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 }

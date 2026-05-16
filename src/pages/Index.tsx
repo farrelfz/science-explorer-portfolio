@@ -1,30 +1,29 @@
+import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
+import { Philosophy } from "@/components/sections/Philosophy";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
-import { Experience } from "@/components/sections/Experience";
+import { ResearchInterests } from "@/components/sections/ResearchInterests";
+import { Teaching } from "@/components/sections/Experience";
 import { Publications } from "@/components/sections/Publications";
-import { Skills } from "@/components/sections/Skills";
+import { WritingPreview } from "@/components/sections/WritingPreview";
+import { TimelineSection } from "@/components/sections/TimelineSection";
+import { CollaborationCTA } from "@/components/sections/CollaborationCTA";
 import { Contact } from "@/components/sections/Contact";
-import { Footer } from "@/components/layout/Footer";
-import { siteConfig, profile } from "@/data/portfolio";
-import { useEffect } from "react";
+import { siteConfig } from "@/data/portfolio";
 
 const Index = () => {
   useEffect(() => {
-    // Update document title and meta
     document.title = siteConfig.title;
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", siteConfig.description);
-    } else {
-      const meta = document.createElement("meta");
+    let meta = document.querySelector('meta[name="description"]') as HTMLMetaElement;
+    if (!meta) {
+      meta = document.createElement("meta");
       meta.name = "description";
-      meta.content = siteConfig.description;
       document.head.appendChild(meta);
     }
+    meta.content = siteConfig.description;
   }, []);
 
   return (
@@ -33,10 +32,14 @@ const Index = () => {
       <main>
         <Hero />
         <About />
+        <Philosophy />
+        <ResearchInterests />
         <FeaturedProjects />
-        <Experience />
+        <Teaching />
         <Publications />
-        <Skills />
+        <WritingPreview />
+        <TimelineSection />
+        <CollaborationCTA />
         <Contact />
       </main>
       <Footer />
