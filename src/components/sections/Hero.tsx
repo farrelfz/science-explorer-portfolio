@@ -21,8 +21,8 @@ function RotatingWord() {
   // Fixed width so it never wraps or shifts layout
   return (
     <span
-      className="relative inline-flex overflow-hidden align-bottom"
-      style={{ width: "11ch", height: "1.2em" }}
+      className="relative inline-flex overflow-hidden align-bottom pb-1"
+      style={{ width: "11ch", height: "1.4em" }}
     >
       <AnimatePresence mode="wait">
         <motion.span
@@ -40,18 +40,19 @@ function RotatingWord() {
   );
 }
 
-// Stat card with icon + value + label
 function StatCard({ value, label, icon, delay }: { value: string | number; label: string; icon: string; delay: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className="flex flex-col items-center gap-1 px-4 py-3 rounded-2xl border bg-card/80 backdrop-blur-sm hover:bg-card hover:shadow-md transition-all duration-300"
+      className="flex flex-col items-center gap-2 p-4 rounded-2xl border bg-card/80 backdrop-blur-sm hover:bg-card hover:shadow-lg transition-all duration-300"
     >
-      <span className="text-xl">{icon}</span>
-      <span className="text-xl font-extrabold text-foreground tracking-tight leading-none">{value}</span>
-      <span className="text-[10px] text-muted-foreground font-medium text-center leading-tight whitespace-nowrap">{label}</span>
+      <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-xl mb-1 shadow-sm">
+        {icon}
+      </div>
+      <span className="text-2xl font-black text-foreground tracking-tight leading-none">{value}</span>
+      <span className="text-xs text-muted-foreground font-semibold text-center leading-tight">{label}</span>
     </motion.div>
   );
 }
@@ -204,9 +205,9 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="pt-8 border-t border-border"
+              className="pt-8 border-t border-border mt-8"
             >
-              <div className="grid grid-cols-4 gap-2 max-w-sm">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl">
                 <StatCard value={profile.stats.researchProjects} label="Research Projects" icon="🔬" delay={0.85} />
                 <StatCard value={profile.stats.projectsBuilt} label="Platforms Built" icon="⚙️" delay={0.9} />
                 <StatCard value={profile.stats.publications} label="Publications" icon="📄" delay={0.95} />

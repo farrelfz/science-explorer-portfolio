@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { publications } from "@/data/portfolio";
+import { publications, profile } from "@/data/portfolio";
 import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
-import { ArrowRight, BookMarked, ExternalLink, Quote } from "lucide-react";
+import { ArrowRight, BookMarked, ExternalLink, Quote, GraduationCap, Library, BookOpen } from "lucide-react";
 
 const typeColors: Record<string, string> = {
   "Journal Article": "from-blue-500/15 to-indigo-500/15 border-blue-500/20 text-blue-600 dark:text-blue-400",
@@ -34,6 +34,40 @@ export function Publications() {
             </Link>
           </FadeIn>
         </div>
+
+        {/* Academic Profile */}
+        <FadeIn delay={0.3}>
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-6 p-6 md:p-8 rounded-3xl border bg-card/50 backdrop-blur-sm mb-12">
+            <div className="w-24 h-24 rounded-2xl bg-muted border overflow-hidden flex-shrink-0">
+              <img src="/avatar-placeholder.png" alt="Profile" className="w-full h-full object-cover" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-foreground mb-1">Farrel Dava</h3>
+              <p className="text-sm text-muted-foreground mb-4">Physics Education Researcher • Universitas Sebelas Maret</p>
+              <div className="flex flex-wrap gap-4 text-xs font-medium">
+                <a href={profile.socials.googleScholar} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-muted-foreground hover:text-emerald-500 transition-colors">
+                  <GraduationCap size={14} /> Google Scholar
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-muted-foreground hover:text-green-500 transition-colors">
+                  <Library size={14} /> ORCID: 0000-0002-XXXX-XXXX
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-muted-foreground hover:text-blue-500 transition-colors">
+                  <BookOpen size={14} /> ResearchGate
+                </a>
+              </div>
+            </div>
+            <div className="flex flex-row md:flex-col gap-4 md:text-right w-full md:w-auto pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-border md:pl-8 mt-4 md:mt-0">
+              <div>
+                <div className="text-2xl font-black text-foreground">12</div>
+                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Citations</div>
+              </div>
+              <div>
+                <div className="text-2xl font-black text-foreground">3</div>
+                <div className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">H-Index</div>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
 
         {/* Publications list */}
         <StaggerContainer className="flex flex-col gap-4">

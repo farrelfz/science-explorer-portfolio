@@ -63,13 +63,20 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         isLarge ? "md:col-span-2 lg:col-span-1" : ""
       }`}
     >
-      {/* Gradient header */}
-      <div
-        className={`h-2 w-full bg-gradient-to-r ${project.color} opacity-80`}
-      />
+      {/* Image container */}
+      <div className="relative w-full h-48 overflow-hidden bg-muted">
+        <div className={`absolute inset-0 bg-gradient-to-t from-card to-transparent z-10`} />
+        {project.image && (
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        )}
+      </div>
 
       {/* Content */}
-      <div className="flex flex-col flex-1 p-6">
+      <div className="flex flex-col flex-1 p-6 relative z-20 -mt-6">
         {/* Meta row */}
         <div className="flex items-center justify-between mb-4">
           <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border ${statusColors[project.status] || ""}`}>
@@ -84,26 +91,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         </h3>
         <p className="text-xs font-medium text-muted-foreground mb-3">{project.subtitle}</p>
 
-        {/* Summary */}
-        <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5">
-          {project.summary}
-        </p>
-
-        {/* Impact bullets */}
-        {project.impact.slice(0, 2).map((imp) => (
-          <div key={imp} className="flex items-start gap-2 mb-1.5">
-            <Zap size={11} className="text-amber-500 flex-shrink-0 mt-0.5" />
-            <span className="text-xs text-muted-foreground">{imp}</span>
-          </div>
-        ))}
-
         {/* Tech stack */}
-        <div className="flex flex-wrap gap-1.5 mt-4 mb-5">
-          {project.techStack.slice(0, 4).map((tech) => (
-            <span key={tech} className="badge-tag text-[11px]">{tech}</span>
+        <div className="flex flex-wrap gap-1.5 mb-5 mt-auto">
+          {project.techStack.slice(0, 3).map((tech) => (
+            <span key={tech} className="badge-tag text-[10px]">{tech}</span>
           ))}
-          {project.techStack.length > 4 && (
-            <span className="badge-tag text-[11px]">+{project.techStack.length - 4}</span>
+          {project.techStack.length > 3 && (
+            <span className="badge-tag text-[10px]">+{project.techStack.length - 3}</span>
           )}
         </div>
 

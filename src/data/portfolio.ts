@@ -83,8 +83,8 @@ export const researchInterests = [
     description:
       "Investigating conceptual understanding, misconceptions, and pedagogical frameworks in physics learning at secondary and tertiary levels.",
     icon: "⚛️",
-    color: "from-blue-500/20 to-indigo-500/20",
-    borderColor: "border-blue-500/30",
+    color: "from-blue-500/10 to-blue-500/5",
+    borderColor: "border-blue-500/20",
     tags: ["Conceptual Learning", "Inquiry-Based", "Misconceptions"],
   },
   {
@@ -93,8 +93,8 @@ export const researchInterests = [
     description:
       "Designing intelligent tutoring systems, adaptive learning algorithms, and AI-augmented feedback mechanisms for physics learners.",
     icon: "🧠",
-    color: "from-violet-500/20 to-purple-500/20",
-    borderColor: "border-violet-500/30",
+    color: "from-indigo-500/10 to-indigo-500/5",
+    borderColor: "border-indigo-500/20",
     tags: ["ITS", "Adaptive Learning", "NLP", "LLMs"],
   },
   {
@@ -103,8 +103,8 @@ export const researchInterests = [
     description:
       "Creating high-fidelity visual representations of abstract physical phenomena through WebGL, Three.js, and custom rendering pipelines.",
     icon: "🌌",
-    color: "from-cyan-500/20 to-teal-500/20",
-    borderColor: "border-cyan-500/30",
+    color: "from-cyan-500/10 to-cyan-500/5",
+    borderColor: "border-cyan-500/20",
     tags: ["WebGL", "Three.js", "Data Visualization"],
   },
   {
@@ -113,8 +113,8 @@ export const researchInterests = [
     description:
       "Engineering real-time physics simulations that translate mathematical models into explorable, controllable, and observable environments.",
     icon: "🔧",
-    color: "from-emerald-500/20 to-green-500/20",
-    borderColor: "border-emerald-500/30",
+    color: "from-sky-500/10 to-sky-500/5",
+    borderColor: "border-sky-500/20",
     tags: ["Physics Engines", "Real-time", "WebAssembly"],
   },
   {
@@ -123,8 +123,8 @@ export const researchInterests = [
     description:
       "Applying data science to understand student learning trajectories, identify gaps, and generate actionable pedagogical insights.",
     icon: "📊",
-    color: "from-orange-500/20 to-amber-500/20",
-    borderColor: "border-orange-500/30",
+    color: "from-teal-500/10 to-teal-500/5",
+    borderColor: "border-teal-500/20",
     tags: ["Learning Traces", "Predictive Models", "Dashboards"],
   },
   {
@@ -133,8 +133,8 @@ export const researchInterests = [
     description:
       "Applying HCI principles, cognitive load theory, and UX research to design educational interfaces that feel effortless and effective.",
     icon: "🎯",
-    color: "from-rose-500/20 to-pink-500/20",
-    borderColor: "border-rose-500/30",
+    color: "from-slate-500/10 to-slate-500/5",
+    borderColor: "border-slate-500/20",
     tags: ["HCI", "Cognitive Load", "UX Research"],
   },
 ];
@@ -167,6 +167,7 @@ export const projects = [
     demoUrl: "https://fisikaseru.com",
     githubUrl: "https://github.com/farrelfz/fisikaseru",
     color: "from-blue-600 to-indigo-700",
+    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: "aih-fisika",
@@ -194,7 +195,8 @@ export const projects = [
     ],
     demoUrl: "https://aih.fisikaseru.com",
     githubUrl: "https://github.com/farrelfz/aih-fisika",
-    color: "from-violet-600 to-purple-700",
+    color: "from-indigo-600 to-blue-700",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: "risetify",
@@ -222,7 +224,8 @@ export const projects = [
     ],
     demoUrl: "",
     githubUrl: "https://github.com/farrelfz/risetify",
-    color: "from-emerald-600 to-teal-700",
+    color: "from-cyan-600 to-sky-700",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: "sipanen",
@@ -250,7 +253,8 @@ export const projects = [
     ],
     demoUrl: "",
     githubUrl: "https://github.com/farrelfz/sipanen",
-    color: "from-orange-600 to-amber-700",
+    color: "from-sky-600 to-blue-700",
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: "milikanlab",
@@ -278,7 +282,8 @@ export const projects = [
     ],
     demoUrl: "https://milikanlab.fisikaseru.com",
     githubUrl: "https://github.com/farrelfz/milikanlab",
-    color: "from-cyan-600 to-blue-700",
+    color: "from-teal-600 to-cyan-700",
+    image: "https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&q=80&w=800",
   },
   {
     id: "pyrolab",
@@ -306,7 +311,8 @@ export const projects = [
     ],
     demoUrl: "https://pyrolab.fisikaseru.com",
     githubUrl: "https://github.com/farrelfz/pyrolab",
-    color: "from-rose-600 to-red-700",
+    color: "from-slate-600 to-slate-800",
+    image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=800",
   },
 ];
 
@@ -485,7 +491,6 @@ export const navigation = [
   { label: "Research", href: "/research" },
   { label: "Publications", href: "/publications" },
   { label: "Writing", href: "/writing" },
-  { label: "Timeline", href: "/timeline" },
   { label: "Experience", href: "/experience" },
   { label: "Contact", href: "/contact" },
 ];

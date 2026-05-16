@@ -39,7 +39,6 @@ function AppRoutes() {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
-      <FloatingSocials />
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/research" element={<PageTransition><ResearchPage /></PageTransition>} />

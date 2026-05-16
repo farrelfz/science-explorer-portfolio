@@ -8,17 +8,10 @@ export function ResearchInterests() {
       <div className="container-max">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <SectionLabel>Research Focus</SectionLabel>
           <FadeIn delay={0.1}>
             <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 mb-4">
-              Areas of <span className="text-gradient-primary">Investigation</span>
+              Research <span className="text-gradient-primary">Interests</span>
             </h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="text-muted-foreground text-base leading-relaxed">
-              Six interconnected research clusters forming a coherent vision for
-              transforming physics education through technology and rigorous inquiry.
-            </p>
           </FadeIn>
         </div>
 
