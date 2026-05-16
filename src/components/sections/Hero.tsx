@@ -74,130 +74,184 @@ export function Hero() {
         style={{ y: yContent, opacity }}
         className="container-max relative z-10 pt-28 pb-32"
       >
-        <div className="max-w-5xl">
-          {/* Status pill */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left: text */}
+          <div>
+            {/* Status pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-8"
+            >
+              <span
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold border tracking-wide"
+                style={{
+                  background: "hsl(180 70% 38% / 0.08)",
+                  borderColor: "hsl(180 70% 38% / 0.25)",
+                  color: "hsl(180 70% 28%)",
+                }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Physics Education · Universitas Negeri Jakarta
+              </span>
+            </motion.div>
+
+            {/* Name — large editorial */}
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="font-extrabold tracking-tight text-foreground mb-6 leading-[1.02]"
+              style={{ fontSize: "clamp(2.4rem, 6vw, 5.5rem)", letterSpacing: "-0.03em" }}
+            >
+              Muhamad Farrel
+              <br />
+              <span className="text-gradient-primary">Dava Fauzan</span>
+            </motion.h1>
+
+            {/* Rotating tagline */}
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.38 }}
+              className="text-lg sm:text-xl font-semibold text-foreground/80 mb-5 flex items-baseline gap-3 flex-wrap"
+              style={{ letterSpacing: "-0.01em" }}
+            >
+              Building the future of physics learning through{" "}
+              <RotatingWord />
+            </motion.p>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl mb-10"
+            >
+              Physics Education undergraduate at UNJ — researching how humans learn science,
+              building AI-powered learning tools, writing about educational futures,
+              and designing simulations that make physics visceral.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-wrap items-center gap-3 mb-12"
+            >
+              <Link
+                to="/research"
+                id="hero-cta-research"
+                className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                style={{ background: "linear-gradient(135deg, hsl(231 64% 28%), hsl(217 91% 45%))" }}
+              >
+                <FlaskConical size={15} />
+                Explore Research
+                <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                to="/projects"
+                id="hero-cta-projects"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-200 border hover:-translate-y-0.5 hover:bg-muted"
+                style={{ borderColor: "hsl(var(--border))", color: "hsl(var(--foreground))", background: "hsl(var(--card))" }}
+              >
+                View Projects
+              </Link>
+              <Link
+                to="/writing"
+                id="hero-cta-writing"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-semibold text-muted-foreground hover:text-foreground transition-all duration-200"
+              >
+                <PenLine size={14} />
+                Read Writing
+              </Link>
+              <a
+                href={profile.cvUrl}
+                download
+                id="hero-cta-cv"
+                className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200"
+              >
+                <Download size={14} />
+                Download CV
+              </a>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="flex flex-wrap items-center gap-6 pt-8 border-t border-border"
+            >
+              <AnimatedCounter value={profile.stats.researchProjects} label="Research Projects" delay={0.85} />
+              <div className="w-px h-8 bg-border hidden sm:block" />
+              <AnimatedCounter value={profile.stats.projectsBuilt} label="Platforms Built" delay={0.95} />
+              <div className="w-px h-8 bg-border hidden sm:block" />
+              <AnimatedCounter value={profile.stats.publications} label="Publications" delay={1.05} />
+              <div className="w-px h-8 bg-border hidden sm:block" />
+              <AnimatedCounter value={profile.stats.articlesWritten} label="Essays Written" delay={1.15} />
+            </motion.div>
+          </div>
+
+          {/* Right: Photo card */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-8"
+            initial={{ opacity: 0, x: 40, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden lg:flex justify-center items-center"
           >
-            <span
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold border tracking-wide"
-              style={{
-                background: "hsl(180 70% 38% / 0.08)",
-                borderColor: "hsl(180 70% 38% / 0.25)",
-                color: "hsl(180 70% 28%)",
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Physics Education · Universitas Negeri Jakarta
-            </span>
-          </motion.div>
+            <div className="relative">
+              {/* Glow orb behind photo */}
+              <div
+                className="absolute -inset-10 rounded-full blur-3xl opacity-25 pointer-events-none"
+                style={{ background: "radial-gradient(circle, hsl(263 70% 60%) 0%, hsl(180 70% 38%) 60%, transparent 100%)" }}
+              />
+              {/* Photo card */}
+              <div
+                className="relative w-72 h-80 xl:w-80 xl:h-[420px] rounded-3xl overflow-hidden border shadow-2xl"
+                style={{ background: "linear-gradient(160deg, hsl(231 64% 18%), hsl(263 70% 22%), hsl(180 70% 18%))" }}
+              >
+                <img
+                  src="/avatar-placeholder.png"
+                  alt="Muhamad Farrel Dava Fauzan"
+                  className="w-full h-full object-cover object-center mix-blend-luminosity opacity-90"
+                />
+                {/* Bottom fade */}
+                <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-[hsl(231_64%_12%)] to-transparent" />
+                {/* Name on card */}
+                <div className="absolute bottom-5 left-5 right-5">
+                  <div className="text-white font-bold text-sm">Muhamad Farrel Dava Fauzan</div>
+                  <div className="text-white/60 text-xs mt-0.5">Physics Education · UNJ</div>
+                </div>
+              </div>
 
-          {/* Name — large editorial */}
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-extrabold tracking-tight text-foreground mb-6 leading-[1.02]"
-            style={{ fontSize: "clamp(2.8rem, 8vw, 6.5rem)", letterSpacing: "-0.03em" }}
-          >
-            Muhamad Farrel
-            <br />
-            <span className="text-gradient-primary">Dava Fauzan</span>
-          </motion.h1>
+              {/* Floating badge: Institution */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -left-8 top-10 px-3.5 py-2.5 rounded-2xl border bg-card/95 backdrop-blur-sm shadow-lg"
+              >
+                <div className="text-[10px] text-muted-foreground mb-0.5">Researcher at</div>
+                <div className="text-xs font-bold text-foreground">UNJ Jakarta</div>
+              </motion.div>
 
-          {/* Rotating tagline — one clean line, no × × × */}
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.38 }}
-            className="text-xl sm:text-2xl font-semibold text-foreground/80 mb-5 flex items-baseline gap-3 flex-wrap"
-            style={{ letterSpacing: "-0.01em" }}
-          >
-            Building the future of physics learning through{" "}
-            <RotatingWord />
-          </motion.p>
+              {/* Floating badge: Status */}
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="absolute -right-8 bottom-16 px-3.5 py-2.5 rounded-2xl border bg-card/95 backdrop-blur-sm shadow-lg"
+              >
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <div className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">Open to Collaborate</div>
+                </div>
+              </motion.div>
 
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mb-10"
-            style={{ fontWeight: 400 }}
-          >
-            Physics Education undergraduate at UNJ — researching how humans learn science,
-            building AI-powered learning tools, writing about educational futures,
-            and designing simulations that make physics visceral.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap items-center gap-3 mb-16"
-          >
-            <Link
-              to="/research"
-              id="hero-cta-research"
-              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
-              style={{ background: "linear-gradient(135deg, hsl(231 64% 28%), hsl(217 91% 45%))" }}
-            >
-              <FlaskConical size={15} />
-              Explore Research
-              <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
-            </Link>
-
-            <Link
-              to="/projects"
-              id="hero-cta-projects"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold transition-all duration-200 border hover:-translate-y-0.5 hover:bg-muted"
-              style={{
-                borderColor: "hsl(var(--border))",
-                color: "hsl(var(--foreground))",
-                background: "hsl(var(--card))",
-              }}
-            >
-              View Projects
-            </Link>
-
-            <Link
-              to="/writing"
-              id="hero-cta-writing"
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-semibold text-muted-foreground hover:text-foreground transition-all duration-200"
-            >
-              <PenLine size={14} />
-              Read Writing
-            </Link>
-
-            <a
-              href={profile.cvUrl}
-              download
-              id="hero-cta-cv"
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground transition-all duration-200"
-            >
-              <Download size={14} />
-              Download CV
-            </a>
-          </motion.div>
-
-          {/* Stats — with more weight */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-wrap items-center gap-8 pt-8 border-t border-border"
-          >
-            <AnimatedCounter value={profile.stats.researchProjects} label="Research Projects" delay={0.85} />
-            <div className="w-px h-8 bg-border hidden sm:block" />
-            <AnimatedCounter value={profile.stats.projectsBuilt} label="Platforms Built" delay={0.95} />
-            <div className="w-px h-8 bg-border hidden sm:block" />
-            <AnimatedCounter value={profile.stats.publications} label="Publications" delay={1.05} />
-            <div className="w-px h-8 bg-border hidden sm:block" />
-            <AnimatedCounter value={profile.stats.articlesWritten} label="Essays Written" delay={1.15} />
+              {/* Decorative corner ring */}
+              <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full border-2 border-dashed border-[hsl(180_70%_38%/0.3)] opacity-60" />
+            </div>
           </motion.div>
         </div>
       </motion.div>
@@ -227,22 +281,6 @@ export function Hero() {
           <Linkedin size={15} />
         </a>
         <div className="w-px h-12 bg-border" />
-      </motion.div>
-
-      {/* Scroll indicator — pinned to bottom, won't overlap stats */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10 pointer-events-none"
-      >
-        <div className="w-5 h-8 rounded-full border-2 border-muted-foreground/25 flex items-start justify-center p-1.5">
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1 h-1 rounded-full bg-muted-foreground/50"
-          />
-        </div>
       </motion.div>
     </section>
   );

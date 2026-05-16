@@ -24,7 +24,7 @@ export const siteConfig = {
 export const profile = {
   name: "Muhamad Farrel Dava Fauzan",
   shortName: "Farrel Dava",
-  role: "Researcher · Educator · Builder · Writer",
+  role: "Researcher · Educator · Builder · Writer · Data Analyst",
   tagline:
     "Building the Future of Physics Learning Through Research, AI, and Interactive Experiences.",
   secondaryTagline:
@@ -597,5 +597,177 @@ export const writingArticles = [
     date: "2024-01",
     featured: false,
     url: "/writing/quantum-mechanics-through-dance",
+  },
+  // Poetry & Literary
+  {
+    id: "wr-9",
+    title: "Di Batas Sinar dan Bayang — Puisi tentang Gelombang Cahaya",
+    excerpt:
+      "Antara dualitas partikel dan gelombang, ada puisi yang menunggu untuk ditulis. Cahaya adalah metafora terbaik untuk segala sesuatu yang tidak bisa sepenuhnya dipahami.",
+    category: "Poetry",
+    tags: ["Puisi", "Cahaya", "Fisika & Sastra"],
+    readingTime: "3 min",
+    date: "2025-02",
+    featured: false,
+    url: "/writing/di-batas-sinar-dan-bayang",
+  },
+  {
+    id: "wr-10",
+    title: "Gravitasi Perasaan — Kumpulan Puisi",
+    excerpt:
+      "Seperti massa yang saling tarik-menarik, ada gaya tak terlihat dalam setiap hubungan. Puisi-puisi yang lahir dari persimpangan fisika dan rasa manusia.",
+    category: "Poetry",
+    tags: ["Puisi", "Gravitasi", "Koleksi"],
+    readingTime: "5 min",
+    date: "2024-10",
+    featured: false,
+    url: "/writing/gravitasi-perasaan",
+  },
+  // Short stories (cerpen)
+  {
+    id: "wr-11",
+    title: "Lab Malam Itu — Cerpen",
+    excerpt:
+      "Seorang mahasiswa fisika, sebuah simulasi yang tiba-tiba hidup, dan pertanyaan yang tidak bisa dijawab oleh persamaan apapun. Cerita pendek tentang batas antara sains dan imajinasi.",
+    category: "Short Story",
+    tags: ["Cerpen", "Fiksi Ilmiah", "Mahasiswa"],
+    readingTime: "12 min",
+    date: "2025-04",
+    featured: true,
+    url: "/writing/lab-malam-itu",
+  },
+  {
+    id: "wr-12",
+    title: "Persamaan yang Belum Terbukti — Cerpen",
+    excerpt:
+      "Dua peneliti muda, satu dugaan besar, dan realita bahwa sains tidak selalu berjalan lurus. Cerpen tentang kebenaran, kegagalan, dan mengapa kita tetap mencoba.",
+    category: "Short Story",
+    tags: ["Cerpen", "Penelitian", "Drama"],
+    readingTime: "15 min",
+    date: "2024-08",
+    featured: false,
+    url: "/writing/persamaan-yang-belum-terbukti",
+  },
+  // News articles
+  {
+    id: "wr-13",
+    title: "UNJ Luncurkan Platform Simulasi Fisika Berbasis AI Pertama di Indonesia",
+    excerpt:
+      "Mahasiswa Pendidikan Fisika Universitas Negeri Jakarta berhasil mengembangkan platform pembelajaran fisika interaktif yang mengintegrasikan kecerdasan buatan dan simulasi 3D untuk siswa SMA.",
+    category: "Berita & Artikel",
+    tags: ["UNJ", "EdTech", "AI", "Berita"],
+    readingTime: "4 min",
+    date: "2024-12",
+    featured: false,
+    url: "/writing/unj-platform-fisika-ai",
+  },
+  {
+    id: "wr-14",
+    title: "Krisis Pembelajaran Fisika: Mengapa Nilai PISA Indonesia Stagnan?",
+    excerpt:
+      "Analisis mendalam terhadap tren hasil PISA Indonesia dalam literasi sains selama satu dekade terakhir — dan apa yang perlu berubah dalam kurikulum nasional kita.",
+    category: "Berita & Artikel",
+    tags: ["PISA", "Kurikulum", "Analisis Data", "Kebijakan"],
+    readingTime: "7 min",
+    date: "2024-06",
+    featured: false,
+    url: "/writing/krisis-pisa-fisika-indonesia",
+  },
+];
+
+// ============================================================
+// EXPERIENCES — Academic & Non-Academic (University era)
+// Only entries relevant to research, education, tech, and data
+// ============================================================
+
+export const experiences = [
+  // Academic Achievements
+  {
+    id: "exp-1",
+    type: "achievement",
+    title: "1st Place — Lomba Inovasi Media Pembelajaran Fisika",
+    organization: "Himpunan Mahasiswa Fisika UNJ",
+    year: "2024",
+    description: "Meraih juara pertama dalam kompetisi inovasi media pembelajaran fisika tingkat nasional dengan proyek simulasi virtual lab berbasis web.",
+    tags: ["Kompetisi", "Virtual Lab", "Pendidikan Fisika"],
+    color: "from-amber-500 to-orange-500",
+    icon: "🏆",
+  },
+  {
+    id: "exp-2",
+    type: "achievement",
+    title: "Best Paper — International Conference on Physics Education 2023",
+    organization: "ICPE 2023",
+    year: "2023",
+    description: "Paper tentang learning analytics dashboard untuk identifikasi miskonsepsi fisika mendapat penghargaan best paper dari panel reviewer internasional.",
+    tags: ["Konferensi", "Publikasi", "Internasional"],
+    color: "from-violet-500 to-purple-500",
+    icon: "📄",
+  },
+  {
+    id: "exp-3",
+    type: "training",
+    title: "Google Data Analytics Professional Certificate",
+    organization: "Google / Coursera",
+    year: "2024",
+    description: "Menyelesaikan sertifikasi data analytics dari Google — mencakup SQL, R programming, Tableau, dan end-to-end data analysis workflow.",
+    tags: ["Data Analytics", "SQL", "R", "Tableau"],
+    color: "from-blue-500 to-cyan-500",
+    icon: "📊",
+  },
+  {
+    id: "exp-4",
+    type: "training",
+    title: "Pelatihan Riset Pendidikan & Metodologi Kuantitatif",
+    organization: "Universitas Negeri Jakarta — LPPM",
+    year: "2023",
+    description: "Pelatihan intensif selama 40 jam tentang desain penelitian kuasi-eksperimental, analisis IRT dengan R, dan penulisan artikel ilmiah.",
+    tags: ["Metodologi", "IRT", "R", "Riset"],
+    color: "from-emerald-500 to-teal-500",
+    icon: "🔬",
+  },
+  {
+    id: "exp-5",
+    type: "organization",
+    title: "Kepala Divisi Teknologi — Himpunan Mahasiswa Fisika",
+    organization: "HMF UNJ",
+    year: "2023–2024",
+    description: "Memimpin divisi teknologi dalam organisasi kemahasiswaan — mengkoordinasi pengembangan website HMF, platform event, dan digitalisasi administrasi.",
+    tags: ["Kepemimpinan", "Web Dev", "Organisasi"],
+    color: "from-indigo-500 to-blue-500",
+    icon: "🎓",
+  },
+  {
+    id: "exp-6",
+    type: "training",
+    title: "Bangkit Academy 2024 — Machine Learning Path",
+    organization: "Google · GoTo · Traveloka (Bangkit)",
+    year: "2024",
+    description: "Program bootcamp ML intensif 5 bulan — mempelajari TensorFlow, Computer Vision, NLP, dan deployment model ML ke Google Cloud.",
+    tags: ["Machine Learning", "TensorFlow", "NLP", "Cloud"],
+    color: "from-rose-500 to-pink-500",
+    icon: "🤖",
+  },
+  {
+    id: "exp-7",
+    type: "achievement",
+    title: "Finalis GEMASTIK XVII — Kategori Pengembangan Perangkat Lunak",
+    organization: "Kemendikbud-Ristek / Puspresnas",
+    year: "2024",
+    description: "Mewakili UNJ sebagai finalis Gemastik XVII dengan proyek FisikaSeru — kompetisi teknologi terbesar untuk mahasiswa seluruh Indonesia.",
+    tags: ["Gemastik", "Kompetisi Nasional", "EdTech"],
+    color: "from-cyan-500 to-blue-500",
+    icon: "🏅",
+  },
+  {
+    id: "exp-8",
+    type: "training",
+    title: "Workshop Penulisan Ilmiah & Science Communication",
+    organization: "Indonesian Young Scientist Association",
+    year: "2023",
+    description: "Workshop intensif tentang science communication, penulisan artikel populer ilmiah, dan strategi publikasi di jurnal terindeks Scopus.",
+    tags: ["Science Comm", "Penulisan", "Publikasi"],
+    color: "from-orange-500 to-amber-500",
+    icon: "✍️",
   },
 ];

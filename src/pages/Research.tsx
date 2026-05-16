@@ -5,35 +5,55 @@ import { Footer } from "@/components/layout/Footer";
 import { researchInterests } from "@/data/portfolio";
 import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
 import { ParticleCanvas } from "@/components/ui/ParticleCanvas";
-import { ArrowRight, BookOpen, FlaskConical, GitBranch, Lightbulb, Network } from "lucide-react";
+import { Brain, FlaskConical, GitBranch, LineChart } from "lucide-react";
 
 const researchClusters = [
   {
     id: "rc-1",
+    num: "01",
+    icon: Brain,
     title: "Human Learning & Cognition",
-    color: "from-blue-500/20 to-indigo-500/20",
-    border: "border-blue-500/20",
+    subtitle: "How people understand physics",
+    gradient: "from-blue-600 to-indigo-600",
+    glow: "hsl(217 91% 60% / 0.15)",
+    border: "border-blue-500/25",
+    bg: "from-blue-500/8 to-indigo-500/8",
     topics: ["Conceptual Understanding", "Misconception Analysis", "Cognitive Load", "Mental Models", "Schema Theory"],
   },
   {
     id: "rc-2",
+    num: "02",
+    icon: Brain,
     title: "AI & Intelligent Systems",
-    color: "from-violet-500/20 to-purple-500/20",
-    border: "border-violet-500/20",
+    subtitle: "Machines that scaffold learning",
+    gradient: "from-violet-600 to-purple-600",
+    glow: "hsl(263 70% 60% / 0.15)",
+    border: "border-violet-500/25",
+    bg: "from-violet-500/8 to-purple-500/8",
     topics: ["Intelligent Tutoring", "Adaptive Learning", "NLP in Education", "LLM Alignment", "AI Safety in EdTech"],
   },
   {
     id: "rc-3",
+    num: "03",
+    icon: FlaskConical,
     title: "Interactive Technology",
-    color: "from-cyan-500/20 to-teal-500/20",
-    border: "border-cyan-500/20",
+    subtitle: "Physics made explorable",
+    gradient: "from-cyan-600 to-teal-600",
+    glow: "hsl(180 70% 38% / 0.15)",
+    border: "border-cyan-500/25",
+    bg: "from-cyan-500/8 to-teal-500/8",
     topics: ["Physics Simulation", "WebGL Rendering", "Real-time Systems", "Scientific Visualization", "Virtual Labs"],
   },
   {
     id: "rc-4",
+    num: "04",
+    icon: LineChart,
     title: "Assessment & Analytics",
-    color: "from-amber-500/20 to-orange-500/20",
-    border: "border-amber-500/20",
+    subtitle: "Data-driven learning insights",
+    gradient: "from-amber-600 to-orange-600",
+    glow: "hsl(38 92% 50% / 0.15)",
+    border: "border-amber-500/25",
+    bg: "from-amber-500/8 to-orange-500/8",
     topics: ["Item Response Theory", "Learning Analytics", "Formative Assessment", "Diagnostic Classification", "Psychometrics"],
   },
 ];
@@ -105,28 +125,85 @@ const ResearchPage = () => {
           <div className="container-max">
             <SectionLabel>Research Clusters</SectionLabel>
             <FadeIn delay={0.1}>
-              <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 mb-10">
+              <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 mb-3">
                 Four Interconnected Domains
               </h2>
             </FadeIn>
-            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {researchClusters.map((cluster) => (
-                <StaggerItem key={cluster.id}>
-                  <motion.div
-                    whileHover={{ y: -3 }}
-                    className={`p-6 rounded-2xl border bg-gradient-to-br ${cluster.color} ${cluster.border} transition-all duration-300 hover:shadow-lg`}
-                  >
-                    <h3 className="text-base font-bold text-foreground mb-4">{cluster.title}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {cluster.topics.map((topic) => (
-                        <span key={topic} className="px-2.5 py-1 rounded-lg bg-background/60 text-xs font-medium text-foreground border border-border/60">
-                          {topic}
+            <FadeIn delay={0.15}>
+              <p className="text-sm text-muted-foreground max-w-lg mb-10 leading-relaxed">
+                Each domain is distinct yet deeply connected — findings in one domain directly inform practice in all others.
+              </p>
+            </FadeIn>
+
+            <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {researchClusters.map((cluster, idx) => {
+                const Icon = cluster.icon;
+                return (
+                  <StaggerItem key={cluster.id}>
+                    <motion.div
+                      whileHover={{ y: -5, scale: 1.01 }}
+                      transition={{ type: "spring", stiffness: 280, damping: 22 }}
+                      className={`group relative flex flex-col rounded-3xl border ${cluster.border} bg-gradient-to-br ${cluster.bg} overflow-hidden hover:shadow-2xl transition-all duration-300`}
+                      style={{ boxShadow: `0 0 0 0 ${cluster.glow}` }}
+                    >
+                      {/* Top gradient strip */}
+                      <div className={`h-1 w-full bg-gradient-to-r ${cluster.gradient}`} />
+
+                      {/* Header area */}
+                      <div className="flex items-start justify-between p-6 pb-4">
+                        <div>
+                          <div className="flex items-center gap-2 mb-3">
+                            <span
+                              className={`inline-flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-br ${cluster.gradient} text-white`}
+                            >
+                              <Icon size={16} strokeWidth={2} />
+                            </span>
+                            <span className="font-mono text-[10px] font-bold text-muted-foreground tracking-widest">
+                              DOMAIN {cluster.num}
+                            </span>
+                          </div>
+                          <h3 className="text-lg font-bold text-foreground leading-tight mb-0.5">
+                            {cluster.title}
+                          </h3>
+                          <p className="text-xs text-muted-foreground">{cluster.subtitle}</p>
+                        </div>
+                        {/* Large decorative number */}
+                        <span
+                          className={`font-mono text-6xl font-black opacity-8 bg-gradient-to-br ${cluster.gradient} bg-clip-text text-transparent select-none pointer-events-none`}
+                          style={{ opacity: 0.08 }}
+                        >
+                          {cluster.num}
                         </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </StaggerItem>
-              ))}
+                      </div>
+
+                      {/* Divider */}
+                      <div className={`mx-6 h-px bg-gradient-to-r ${cluster.gradient} opacity-20`} />
+
+                      {/* Topics */}
+                      <div className="flex flex-wrap gap-2 p-6 pt-4">
+                        {cluster.topics.map((topic, ti) => (
+                          <motion.span
+                            key={topic}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: idx * 0.05 + ti * 0.04, duration: 0.3 }}
+                            viewport={{ once: true }}
+                            className="px-3 py-1.5 rounded-xl bg-background/70 border border-border/60 text-xs font-medium text-foreground hover:bg-background transition-colors cursor-default"
+                          >
+                            {topic}
+                          </motion.span>
+                        ))}
+                      </div>
+
+                      {/* Glow on hover */}
+                      <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"
+                        style={{ background: `radial-gradient(ellipse at 50% 0%, ${cluster.glow} 0%, transparent 70%)` }}
+                      />
+                    </motion.div>
+                  </StaggerItem>
+                );
+              })}
             </StaggerContainer>
           </div>
         </section>

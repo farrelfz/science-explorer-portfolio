@@ -13,6 +13,9 @@ const categoryColors: Record<string, string> = {
   "Behind the Build": "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
   "Science Communication": "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
   "Learning Science": "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
+  "Poetry": "bg-pink-500/10 text-pink-600 dark:text-pink-400 border-pink-500/20",
+  "Short Story": "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20",
+  "Berita & Artikel": "bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20",
 };
 
 export function WritingPreview() {

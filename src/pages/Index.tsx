@@ -12,6 +12,7 @@ import { WritingPreview } from "@/components/sections/WritingPreview";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { CollaborationCTA } from "@/components/sections/CollaborationCTA";
 import { Contact } from "@/components/sections/Contact";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { siteConfig } from "@/data/portfolio";
 
 const Index = () => {
@@ -36,6 +37,7 @@ const Index = () => {
         <ResearchInterests />
         <FeaturedProjects />
         <Teaching />
+        <ExperienceSection />
         <Publications />
         <WritingPreview />
         <TimelineSection />

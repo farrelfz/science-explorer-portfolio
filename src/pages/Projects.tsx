@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { projects } from "@/data/portfolio";
-import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { ArrowRight, ExternalLink, Github, Layers, Zap } from "lucide-react";
 
 const statusColors: Record<string, string> = {
@@ -84,87 +84,87 @@ const ProjectsPage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
               >
-                <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {filtered.map((project) => (
-                    <StaggerItem key={project.id}>
-                      <motion.div
-                        whileHover={{ y: -4 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        className="group flex flex-col rounded-2xl border bg-card overflow-hidden hover:shadow-xl transition-shadow duration-300"
-                      >
-                        {/* Gradient bar */}
-                        <div className={`h-1.5 bg-gradient-to-r ${project.color}`} />
+                {filtered.map((project, i) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                    whileHover={{ y: -4 }}
+                    className="group flex flex-col rounded-2xl border bg-card overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                  >
+                    {/* Gradient bar */}
+                    <div className={`h-1.5 bg-gradient-to-r ${project.color}`} />
 
-                        <div className="flex flex-col flex-1 p-7">
-                          {/* Meta */}
-                          <div className="flex items-center justify-between mb-5">
-                            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border ${statusColors[project.status]}`}>
-                              {project.status}
-                            </span>
-                            <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
-                          </div>
+                    <div className="flex flex-col flex-1 p-7">
+                      {/* Meta */}
+                      <div className="flex items-center justify-between mb-5">
+                        <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold border ${statusColors[project.status]}`}>
+                          {project.status}
+                        </span>
+                        <span className="font-mono text-xs text-muted-foreground">{project.year}</span>
+                      </div>
 
-                          <h2 className="text-xl font-bold text-foreground mb-1">{project.title}</h2>
-                          <p className="text-xs font-medium text-muted-foreground mb-3">{project.subtitle}</p>
-                          <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5">{project.summary}</p>
+                      <h2 className="text-xl font-bold text-foreground mb-1">{project.title}</h2>
+                      <p className="text-xs font-medium text-muted-foreground mb-3">{project.subtitle}</p>
+                      <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5">{project.summary}</p>
 
-                          {/* Research basis excerpt */}
-                          <div className="p-3.5 rounded-xl bg-muted/50 border border-border/60 mb-5">
-                            <div className="flex items-start gap-2">
-                              <span className="text-xs font-bold text-muted-foreground shrink-0">Research basis:</span>
-                              <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{project.researchBasis}</p>
-                            </div>
-                          </div>
-
-                          {/* Impact */}
-                          <div className="flex flex-col gap-1.5 mb-5">
-                            {project.impact.slice(0, 2).map((imp) => (
-                              <div key={imp} className="flex items-start gap-2">
-                                <Zap size={11} className="text-amber-500 flex-shrink-0 mt-0.5" />
-                                <span className="text-xs text-muted-foreground">{imp}</span>
-                              </div>
-                            ))}
-                          </div>
-
-                          {/* Tech */}
-                          <div className="flex flex-wrap gap-1.5 mb-5">
-                            {project.techStack.slice(0, 5).map((t) => (
-                              <span key={t} className="badge-tag text-[10px]">{t}</span>
-                            ))}
-                            {project.techStack.length > 5 && (
-                              <span className="badge-tag text-[10px]">+{project.techStack.length - 5}</span>
-                            )}
-                          </div>
-
-                          {/* Footer */}
-                          <div className="flex items-center gap-3 pt-4 border-t border-border">
-                            <Link to={`/projects/${project.id}`}
-                              className="flex items-center gap-1.5 text-xs font-semibold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group/l">
-                              <Layers size={12} />
-                              Full Case Study
-                              <ArrowRight size={11} className="transition-transform group-hover/l:translate-x-0.5" />
-                            </Link>
-                            <div className="flex items-center gap-2 ml-auto">
-                              {project.githubUrl && (
-                                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                                  className="w-7 h-7 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground transition-all">
-                                  <Github size={12} />
-                                </a>
-                              )}
-                              {project.demoUrl && (
-                                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer"
-                                  className="w-7 h-7 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground transition-all">
-                                  <ExternalLink size={12} />
-                                </a>
-                              )}
-                            </div>
-                          </div>
+                      {/* Research basis excerpt */}
+                      <div className="p-3.5 rounded-xl bg-muted/50 border border-border/60 mb-5">
+                        <div className="flex items-start gap-2">
+                          <span className="text-xs font-bold text-muted-foreground shrink-0">Research basis:</span>
+                          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">{project.researchBasis}</p>
                         </div>
-                      </motion.div>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
+                      </div>
+
+                      {/* Impact */}
+                      <div className="flex flex-col gap-1.5 mb-5">
+                        {project.impact.slice(0, 2).map((imp) => (
+                          <div key={imp} className="flex items-start gap-2">
+                            <Zap size={11} className="text-amber-500 flex-shrink-0 mt-0.5" />
+                            <span className="text-xs text-muted-foreground">{imp}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Tech */}
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {project.techStack.slice(0, 5).map((t) => (
+                          <span key={t} className="badge-tag text-[10px]">{t}</span>
+                        ))}
+                        {project.techStack.length > 5 && (
+                          <span className="badge-tag text-[10px]">+{project.techStack.length - 5}</span>
+                        )}
+                      </div>
+
+                      {/* Footer */}
+                      <div className="flex items-center gap-3 pt-4 border-t border-border">
+                        <Link to={`/projects/${project.id}`}
+                          className="flex items-center gap-1.5 text-xs font-semibold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group/l">
+                          <Layers size={12} />
+                          Full Case Study
+                          <ArrowRight size={11} className="transition-transform group-hover/l:translate-x-0.5" />
+                        </Link>
+                        <div className="flex items-center gap-2 ml-auto">
+                          {project.githubUrl && (
+                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                              className="w-7 h-7 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground transition-all">
+                              <Github size={12} />
+                            </a>
+                          )}
+                          {project.demoUrl && (
+                            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer"
+                              className="w-7 h-7 flex items-center justify-center rounded-lg border text-muted-foreground hover:text-foreground transition-all">
+                              <ExternalLink size={12} />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </motion.div>
             </AnimatePresence>
           </div>
