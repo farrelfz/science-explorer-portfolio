@@ -523,4 +523,8 @@
     transform: translateY(0);
     transition: opacity 400ms ease, transform 400ms ease;
   }
+
+  /* ---- Hide scrollbar (for horizontal slide) ---- */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }

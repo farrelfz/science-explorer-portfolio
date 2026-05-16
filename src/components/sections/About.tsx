@@ -28,7 +28,7 @@ export function About() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-foreground">{profile.shortName}</div>
+                    <div className="text-sm font-bold text-foreground">Muhamad Farrel Dava Fauzan</div>
                     <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-0.5">
                       <MapPin size={11} />
                       {profile.location}
@@ -87,7 +87,7 @@ export function About() {
               <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 mb-6 leading-tight">
                 At the Edge of{" "}
                 <span className="h-editorial italic text-gradient-primary">Physics</span>
-                {" "}&amp;{" "}
+                {" "}&{" "}
                 <span className="h-editorial italic text-gradient-science">Technology</span>
               </h2>
             </FadeIn>

@@ -5,8 +5,8 @@ import { Award, BookOpen, GraduationCap, Link, Users } from "lucide-react";
 
 const typeConfig: Record<string, { label: string; icon: typeof Award; color: string }> = {
   achievement: { label: "Achievement", icon: Award, color: "text-amber-500 bg-amber-500/10 border-amber-500/20" },
-  training:    { label: "Training & Certification", icon: BookOpen, color: "text-blue-500 bg-blue-500/10 border-blue-500/20" },
-  organization:{ label: "Organization", icon: Users, color: "text-indigo-500 bg-indigo-500/10 border-indigo-500/20" },
+  training: { label: "Training & Certification", icon: BookOpen, color: "text-blue-500 bg-blue-500/10 border-blue-500/20" },
+  organization: { label: "Organization", icon: Users, color: "text-indigo-500 bg-indigo-500/10 border-indigo-500/20" },
 };
 
 export function ExperienceSection() {

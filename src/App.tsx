@@ -16,7 +16,9 @@ import TimelinePage from "./pages/TimelinePage";
 import ContactPage from "./pages/ContactPage";
 import TeachingPage from "./pages/TeachingPage";
 import LaboratoryPage from "./pages/LaboratoryPage";
+import ExperiencePage from "./pages/ExperiencePage";
 import NotFound from "./pages/NotFound";
+import { FloatingSocials } from "./components/layout/FloatingSocials";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +39,7 @@ function AppRoutes() {
   const location = useLocation();
   return (
     <AnimatePresence mode="wait">
+      <FloatingSocials />
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/research" element={<PageTransition><ResearchPage /></PageTransition>} />
@@ -48,6 +51,7 @@ function AppRoutes() {
         <Route path="/writing" element={<PageTransition><WritingPage /></PageTransition>} />
         <Route path="/writing/:slug" element={<PageTransition><WritingDetail /></PageTransition>} />
         <Route path="/timeline" element={<PageTransition><TimelinePage /></PageTransition>} />
+        <Route path="/experience" element={<PageTransition><ExperiencePage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>

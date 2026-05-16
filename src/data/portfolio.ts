@@ -32,7 +32,7 @@ export const profile = {
   location: "Jakarta, Indonesia",
   institution: "Universitas Negeri Jakarta",
   department: "Physics Education",
-  email: "farreldava@gmail.com",
+  email: "mfarreldava23@gmail.com",
   cvUrl: "/assets/CV_FarrelDava.pdf",
   avatar: "/avatar.jpg",
   bio: `I am a Physics Education undergraduate at Universitas Negeri Jakarta, operating at the intersection of educational research, artificial intelligence, and interactive simulation. My work focuses on redesigning how students experience and internalize physics — moving beyond memorization into genuine scientific understanding through technology-mediated inquiry.`,
@@ -72,6 +72,7 @@ export const profile = {
     googleScholar: "https://scholar.google.com/citations?user=farreldava",
     instagram: "https://instagram.com/farreldava",
     researchgate: "https://researchgate.net/profile/FarrelDava",
+    whatsapp: "https://wa.me/6281234567890",
   },
 };
 
@@ -480,13 +481,12 @@ export const teachingFramework = [
 
 export const navigation = [
   { label: "Home", href: "/" },
-  { label: "Research", href: "/research" },
   { label: "Projects", href: "/projects" },
-  { label: "Teaching", href: "/teaching" },
+  { label: "Research", href: "/research" },
   { label: "Publications", href: "/publications" },
   { label: "Writing", href: "/writing" },
-  { label: "Laboratory", href: "/laboratory" },
   { label: "Timeline", href: "/timeline" },
+  { label: "Experience", href: "/experience" },
   { label: "Contact", href: "/contact" },
 ];
 

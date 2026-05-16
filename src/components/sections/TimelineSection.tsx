@@ -1,94 +1,86 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { timeline } from "@/data/portfolio";
 import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
-import { BookOpen, Code2, FileText, GraduationCap, Star, Trophy } from "lucide-react";
+import { Code2, FileText, GraduationCap, Star, Trophy } from "lucide-react";
 
-const typeIcons: Record<string, React.ReactNode> = {
-  research: <Star size={14} />,
-  project: <Code2 size={14} />,
-  publication: <FileText size={14} />,
-  achievement: <Trophy size={14} />,
-  education: <GraduationCap size={14} />,
+const typeConfig: Record<string, { icon: React.ReactNode; color: string; dot: string; gradient: string }> = {
+  research:    { icon: <Star size={14} />,       color: "text-violet-600 dark:text-violet-400 bg-violet-500/10 border-violet-500/20", dot: "bg-violet-500",  gradient: "from-violet-500 to-purple-500" },
+  project:     { icon: <Code2 size={14} />,      color: "text-blue-600 dark:text-blue-400 bg-blue-500/10 border-blue-500/20",        dot: "bg-blue-500",    gradient: "from-blue-500 to-indigo-500" },
+  publication: { icon: <FileText size={14} />,   color: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20", dot: "bg-emerald-500", gradient: "from-emerald-500 to-teal-500" },
+  achievement: { icon: <Trophy size={14} />,     color: "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20",    dot: "bg-amber-500",   gradient: "from-amber-500 to-orange-500" },
+  education:   { icon: <GraduationCap size={14} />, color: "text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20",    dot: "bg-rose-500",    gradient: "from-rose-500 to-pink-500" },
 };
 
-const typeColors: Record<string, string> = {
-  research: "bg-violet-500/10 text-violet-600 dark:text-violet-400 border-violet-500/20",
-  project: "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
-  publication: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-  achievement: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
-  education: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
-};
+function TimelineCard({ item, index }: { item: (typeof timeline)[number]; index: number }) {
+  const cfg = typeConfig[item.type] ?? typeConfig.project;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -4 }}
+      className={`group relative flex-shrink-0 w-72 sm:w-80 p-5 rounded-2xl border bg-card hover:shadow-xl transition-all duration-300 overflow-hidden ${item.highlight ? "ring-1 ring-border" : ""}`}
+    >
+      {/* Top gradient accent */}
+      <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${cfg.gradient}`} />
 
-const dotColors: Record<string, string> = {
-  research: "bg-violet-500",
-  project: "bg-blue-500",
-  publication: "bg-emerald-500",
-  achievement: "bg-amber-500",
-  education: "bg-rose-500",
-};
+      {/* Year */}
+      <div className="flex items-center justify-between mb-3">
+        <span className="font-mono text-xs font-bold text-muted-foreground">{item.year}</span>
+        <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-semibold border ${cfg.color}`}>
+          {cfg.icon}
+          {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
+        </span>
+      </div>
+
+      <h3 className="text-sm font-bold text-foreground mb-1.5 group-hover:text-[hsl(180_70%_35%)] dark:group-hover:text-[hsl(180_70%_60%)] transition-colors leading-snug">
+        {item.title}
+      </h3>
+      <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+
+      {/* Dot indicator */}
+      <div className={`absolute bottom-4 right-4 w-2 h-2 rounded-full ${cfg.dot} opacity-50`} />
+    </motion.div>
+  );
+}
 
 export function TimelineSection() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   return (
-    <section id="timeline" className="section-padding bg-muted/20">
-      <div className="container-max">
-        {/* Header */}
-        <div className="text-center max-w-xl mx-auto mb-16">
-          <SectionLabel>Journey</SectionLabel>
-          <FadeIn delay={0.1}>
-            <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2">
-              The <span className="text-gradient-primary">Timeline</span>
-            </h2>
-          </FadeIn>
-        </div>
+    <section id="timeline" className="section-padding overflow-hidden">
+      <div className="container-max mb-8">
+        <SectionLabel>Journey</SectionLabel>
+        <FadeIn delay={0.1}>
+          <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 mb-2">
+            The <span className="text-gradient-primary">Timeline</span>
+          </h2>
+        </FadeIn>
+        <FadeIn delay={0.2}>
+          <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
+            Key milestones in research, projects, publications, and education.
+          </p>
+        </FadeIn>
+      </div>
 
-        {/* Timeline */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-6 sm:left-1/2 sm:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-[hsl(180_70%_38%)] via-border to-transparent" />
+      {/* Horizontal scroll container */}
+      <div className="relative">
+        {/* Fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-          <div className="flex flex-col gap-8">
-            {timeline.map((item, i) => {
-              const isLeft = i % 2 === 0;
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.55, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                  className={`relative flex items-start gap-6 sm:gap-0 ${
-                    isLeft ? "sm:flex-row" : "sm:flex-row-reverse"
-                  }`}
-                >
-                  {/* Content block */}
-                  <div className={`pl-16 sm:pl-0 sm:w-[calc(50%-28px)] ${isLeft ? "sm:pr-8 sm:text-right" : "sm:pl-8"}`}>
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                      className={`p-4 rounded-2xl border bg-card hover:shadow-md transition-all duration-300 ${item.highlight ? "border-foreground/10" : ""}`}
-                    >
-                      {/* Year + type */}
-                      <div className={`flex items-center gap-2 mb-2 ${isLeft ? "sm:justify-end" : ""}`}>
-                        <span className="font-mono text-xs font-bold text-muted-foreground">{item.year}</span>
-                        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold border ${typeColors[item.type]}`}>
-                          {typeIcons[item.type]}
-                          {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
-                        </span>
-                      </div>
-
-                      <h3 className="text-sm font-bold text-foreground mb-1.5">{item.title}</h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
-                    </motion.div>
-                  </div>
-
-                  {/* Center dot */}
-                  <div className="absolute left-6 sm:left-1/2 sm:-translate-x-1/2 top-4 flex items-center justify-center">
-                    <div className={`w-3 h-3 rounded-full border-2 border-background ${dotColors[item.type]} ${item.highlight ? "w-4 h-4 shadow-md" : ""}`} />
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto scroll-smooth pb-6 px-6 md:px-12 no-scrollbar"
+          style={{ scrollSnapType: "x mandatory" }}
+        >
+          {timeline.map((item, i) => (
+            <div key={item.id} style={{ scrollSnapAlign: "start" }}>
+              <TimelineCard item={item} index={i} />
+            </div>
+          ))}
         </div>
       </div>
     </section>

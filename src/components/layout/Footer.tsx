@@ -1,30 +1,30 @@
 import { Link } from "react-router-dom";
-import { Atom, Github, Linkedin, BookOpen, Instagram, Mail, ArrowUpRight } from "lucide-react";
+import { Atom, Github, Linkedin, BookOpen, Instagram, Mail, ArrowUpRight, MessageCircle } from "lucide-react";
 import { profile, navigation } from "@/data/portfolio";
 
 const socialLinks = [
   { icon: Github, href: profile.socials.github, label: "GitHub" },
   { icon: Linkedin, href: profile.socials.linkedin, label: "LinkedIn" },
-  { icon: BookOpen, href: profile.socials.googleScholar, label: "Google Scholar" },
   { icon: Instagram, href: profile.socials.instagram, label: "Instagram" },
+  { icon: BookOpen, href: profile.socials.googleScholar, label: "Google Scholar" },
+  { icon: MessageCircle, href: (profile.socials as Record<string, string>).whatsapp || "#", label: "WhatsApp" },
 ];
 
 const footerNav = [
   {
     heading: "Work",
     links: [
-      { label: "Research", href: "/research" },
       { label: "Projects", href: "/projects" },
+      { label: "Research", href: "/research" },
       { label: "Publications", href: "/publications" },
-      { label: "Laboratory", href: "/laboratory" },
+      { label: "Writing", href: "/writing" },
     ],
   },
   {
     heading: "About",
     links: [
-      { label: "Teaching", href: "/teaching" },
+      { label: "Experience", href: "/experience" },
       { label: "Timeline", href: "/timeline" },
-      { label: "Writing", href: "/writing" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -47,7 +47,7 @@ export function Footer() {
                 <div className="absolute inset-0 bg-gradient-to-br from-[hsl(180_70%_38%)] to-[hsl(217_91%_60%)]" />
                 <Atom size={18} className="relative z-10 text-white" strokeWidth={2} />
               </div>
-              <span className="text-base font-bold tracking-tight">Farrel Dava</span>
+              <span className="text-base font-bold tracking-tight">mfarreldavaf</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mb-6">
               Physics Education undergraduate at Universitas Negeri Jakarta — building the future of scientific learning through research, AI, and interactive experiences.

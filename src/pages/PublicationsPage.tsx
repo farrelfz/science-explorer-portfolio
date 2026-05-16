@@ -49,15 +49,8 @@ const PublicationsPage = () => {
                   <motion.div
                     whileHover={{ x: 4 }}
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    className="group flex gap-6 p-7 rounded-2xl border bg-card hover:shadow-lg transition-all duration-300"
+                    className="group flex gap-4 p-7 rounded-2xl border bg-card hover:shadow-lg transition-all duration-300"
                   >
-                    {/* Number */}
-                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-muted flex items-center justify-center">
-                      <span className="text-xs font-bold text-muted-foreground font-mono">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-
                     {/* Content */}
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-2 mb-3">

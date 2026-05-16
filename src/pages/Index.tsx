@@ -6,13 +6,10 @@ import { About } from "@/components/sections/About";
 import { Philosophy } from "@/components/sections/Philosophy";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { ResearchInterests } from "@/components/sections/ResearchInterests";
-import { Teaching } from "@/components/sections/Experience";
 import { Publications } from "@/components/sections/Publications";
 import { WritingPreview } from "@/components/sections/WritingPreview";
 import { TimelineSection } from "@/components/sections/TimelineSection";
-import { CollaborationCTA } from "@/components/sections/CollaborationCTA";
 import { Contact } from "@/components/sections/Contact";
-import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { siteConfig } from "@/data/portfolio";
 
 const Index = () => {
@@ -36,12 +33,9 @@ const Index = () => {
         <Philosophy />
         <ResearchInterests />
         <FeaturedProjects />
-        <Teaching />
-        <ExperienceSection />
         <Publications />
         <WritingPreview />
         <TimelineSection />
-        <CollaborationCTA />
         <Contact />
       </main>
       <Footer />
