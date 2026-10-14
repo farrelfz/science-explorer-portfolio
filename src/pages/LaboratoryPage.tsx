@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { projects } from "@/data/portfolio";
 import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
-import { FlaskConical, ExternalLink, Github, ArrowRight } from "lucide-react";
+import { FlaskConical, ExternalLink, ArrowRight } from "lucide-react";
 import { PhysicsPlayground } from "@/components/sections/PhysicsPlayground";
 
 const LaboratoryPage = () => {

@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
-import { Sparkles, Network, ExternalLink, RefreshCw, ZoomIn, Info, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sparkles, ExternalLink, RefreshCw } from "lucide-react";
 
 interface Node {
   id: string;
@@ -380,7 +381,7 @@ export function ResearchKnowledgeGraph() {
           </div>
 
           <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-            <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
+            <span className="size-2 rounded-full bg-cyan-500 animate-ping" />
             <span>Interactive Force Network</span>
           </div>
         </div>
@@ -403,13 +404,15 @@ export function ResearchKnowledgeGraph() {
               Tip: Klik simpul untuk melihat detail atau geser untuk reorganisasi posisi.
             </div>
 
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={initPositions}
-              className="absolute top-4 right-4 p-2 rounded-xl border bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition-colors"
+              className="absolute top-4 right-4 rounded-xl border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
               title="Reset Posisi Simpul"
             >
-              <RefreshCw size={14} />
-            </button>
+              <RefreshCw />
+            </Button>
           </div>
 
           {/* Node Inspector Panel */}
@@ -425,7 +428,7 @@ export function ResearchKnowledgeGraph() {
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span
-                    className="w-3 h-3 rounded-full"
+                    className="size-3 rounded-full"
                     style={{ backgroundColor: selectedNode.color }}
                   />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted border text-muted-foreground">

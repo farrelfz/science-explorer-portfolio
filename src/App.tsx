@@ -1,26 +1,24 @@
-import { Toaster } from "@/components/ui/toaster";
+import { lazy, Suspense } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-
-import Index from "./pages/Index";
-import ResearchPage from "./pages/Research";
-import ProjectsPage from "./pages/Projects";
-import ProjectDetail from "./pages/ProjectDetail";
-import PublicationsPage from "./pages/PublicationsPage";
-import WritingPage from "./pages/WritingPage";
-import WritingDetail from "./pages/WritingDetail";
-import TimelinePage from "./pages/TimelinePage";
-import ContactPage from "./pages/ContactPage";
-import TeachingPage from "./pages/TeachingPage";
-import LaboratoryPage from "./pages/LaboratoryPage";
-import ExperiencePage from "./pages/ExperiencePage";
-import NotFound from "./pages/NotFound";
 import { FloatingSocials } from "./components/layout/FloatingSocials";
 
-const queryClient = new QueryClient();
+// Route-level code splitting — each page becomes its own chunk.
+const Index = lazy(() => import("./pages/Index"));
+const ResearchPage = lazy(() => import("./pages/Research"));
+const ProjectsPage = lazy(() => import("./pages/Projects"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const PublicationsPage = lazy(() => import("./pages/PublicationsPage"));
+const WritingPage = lazy(() => import("./pages/WritingPage"));
+const WritingDetail = lazy(() => import("./pages/WritingDetail"));
+const TimelinePage = lazy(() => import("./pages/TimelinePage"));
+const ContactPage = lazy(() => import("./pages/ContactPage"));
+const TeachingPage = lazy(() => import("./pages/TeachingPage"));
+const LaboratoryPage = lazy(() => import("./pages/LaboratoryPage"));
+const ExperiencePage = lazy(() => import("./pages/ExperiencePage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   return (
@@ -35,11 +33,20 @@ function PageTransition({ children }: { children: React.ReactNode }) {
   );
 }
 
+function RouteFallback() {
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="size-8 rounded-full border-2 border-border border-t-primary animate-spin" />
+    </div>
+  );
+}
+
 function AppRoutes() {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+    <Suspense fallback={<RouteFallback />}>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/research" element={<PageTransition><ResearchPage /></PageTransition>} />
         <Route path="/projects" element={<PageTransition><ProjectsPage /></PageTransition>} />
@@ -53,22 +60,20 @@ function AppRoutes() {
         <Route path="/experience" element={<PageTransition><ExperiencePage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
-      </Routes>
-    </AnimatePresence>
+        </Routes>
+      </AnimatePresence>
+    </Suspense>
   );
 }
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <FloatingSocials />
-        <AppRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <TooltipProvider>
+    <Sonner />
+    <BrowserRouter>
+      <FloatingSocials />
+      <AppRoutes />
+    </BrowserRouter>
+  </TooltipProvider>
 );
 
 export default App;

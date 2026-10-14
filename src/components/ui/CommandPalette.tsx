@@ -21,7 +21,6 @@ import {
   Sparkles,
   Zap,
   Github,
-  Instagram,
   Copy,
   Clock,
   Home,

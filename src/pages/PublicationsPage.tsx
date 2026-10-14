@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { projects, profile } from "@/data/portfolio";
-import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
-import { motion } from "framer-motion";
-import { ExternalLink, Github, Layers, Sparkles, AlertCircle, Quote } from "lucide-react";
+import { projects } from "@/data/portfolio";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { Github, Layers, AlertCircle, Quote } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { CiteModal, type CitationItem } from "@/components/ui/CiteModal";
@@ -52,19 +54,19 @@ const PublicationsPage = () => {
             </FadeIn>
 
             <StaggerContainer className="flex flex-col gap-6">
-              {projects.map((item, i) => (
+              {projects.map((item) => (
                 <StaggerItem key={item.id}>
-                  <div className="p-7 rounded-3xl border bg-card hover:shadow-lg transition-all duration-300">
+                  <Card className="p-7 rounded-3xl hover:shadow-lg transition-all duration-300">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-muted text-muted-foreground">
+                        <Badge variant="outline" className="font-mono text-[10px] uppercase">
                           {item.category}
-                        </span>
-                        <span className="text-xs font-mono text-muted-foreground">{item.year}</span>
+                        </Badge>
+                        <Badge variant="outline" className="font-mono">{item.year}</Badge>
                       </div>
-                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full border bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20">
+                      <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 font-semibold">
                         {item.status}
-                      </span>
+                      </Badge>
                     </div>
 
                     <h2 className="text-xl font-bold text-foreground mb-1 leading-snug">
@@ -81,7 +83,7 @@ const PublicationsPage = () => {
                     {item.metrics && (
                       <div className="p-3 rounded-xl bg-muted/40 border text-xs text-muted-foreground mb-4">
                         <strong className="text-foreground">Bukti & Metrik Terverifikasi:</strong>
-                        <ul className="mt-1 space-y-0.5">
+                        <ul className="mt-1 flex flex-col gap-0.5">
                           {item.metrics.map((m) => (
                             <li key={m}>• {m}</li>
                           ))}
@@ -114,7 +116,8 @@ const PublicationsPage = () => {
                           </a>
                         )}
 
-                        <button
+                        <Button
+                          variant="ghost"
                           onClick={() =>
                             setSelectedCitation({
                               id: item.id,
@@ -126,14 +129,15 @@ const PublicationsPage = () => {
                               url: item.githubUrl || "https://github.com/farrelfz",
                             })
                           }
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border bg-primary/10 hover:bg-primary/20 text-xs font-semibold text-primary transition-all shadow-sm"
+                          className="h-auto rounded-xl border bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary hover:bg-primary/20 hover:text-primary shadow-sm"
                           title="Generate Sitasi Akademik (BibTeX / APA / IEEE)"
                         >
-                          <Quote size={12} /> Sitasi
-                        </button>
+                          <Quote />
+                          Sitasi
+                        </Button>
                       </div>
                     </div>
-                  </div>
+                  </Card>
                 </StaggerItem>
               ))}
             </StaggerContainer>

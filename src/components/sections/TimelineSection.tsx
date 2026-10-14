@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { timeline } from "@/data/portfolio";
 import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Code2, FileText, GraduationCap, Star, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
 
 const typeConfig: Record<string, { icon: React.ReactNode; color: string; dot: string; gradient: string }> = {
@@ -49,20 +51,24 @@ export function TimelineSection() {
           
           {/* Navigation Controls */}
           <FadeIn delay={0.3} className="flex items-center gap-3">
-            <button
+            <Button
+              variant="outline"
+              size="icon"
               onClick={handlePrev}
-              className="w-12 h-12 flex items-center justify-center rounded-full border bg-card hover:bg-muted transition-colors text-foreground"
               aria-label="Previous milestone"
+              className="rounded-full"
             >
-              <ChevronLeft size={20} />
-            </button>
-            <button
+              <ChevronLeft />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
               onClick={handleNext}
-              className="w-12 h-12 flex items-center justify-center rounded-full border bg-card hover:bg-muted transition-colors text-foreground"
               aria-label="Next milestone"
+              className="rounded-full"
             >
-              <ChevronRight size={20} />
-            </button>
+              <ChevronRight />
+            </Button>
           </FadeIn>
         </div>
       </div>
@@ -77,7 +83,10 @@ export function TimelineSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className={`absolute inset-0 p-8 sm:p-10 rounded-3xl border bg-card shadow-xl overflow-hidden ${currentItem.highlight ? "ring-2 ring-[hsl(180_70%_38%/0.5)]" : ""}`}
+              className={cn(
+                "absolute inset-0 p-8 sm:p-10 rounded-3xl border bg-card shadow-xl overflow-hidden",
+                currentItem.highlight && "ring-2 ring-accent/50"
+              )}
             >
               {/* Gradient accent */}
               <div className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${cfg.gradient}`} />
@@ -100,7 +109,7 @@ export function TimelineSection() {
                 </p>
                 
                 {/* Dot indicator */}
-                <div className={`absolute bottom-6 right-6 w-3 h-3 rounded-full ${cfg.dot} opacity-50`} />
+                <div className={`absolute bottom-6 right-6 size-3 rounded-full ${cfg.dot} opacity-50`} />
               </div>
             </motion.div>
           </AnimatePresence>
@@ -109,17 +118,19 @@ export function TimelineSection() {
         {/* Progress Dots */}
         <div className="flex justify-center items-center gap-2 mt-8">
           {timeline.map((_, i) => (
-            <button
+            <Button
               key={i}
+              variant="ghost"
               onClick={() => {
                 setDirection(i > activeIndex ? 1 : -1);
                 setActiveIndex(i);
               }}
-              className={`transition-all duration-300 rounded-full ${
-                i === activeIndex 
-                  ? "w-8 h-2 bg-[hsl(180_70%_38%)]" 
-                  : "w-2 h-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              }`}
+              className={cn(
+                "rounded-full p-0 transition-all duration-300",
+                i === activeIndex
+                  ? "h-2 w-8 bg-accent hover:bg-accent"
+                  : "size-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              )}
               aria-label={`Go to milestone ${i + 1}`}
             />
           ))}

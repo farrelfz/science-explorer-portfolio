@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Teaching as TeachingSection } from "@/components/sections/Experience";
+import { Teaching as TeachingSection } from "@/components/sections/Teaching";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { BookOpen } from "lucide-react";
 

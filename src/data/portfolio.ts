@@ -293,7 +293,29 @@ export const achievements = [
   },
 ];
 
-export const projects = [
+export interface Project {
+  id: string;
+  title: string;
+  subtitle: string;
+  domain: string;
+  summary: string;
+  description: string;
+  problem: string;
+  approach: string;
+  techStack: string[];
+  category: string;
+  tags: string[];
+  status: string;
+  featured: boolean;
+  year: number;
+  metrics: string[];
+  githubUrl?: string;
+  demoUrl?: string;
+  note?: string;
+  color?: string;
+}
+
+export const projects: Project[] = [
   {
     id: "conceptra",
     title: "Conceptra",
@@ -434,7 +456,14 @@ export const projects = [
   },
 ];
 
-export const secondaryProjects = [
+export interface SecondaryProject {
+  title: string;
+  description: string;
+  githubUrl?: string;
+  tags: string[];
+}
+
+export const secondaryProjects: SecondaryProject[] = [
   {
     title: "EduText",
     description: "Modular tools and scripts for educational text processing, formatting, and reading comprehension analysis.",

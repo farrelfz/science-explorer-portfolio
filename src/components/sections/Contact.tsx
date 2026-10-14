@@ -2,6 +2,10 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { profile } from "@/data/portfolio";
 import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { Github, Instagram, Mail, MapPin, MessageSquare, Send, Twitter } from "lucide-react";
 
 export function Contact() {
@@ -38,7 +42,7 @@ export function Contact() {
             <FadeIn delay={0.3}>
               <div className="flex flex-col gap-4 mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
+                  <div className="size-9 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
                     <Mail size={15} className="text-muted-foreground" />
                   </div>
                   <div>
@@ -49,7 +53,7 @@ export function Contact() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
+                  <div className="size-9 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
                     <MessageSquare size={15} className="text-muted-foreground" />
                   </div>
                   <div>
@@ -60,7 +64,7 @@ export function Contact() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
+                  <div className="size-9 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
                     <MapPin size={15} className="text-muted-foreground" />
                   </div>
                   <div>
@@ -98,7 +102,7 @@ export function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-12 text-center"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-4 text-2xl">✅</div>
+                  <div className="size-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 text-2xl">✅</div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Message Sent!</h3>
                   <p className="text-sm text-muted-foreground">Your email client should have opened. Looking forward to connecting.</p>
                 </motion.div>
@@ -106,63 +110,59 @@ export function Contact() {
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label htmlFor="name" className="text-xs font-semibold text-foreground">Name</label>
-                      <input
+                      <Label htmlFor="name" className="text-xs font-semibold">Name</Label>
+                      <Input
                         id="name"
                         type="text"
                         required
                         value={form.name}
                         onChange={(e) => setForm({ ...form, name: e.target.value })}
                         placeholder="Your name"
-                        className="w-full px-4 py-3 rounded-xl border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(180_70%_38%/0.4)] transition-all"
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label htmlFor="email" className="text-xs font-semibold text-foreground">Email</label>
-                      <input
+                      <Label htmlFor="email" className="text-xs font-semibold">Email</Label>
+                      <Input
                         id="email"
                         type="email"
                         required
                         value={form.email}
                         onChange={(e) => setForm({ ...form, email: e.target.value })}
                         placeholder="your@email.com"
-                        className="w-full px-4 py-3 rounded-xl border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(180_70%_38%/0.4)] transition-all"
                       />
                     </div>
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="subject" className="text-xs font-semibold text-foreground">Subject</label>
-                    <input
+                    <Label htmlFor="subject" className="text-xs font-semibold">Subject</Label>
+                    <Input
                       id="subject"
                       type="text"
                       required
                       value={form.subject}
                       onChange={(e) => setForm({ ...form, subject: e.target.value })}
                       placeholder="Research collaboration, partnership, etc."
-                      className="w-full px-4 py-3 rounded-xl border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(180_70%_38%/0.4)] transition-all"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="message" className="text-xs font-semibold text-foreground">Message</label>
-                    <textarea
+                    <Label htmlFor="message" className="text-xs font-semibold">Message</Label>
+                    <Textarea
                       id="message"
                       required
                       rows={5}
                       value={form.message}
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                       placeholder="Tell me about your project, research, or idea..."
-                      className="w-full px-4 py-3 rounded-xl border bg-background text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-[hsl(180_70%_38%/0.4)] transition-all resize-none"
+                      className="resize-none"
                     />
                   </div>
-                  <button
+                  <Button
                     type="submit"
                     id="contact-submit"
-                    className="group flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-sm font-bold text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ background: "linear-gradient(135deg, hsl(180 70% 35%), hsl(217 91% 55%))" }}
+                    className="w-full rounded-xl font-bold hover:shadow-lg hover:-translate-y-0.5"
                   >
-                    <Send size={15} />
+                    <Send />
                     Send Message
-                  </button>
+                  </Button>
                 </form>
               )}
             </div>

@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { projects } from "@/data/portfolio";
 import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
-import { ArrowRight, ExternalLink, GitBranch, Github, Layers, Sparkles } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Github, Layers, Sparkles } from "lucide-react";
 
 const statusBadgeStyles: Record<string, string> = {
   "Active Development": "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
@@ -60,102 +62,106 @@ function ProjectCard({ project }: { project: typeof projects[0]; index: number }
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="h-full flex flex-col justify-between rounded-3xl border bg-card p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-[hsl(180_70%_38%/0.4)] transition-all duration-300 relative overflow-hidden"
+      className="h-full"
     >
-      {/* Top Meta Bar */}
-      <div>
-        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-muted border text-muted-foreground">
-            {project.category}
-          </span>
-          <div className="flex items-center gap-2">
-            <span className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${statusBadgeStyles[project.status] || "bg-muted text-muted-foreground"}`}>
-              {project.status}
-            </span>
-            <span className="text-xs font-mono font-bold text-muted-foreground">{project.year}</span>
-          </div>
-        </div>
-
-        {/* Title & Subtitle */}
-        <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1 leading-snug">
-          {project.title}
-        </h3>
-        <div className="text-xs font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mb-3">
-          {project.subtitle}
-        </div>
-        
-        <div className="text-[11px] font-mono text-muted-foreground mb-4 pb-3 border-b border-border/60">
-          <strong className="text-foreground/80">Domain:</strong> {project.domain}
-        </div>
-
-        {/* Problem & Approach */}
-        <div className="space-y-3 text-xs text-muted-foreground leading-relaxed mb-6">
-          <p>
-            <strong className="text-foreground font-semibold">Problem:</strong> {project.problem}
-          </p>
-          <p>
-            <strong className="text-foreground font-semibold">Approach:</strong> {project.approach}
-          </p>
-        </div>
-
-        {/* Verified Metrics / Highlights */}
-        {project.metrics && project.metrics.length > 0 && (
-          <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/50 mb-6">
-            <div className="text-[10px] font-mono uppercase tracking-wider font-bold text-foreground mb-1.5 flex items-center gap-1">
-              <Sparkles size={12} className="text-amber-500" /> Key Evidence & Metrics:
+      <Card className="h-full flex flex-col justify-between rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-[hsl(180_70%_38%/0.4)] transition-all duration-300 relative overflow-hidden">
+        <CardHeader className="p-0">
+          {/* Top Meta Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+            <Badge variant="secondary" className="px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider">
+              {project.category}
+            </Badge>
+            <div className="flex items-center gap-2">
+              <span className={`text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${statusBadgeStyles[project.status] || "bg-muted text-muted-foreground"}`}>
+                {project.status}
+              </span>
+              <span className="text-xs font-mono font-bold text-muted-foreground">{project.year}</span>
             </div>
-            <ul className="grid grid-cols-1 gap-1 text-[11px] text-muted-foreground">
-              {project.metrics.map((m) => (
-                <li key={m} className="flex items-center gap-1.5">
-                  <span className="w-1 h-1 rounded-full bg-[hsl(180_70%_38%)]" />
-                  {m}
-                </li>
-              ))}
-            </ul>
           </div>
-        )}
 
-        {/* Disclaimer / Note if designed */}
-        {"note" in project && project.note && (
-          <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/20 text-[11px] text-amber-700 dark:text-amber-300 mb-6 italic leading-relaxed">
-            * {project.note}
+          {/* Title & Subtitle */}
+          <CardTitle className="text-xl sm:text-2xl font-bold text-foreground mb-1 leading-snug">
+            {project.title}
+          </CardTitle>
+          <CardDescription className="text-xs font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mb-3">
+            {project.subtitle}
+          </CardDescription>
+
+          <div className="text-[11px] font-mono text-muted-foreground mb-4 pb-3 border-b border-border/60">
+            <strong className="text-foreground/80">Domain:</strong> {project.domain}
           </div>
-        )}
-      </div>
+        </CardHeader>
 
-      {/* Bottom Tech & Links */}
-      <div className="pt-4 border-t border-border/60 mt-auto">
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.techStack.map((tech) => (
-            <span key={tech} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-muted text-muted-foreground border border-border/50">
-              {tech}
-            </span>
-          ))}
-        </div>
+        <CardContent className="p-0">
+          {/* Problem & Approach */}
+          <div className="flex flex-col gap-3 text-xs text-muted-foreground leading-relaxed mb-6">
+            <p>
+              <strong className="text-foreground font-semibold">Problem:</strong> {project.problem}
+            </p>
+            <p>
+              <strong className="text-foreground font-semibold">Approach:</strong> {project.approach}
+            </p>
+          </div>
 
-        <div className="flex items-center justify-between gap-4">
-          <Link
-            to={`/projects/${project.id}`}
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group/link"
-          >
-            <Layers size={13} />
-            System Architecture
-            <ArrowRight size={12} className="transition-transform group-hover/link:translate-x-0.5" />
-          </Link>
-
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border bg-background hover:bg-muted text-xs font-semibold text-foreground transition-all"
-            >
-              <Github size={13} />
-              Repository
-            </a>
+          {/* Verified Metrics / Highlights */}
+          {project.metrics && project.metrics.length > 0 && (
+            <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/50 mb-6">
+              <div className="text-[10px] font-mono uppercase tracking-wider font-bold text-foreground mb-1.5 flex items-center gap-1">
+                <Sparkles size={12} className="text-amber-500" /> Key Evidence & Metrics:
+              </div>
+              <ul className="grid grid-cols-1 gap-1 text-[11px] text-muted-foreground">
+                {project.metrics.map((m) => (
+                  <li key={m} className="flex items-center gap-1.5">
+                    <span className="size-1 rounded-full bg-accent" />
+                    {m}
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
-        </div>
-      </div>
+
+          {/* Disclaimer / Note if designed */}
+          {"note" in project && project.note && (
+            <div className="p-3 rounded-xl bg-amber-500/5 border border-amber-500/20 text-[11px] text-amber-700 dark:text-amber-300 mb-6 italic leading-relaxed">
+              * {project.note}
+            </div>
+          )}
+        </CardContent>
+
+        {/* Bottom Tech & Links */}
+        <CardFooter className="flex flex-col items-stretch p-0 pt-4 border-t border-border/60 mt-auto">
+          <div className="flex flex-wrap gap-1.5 mb-5">
+            {project.techStack.map((tech) => (
+              <Badge key={tech} variant="secondary" className="text-[10px] font-medium">
+                {tech}
+              </Badge>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-between gap-4">
+            <Link
+              to={`/projects/${project.id}`}
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group/link"
+            >
+              <Layers size={13} />
+              System Architecture
+              <ArrowRight size={12} className="transition-transform group-hover/link:translate-x-0.5" />
+            </Link>
+
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border bg-background hover:bg-muted text-xs font-semibold text-foreground transition-all"
+              >
+                <Github size={13} />
+                Repository
+              </a>
+            )}
+          </div>
+        </CardFooter>
+      </Card>
     </motion.div>
   );
 }

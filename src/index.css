@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900;1,14..32,400;1,14..32,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
-
+/* Fonts are loaded via <link> tags in index.html (preload + swap) —
+   do NOT add a render-blocking @import here. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -53,16 +53,6 @@
     --input: 220 13% 90%;
     --ring: 231 64% 22%;
     --radius: 0.75rem;
-
-    /* ---- Sidebar ---- */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 231 64% 22%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 180 70% 38%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 180 70% 38%;
   }
 
   .dark {
@@ -99,15 +89,6 @@
     --border: 224 40% 14%;
     --input: 224 40% 14%;
     --ring: 180 70% 48%;
-
-    --sidebar-background: 224 71% 5%;
-    --sidebar-foreground: 213 31% 88%;
-    --sidebar-primary: 180 70% 48%;
-    --sidebar-primary-foreground: 224 71% 4%;
-    --sidebar-accent: 224 40% 12%;
-    --sidebar-accent-foreground: 213 31% 91%;
-    --sidebar-border: 224 40% 12%;
-    --sidebar-ring: 180 70% 48%;
   }
 }
 

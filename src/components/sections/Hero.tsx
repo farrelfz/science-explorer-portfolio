@@ -1,9 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, BookOpen, FlaskConical, Github, Instagram, Mail, Sparkles, Twitter } from "lucide-react";
+import { ArrowRight, BookOpen, FlaskConical, Github, Instagram, Mail, Twitter } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { ParticleCanvas } from "@/components/ui/ParticleCanvas";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const rotatingWords = [
   "Misconception Research",
@@ -99,7 +100,7 @@ export function Hero() {
                   color: "hsl(180 70% 28%)",
                 }}
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="size-2 rounded-full bg-primary animate-pulse" />
                 {profile.institution} · {profile.department}
               </span>
             </motion.div>
@@ -236,22 +237,22 @@ export function Hero() {
             >
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
                 <div className="flex flex-col items-center p-3 rounded-2xl border bg-card/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                  <div className="w-8 h-8 rounded-full bg-violet-500/10 flex items-center justify-center text-sm mb-1">🔬</div>
+                  <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center text-sm mb-1">🔬</div>
                   <span className="text-xl font-black text-foreground tracking-tight">17,000+</span>
                   <span className="text-[10px] text-muted-foreground font-semibold text-center">Papers Synthesized</span>
                 </div>
                 <div className="flex flex-col items-center p-3 rounded-2xl border bg-card/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                  <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-sm mb-1">💬</div>
+                  <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center text-sm mb-1">💬</div>
                   <span className="text-xl font-black text-foreground tracking-tight">200k+</span>
                   <span className="text-[10px] text-muted-foreground font-semibold text-center">Comments Mined</span>
                 </div>
                 <div className="flex flex-col items-center p-3 rounded-2xl border bg-card/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-sm mb-1">⚛️</div>
+                  <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center text-sm mb-1">⚛️</div>
                   <span className="text-xl font-black text-foreground tracking-tight">1,002</span>
                   <span className="text-[10px] text-muted-foreground font-semibold text-center">Misconceptions Mapped</span>
                 </div>
                 <div className="flex flex-col items-center p-3 rounded-2xl border bg-card/80 backdrop-blur-sm shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                  <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-sm mb-1">⚙️</div>
+                  <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center text-sm mb-1">⚙️</div>
                   <span className="text-xl font-black text-foreground tracking-tight">5</span>
                   <span className="text-[10px] text-muted-foreground font-semibold text-center">Flagship Platforms</span>
                 </div>
@@ -274,8 +275,8 @@ export function Hero() {
               />
 
               {/* Decorative dashed rings */}
-              <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full border-2 border-dashed border-[hsl(217_91%_60%/0.25)] opacity-60 pointer-events-none" />
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full border-2 border-dashed border-[hsl(180_70%_38%/0.25)] opacity-60 pointer-events-none" />
+              <div className="absolute -top-6 -left-6 size-24 rounded-full border-2 border-dashed border-[hsl(217_91%_60%/0.25)] opacity-60 pointer-events-none" />
+              <div className="absolute -bottom-6 -right-6 size-32 rounded-full border-2 border-dashed border-[hsl(180_70%_38%/0.25)] opacity-60 pointer-events-none" />
 
               {/* FLOATING CARD 1 — Top Left: Physics Education */}
               <motion.div
@@ -284,7 +285,7 @@ export function Hero() {
                 className="absolute -left-6 sm:-left-8 top-8 z-20 px-3.5 py-2.5 rounded-2xl border bg-card/95 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-blue-500/10 flex items-center justify-center text-sm">
+                  <div className="size-7 rounded-lg bg-primary/10 flex items-center justify-center text-sm">
                     ⚛️
                   </div>
                   <div>
@@ -301,12 +302,12 @@ export function Hero() {
                 className="absolute -right-6 sm:-right-8 bottom-12 z-20 px-3.5 py-2.5 rounded-2xl border bg-card/95 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all"
               >
                 <div className="flex items-center gap-2">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  <span className="relative flex size-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full size-2.5 bg-primary"></span>
                   </span>
                   <div>
-                    <div className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">Open to Collaborate</div>
+                    <div className="text-[11px] font-bold text-primary">Open to Collaborate</div>
                     <div className="text-[10px] text-muted-foreground">Research & EdTech</div>
                   </div>
                 </div>
@@ -339,22 +340,21 @@ export function Hero() {
               {/* Main Photo Card */}
               <div className="relative rounded-3xl overflow-hidden border bg-card shadow-2xl p-6 z-10">
                 <div className="relative w-full aspect-square rounded-2xl overflow-hidden border mb-5 shadow-inner">
-                  <img
-                    src={profile.avatar}
-                    alt={profile.name}
-                    className="w-full h-full object-cover object-center"
-                  />
+                  <Avatar className="w-full h-full rounded-none">
+                    <AvatarImage src={profile.avatar} alt={profile.name} className="object-cover object-center" />
+                    <AvatarFallback className="text-5xl font-bold">FD</AvatarFallback>
+                  </Avatar>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-3 left-3 right-3 text-white">
                     <div className="text-xs font-mono uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 mb-0.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                      <span className="size-1.5 rounded-full bg-emerald-400 animate-ping" />
                       Active Researcher
                     </div>
                     <div className="font-bold text-sm leading-tight">{profile.name}</div>
                   </div>
                 </div>
 
-                <div className="space-y-2.5 text-xs">
+                <div className="flex flex-col gap-2.5 text-xs">
                   <div className="flex items-center justify-between p-2.5 rounded-xl bg-muted/60 border border-border/50">
                     <span className="text-muted-foreground font-medium">Domain</span>
                     <span className="font-bold text-foreground">Physics Education</span>

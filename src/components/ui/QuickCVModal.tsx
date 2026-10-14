@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { profile, coreExpertise, experiences, achievements, projects, skills } from "@/data/portfolio";
-import { Printer, Copy, Check, Download, ExternalLink, Mail, MessageCircle, MapPin, GraduationCap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { profile, experiences, projects } from "@/data/portfolio";
+import { Printer, Copy, Check, MapPin, GraduationCap } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -71,22 +72,26 @@ FLAGSHIP PROJECTS:
 
             {/* Quick Action Buttons */}
             <div className="flex items-center gap-2">
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={handleCopySummary}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border bg-card hover:bg-muted text-xs font-medium text-foreground transition-colors"
+                className="rounded-lg bg-card hover:bg-muted hover:text-foreground"
                 title="Salin ringkasan teks"
               >
-                {copied ? <Check size={13} className="text-emerald-500" /> : <Copy size={13} />}
+                {copied ? <Check className="text-emerald-500" /> : <Copy />}
                 {copied ? "Tersalin" : "Salin Teks"}
-              </button>
+              </Button>
 
-              <button
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={handlePrint}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border bg-card hover:bg-muted text-xs font-medium text-foreground transition-colors"
+                className="rounded-lg bg-card hover:bg-muted hover:text-foreground"
                 title="Cetak CV"
               >
-                <Printer size={13} /> Cetak
-              </button>
+                <Printer /> Cetak
+              </Button>
             </div>
           </div>
         </DialogHeader>
@@ -146,7 +151,7 @@ FLAGSHIP PROJECTS:
                     {exp.description}
                   </p>
                   <div className="mt-2 flex flex-wrap gap-1.5">
-                    {exp.achievements.map((item, i) => (
+                    {exp.highlights.map((item, i) => (
                       <span key={i} className="px-2 py-0.5 rounded bg-muted text-[10px] text-muted-foreground">
                         • {item}
                       </span>

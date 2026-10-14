@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { projects } from "@/data/portfolio";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
-import { ArrowLeft, ArrowRight, ExternalLink, GitBranch, Github, Layers, ShieldCheck, Sparkles, Target, Zap } from "lucide-react";
+import { ArrowLeft, ArrowRight, Github, Layers, Sparkles, Target } from "lucide-react";
 
 const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -50,7 +49,7 @@ const ProjectDetail = () => {
                   {project.category}
                 </span>
                 <span className="text-xs font-mono text-muted-foreground">{project.year}</span>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold border bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20">
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold border bg-primary/10 text-primary border-primary/20">
                   {project.status}
                 </span>
               </div>
@@ -95,7 +94,7 @@ const ProjectDetail = () => {
                 <FadeIn>
                   <div>
                     <h2 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-lg bg-blue-500/10 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-mono">01</span>
+                      <span className="size-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-xs font-mono">01</span>
                       Overview
                     </h2>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -106,9 +105,9 @@ const ProjectDetail = () => {
 
                 {/* 02 Problem */}
                 <FadeIn delay={0.1}>
-                  <div className="p-6 rounded-2xl border-l-4 bg-rose-500/5 border-rose-500/40">
+                  <div className="p-6 rounded-2xl border-l-4 bg-destructive/5 border-destructive/40">
                     <h2 className="text-base font-bold text-foreground mb-2 flex items-center gap-2">
-                      <Target size={16} className="text-rose-500" />
+                      <Target size={16} className="text-destructive" />
                       02 Problem Statement
                     </h2>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -119,9 +118,9 @@ const ProjectDetail = () => {
 
                 {/* 03 System Design & Approach */}
                 <FadeIn delay={0.15}>
-                  <div className="p-6 rounded-2xl border-l-4 bg-indigo-500/5 border-indigo-500/40">
+                  <div className="p-6 rounded-2xl border-l-4 bg-primary/5 border-primary/40">
                     <h2 className="text-base font-bold text-foreground mb-2 flex items-center gap-2">
-                      <Layers size={16} className="text-indigo-500" />
+                      <Layers size={16} className="text-primary" />
                       03 System Design & Approach
                     </h2>
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -135,7 +134,7 @@ const ProjectDetail = () => {
                   <FadeIn delay={0.2}>
                     <div>
                       <h2 className="text-lg font-bold text-foreground mb-3 flex items-center gap-2">
-                        <span className="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs font-mono">04</span>
+                        <span className="size-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-xs font-mono">04</span>
                         Evidence & Key Metrics
                       </h2>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -163,7 +162,7 @@ const ProjectDetail = () => {
               {/* Sidebar */}
               <div className="flex flex-col gap-6">
                 <FadeIn direction="left">
-                  <div className="p-6 rounded-3xl border bg-card shadow-sm space-y-4">
+                  <div className="p-6 rounded-3xl border bg-card shadow-sm flex flex-col gap-4">
                     <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest pb-3 border-b border-border">
                       Project Metadata
                     </h3>

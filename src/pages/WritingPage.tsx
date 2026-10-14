@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { writings } from "@/data/portfolio";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import { ArrowRight, Clock, PenLine } from "lucide-react";
 
 const categories = ["All", ...Array.from(new Set(writings.map((w) => w.category)))];
@@ -52,25 +55,28 @@ const WritingPage = () => {
             {/* Category filter */}
             <div className="flex flex-wrap gap-2 mb-10">
               {categories.map((cat) => (
-                <button
+                <Button
                   key={cat}
+                  variant="ghost"
+                  size="sm"
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all border ${
+                  className={cn(
+                    "rounded-xl border font-semibold",
                     activeCategory === cat
-                      ? "bg-foreground text-background border-foreground"
-                      : "bg-card text-muted-foreground border-border hover:border-foreground/30 hover:text-foreground"
-                  }`}
+                      ? "border-foreground bg-foreground text-background hover:bg-foreground hover:text-background"
+                      : "border-border bg-card text-muted-foreground hover:border-foreground/30 hover:bg-card hover:text-foreground"
+                  )}
                 >
                   {cat}
-                </button>
+                </Button>
               ))}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {filtered.map((item) => (
-                <div
+                <Card
                   key={item.id}
-                  className="p-8 rounded-3xl border bg-card flex flex-col justify-between hover:shadow-lg hover:border-[hsl(180_70%_38%/0.4)] transition-all"
+                  className="p-8 rounded-3xl flex flex-col justify-between hover:shadow-lg hover:border-[hsl(180_70%_38%/0.4)] transition-all"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
@@ -101,7 +107,7 @@ const WritingPage = () => {
                       <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
                     </Link>
                   </div>
-                </div>
+                </Card>
               ))}
             </div>
           </div>

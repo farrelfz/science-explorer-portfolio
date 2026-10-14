@@ -59,19 +59,19 @@ const WritingDetail = () => {
     }
   }, [article, navigate]);
 
-  if (!article) return null;
-
-  const content = articlesContent[article.slug] || {
-    paragraphs: [article.excerpt],
-    headings: ["Perspektif"],
-  };
-
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
+
+  if (!article) return null;
+
+  const content = articlesContent[article.slug] || {
+    paragraphs: [article.excerpt],
+    headings: ["Perspektif"],
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -121,9 +121,9 @@ const WritingDetail = () => {
             </FadeIn>
 
             <FadeIn delay={0.25}>
-              <div className="space-y-8 text-sm sm:text-base text-muted-foreground leading-relaxed">
+              <div className="flex flex-col gap-8 text-sm sm:text-base text-muted-foreground leading-relaxed">
                 {content.paragraphs.map((p, idx) => (
-                  <div key={idx} className="space-y-3">
+                  <div key={idx} className="flex flex-col gap-3">
                     {content.headings && content.headings[idx] && (
                       <h2 className="text-xl font-bold text-foreground mt-8 mb-3">
                         {content.headings[idx]}

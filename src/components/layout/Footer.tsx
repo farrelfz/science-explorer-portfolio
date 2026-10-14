@@ -41,7 +41,7 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2.5 mb-5 group w-fit">
-              <div className="relative flex items-center justify-center w-9 h-9 rounded-xl overflow-hidden shadow-sm">
+              <div className="relative flex items-center justify-center size-9 rounded-xl overflow-hidden shadow-sm">
                 <div className="absolute inset-0 bg-gradient-to-br from-[hsl(180_70%_38%)] to-[hsl(217_91%_60%)]" />
                 <Atom size={18} className="relative z-10 text-white" strokeWidth={2} />
               </div>
@@ -61,14 +61,14 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex items-center justify-center w-9 h-9 rounded-xl border text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted transition-all duration-200"
+                  className="flex items-center justify-center size-9 rounded-xl border text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted transition-all duration-200"
                 >
                   <Icon size={14} />
                 </a>
               ))}
               <a
                 href={`mailto:${profile.email}`}
-                className="flex items-center justify-center w-9 h-9 rounded-xl border text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted transition-all duration-200"
+                className="flex items-center justify-center size-9 rounded-xl border text-muted-foreground hover:text-foreground hover:border-foreground/30 hover:bg-muted transition-all duration-200"
                 aria-label="Email"
               >
                 <Mail size={14} />
@@ -82,7 +82,7 @@ export function Footer() {
               <h4 className="text-xs font-bold tracking-widest uppercase text-foreground mb-4">
                 {group.heading}
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="flex flex-col gap-2.5">
                 {group.links.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -108,7 +108,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="size-1.5 rounded-full bg-primary animate-pulse" />
               Open to research collaboration
             </span>
           </div>

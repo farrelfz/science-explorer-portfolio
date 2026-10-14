@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Play, Pause, RotateCcw, Sparkles, Gauge, Compass, Scale, Globe2, Wind, Eye } from "lucide-react";
 
 interface Environment {
@@ -229,12 +231,10 @@ export function PhysicsPlayground() {
   useEffect(() => {
     if (!isRunning) return;
 
-    let lastTime = performance.now();
     const dtBase = 0.016; // 60 FPS baseline (seconds)
 
     const loop = (currentTime: number) => {
-      const elapsed = (currentTime - lastTime) / 1000;
-      lastTime = currentTime;
+      void currentTime; // timestamp kept for API compat, fixed-step integration below
 
       // Numerical step (Euler-Cromer integration)
       const subSteps = 4;
@@ -399,8 +399,8 @@ export function PhysicsPlayground() {
           </div>
 
           <FadeIn delay={0.3} className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+              <span className="size-2 rounded-full bg-primary animate-pulse" />
               Real-time Physics Engine
             </span>
           </FadeIn>
@@ -447,10 +447,10 @@ export function PhysicsPlayground() {
                 {showVectors && (
                   <div className="absolute bottom-4 left-4 flex items-center gap-3 px-3 py-1.5 rounded-xl border bg-card/90 backdrop-blur-md text-[10px] font-mono pointer-events-none">
                     <span className="flex items-center gap-1 text-sky-500 font-bold">
-                      <span className="w-2 h-2 rounded-full bg-sky-500" /> Vektor Kecepatan (v)
+                      <span className="size-2 rounded-full bg-sky-500" /> Vektor Kecepatan (v)
                     </span>
                     <span className="flex items-center gap-1 text-rose-500 font-bold">
-                      <span className="w-2 h-2 rounded-full bg-rose-500" /> Gravitasi (g)
+                      <span className="size-2 rounded-full bg-rose-500" /> Gravitasi (g)
                     </span>
                   </div>
                 )}
@@ -460,53 +460,66 @@ export function PhysicsPlayground() {
               <div className="p-4 bg-muted/40 border-t flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   {!isRunning ? (
-                    <button
+                    <Button
+                      size="sm"
                       onClick={handleLaunch}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition-all"
-                      style={{ background: "linear-gradient(135deg, hsl(217 91% 50%), hsl(180 70% 38%))" }}
+                      className="rounded-xl bg-accent text-accent-foreground hover:bg-accent/90 font-bold shadow-md hover:shadow-lg"
                     >
-                      <Play size={14} fill="currentColor" />
+                      <Play fill="currentColor" />
                       {isFinished ? "Luncurkan Lagi" : "Luncurkan Proyektil"}
-                    </button>
+                    </Button>
                   ) : (
-                    <button
+                    <Button
+                      size="sm"
                       onClick={handlePause}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-amber-600 hover:bg-amber-700 text-white shadow-md transition-all"
+                      className="rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold shadow-md"
                     >
-                      <Pause size={14} fill="currentColor" />
+                      <Pause fill="currentColor" />
                       Jeda
-                    </button>
+                    </Button>
                   )}
 
-                  <button
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={resetSim}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-medium border bg-card hover:bg-muted transition-colors text-foreground"
+                    className="rounded-xl bg-card hover:bg-muted hover:text-foreground"
                     title="Reset Posisi Awal"
                   >
-                    <RotateCcw size={13} />
+                    <RotateCcw />
                     Reset
-                  </button>
+                  </Button>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => setShowVectors(!showVectors)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium border transition-colors ${
-                      showVectors ? "bg-primary/10 border-primary/30 text-primary" : "bg-card text-muted-foreground"
-                    }`}
+                    className={cn(
+                      "rounded-xl",
+                      showVectors
+                        ? "border-primary/30 bg-primary/10 text-primary hover:bg-primary/10 hover:text-primary"
+                        : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
+                    )}
                   >
-                    <Eye size={13} />
+                    <Eye />
                     Vektor Gaya
-                  </button>
+                  </Button>
 
-                  <button
+                  <Button
+                    variant="outline"
+                    size="sm"
                     onClick={() => setSlowMo(!slowMo)}
-                    className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium border transition-colors ${
-                      slowMo ? "bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400" : "bg-card text-muted-foreground"
-                    }`}
+                    className={cn(
+                      "rounded-xl",
+                      slowMo
+                        ? "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500/10 hover:text-amber-600 dark:hover:text-amber-400"
+                        : "bg-card text-muted-foreground hover:bg-muted hover:text-foreground"
+                    )}
                   >
                     Slow Motion (0.4x)
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -519,12 +532,12 @@ export function PhysicsPlayground() {
               transition={{ duration: 0.3 }}
               className="p-5 rounded-2xl border bg-card/80 backdrop-blur-sm shadow-sm flex items-start gap-4"
             >
-              <div className="w-10 h-10 rounded-xl bg-[hsl(180_70%_38%/0.12)] flex items-center justify-center text-xl flex-shrink-0">
+              <div className="size-10 rounded-xl bg-accent/10 flex items-center justify-center text-xl flex-shrink-0">
                 💡
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[hsl(180_70%_38%/0.1)] text-[hsl(180_70%_32%)] dark:text-[hsl(180_70%_55%)] border border-[hsl(180_70%_38%/0.2)]">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
                     {insight.highlight}
                   </span>
                   <h4 className="text-xs font-bold text-foreground">{insight.title}</h4>
@@ -538,14 +551,14 @@ export function PhysicsPlayground() {
 
           {/* Controls & Telemetry Dashboard */}
           <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="p-6 rounded-3xl border bg-card shadow-xl space-y-6">
+            <div className="p-6 rounded-3xl border bg-card shadow-xl flex flex-col gap-6">
               <h3 className="text-sm font-bold text-foreground flex items-center gap-2 border-b pb-3">
                 <Compass size={16} className="text-primary" />
                 Parameter Eksperimen
               </h3>
 
               {/* Speed Slider */}
-              <div className="space-y-2">
+              <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground font-medium flex items-center gap-1.5">
                     <Gauge size={13} /> Kecepatan Awal (v₀)
@@ -558,12 +571,12 @@ export function PhysicsPlayground() {
                   max="60"
                   value={speed}
                   onChange={(e) => setSpeed(Number(e.target.value))}
-                  className="w-full accent-[hsl(180_70%_38%)] cursor-pointer"
+                  className="w-full accent-accent cursor-pointer"
                 />
               </div>
 
               {/* Angle Slider */}
-              <div className="space-y-2">
+              <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground font-medium flex items-center gap-1.5">
                     <Compass size={13} /> Sudut Elevasi (θ)
@@ -576,38 +589,41 @@ export function PhysicsPlayground() {
                   max="85"
                   value={angle}
                   onChange={(e) => setAngle(Number(e.target.value))}
-                  className="w-full accent-[hsl(180_70%_38%)] cursor-pointer"
+                  className="w-full accent-accent cursor-pointer"
                 />
               </div>
 
               {/* Celestial Environment Selection */}
-              <div className="space-y-2">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs text-muted-foreground font-medium flex items-center gap-1.5">
                   <Globe2 size={13} /> Gravitasi Benda Langit (g)
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   {Object.entries(ENVIRONMENTS).map(([key, env]) => (
-                    <button
+                    <Button
                       key={key}
+                      variant="outline"
+                      size="sm"
                       onClick={() => setEnvKey(key)}
-                      className={`flex items-center gap-2 p-2.5 rounded-xl border text-xs font-semibold transition-all ${
+                      className={cn(
+                        "h-auto justify-start rounded-xl px-2.5 py-2 text-xs font-semibold",
                         envKey === key
-                          ? "border-primary bg-primary/10 text-primary shadow-sm"
-                          : "border-border bg-muted/40 hover:bg-muted text-muted-foreground"
-                      }`}
+                          ? "border-primary bg-primary/10 text-primary shadow-sm hover:bg-primary/10 hover:text-primary"
+                          : "border-border bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground"
+                      )}
                     >
                       <span className="text-base">{env.icon}</span>
-                      <div className="text-left">
-                        <div className="leading-tight">{env.name}</div>
-                        <div className="text-[10px] opacity-75 font-mono">{env.g} m/s²</div>
-                      </div>
-                    </button>
+                      <span className="flex flex-col text-left">
+                        <span className="leading-tight">{env.name}</span>
+                        <span className="text-[10px] font-mono opacity-75">{env.g} m/s²</span>
+                      </span>
+                    </Button>
                   ))}
                 </div>
               </div>
 
               {/* Mass Slider */}
-              <div className="space-y-2">
+              <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-muted-foreground font-medium flex items-center gap-1.5">
                     <Scale size={13} /> Massa Benda (m)
@@ -620,7 +636,7 @@ export function PhysicsPlayground() {
                   max="20"
                   value={mass}
                   onChange={(e) => setMass(Number(e.target.value))}
-                  className="w-full accent-[hsl(180_70%_38%)] cursor-pointer"
+                  className="w-full accent-accent cursor-pointer"
                 />
               </div>
 
@@ -633,23 +649,29 @@ export function PhysicsPlayground() {
                     <div className="text-[10px] text-muted-foreground">Aerodynamic Drag Effect</div>
                   </div>
                 </div>
-                <button
+                <Button
+                  variant="outline"
                   onClick={() => setAirResistance(!airResistance)}
-                  className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors ${
-                    airResistance ? "bg-[hsl(180_70%_38%)]" : "bg-muted"
-                  }`}
+                  role="switch"
+                  aria-checked={airResistance}
+                  aria-label="Hambatan Udara"
+                  className={cn(
+                    "relative h-6 w-11 justify-start rounded-full border-0 p-1 shadow-none transition-colors",
+                    airResistance ? "bg-accent hover:bg-accent" : "bg-muted hover:bg-muted"
+                  )}
                 >
-                  <div
-                    className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${
+                  <span
+                    className={cn(
+                      "block size-4 rounded-full bg-white shadow-md transition-transform",
                       airResistance ? "translate-x-5" : "translate-x-0"
-                    }`}
+                    )}
                   />
-                </button>
+                </Button>
               </div>
             </div>
 
             {/* Live Telemetry Summary Card */}
-            <div className="p-5 rounded-3xl border bg-card/90 shadow-md space-y-3">
+            <div className="p-5 rounded-3xl border bg-card/90 shadow-md flex flex-col gap-3">
               <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
                 <Sparkles size={12} className="text-amber-500" />
                 Hasil Prediksi Teoretis (Vakum)

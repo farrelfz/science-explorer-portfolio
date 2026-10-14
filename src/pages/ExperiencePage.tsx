@@ -3,7 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { experiences, achievements } from "@/data/portfolio";
 import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
-import { Award, BookOpen, CheckCircle, GraduationCap, Trophy, Users } from "lucide-react";
+import { CheckCircle, GraduationCap } from "lucide-react";
 
 const ExperiencePage = () => {
   useEffect(() => {
@@ -48,10 +48,10 @@ const ExperiencePage = () => {
               </h2>
             </div>
 
-            <div className="space-y-8 mb-20">
+            <div className="flex flex-col gap-8 mb-20">
               {experiences.map((exp, idx) => (
                 <FadeIn key={exp.id} delay={idx * 0.1}>
-                  <div className="p-8 sm:p-10 rounded-3xl border bg-card shadow-sm space-y-6">
+                  <div className="p-8 sm:p-10 rounded-3xl border bg-card shadow-sm flex flex-col gap-6">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border/60 pb-5">
                       <div>
                         <div className="flex items-center gap-3">
@@ -80,7 +80,7 @@ const ExperiencePage = () => {
                       <ul className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                         {exp.highlights.map((item, i) => (
                           <li key={i} className="flex items-start gap-2 p-3 rounded-xl bg-muted/40 text-xs text-muted-foreground">
-                            <CheckCircle size={14} className="text-emerald-500 flex-shrink-0 mt-0.5" />
+                            <CheckCircle size={14} className="text-primary flex-shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -115,7 +115,7 @@ const ExperiencePage = () => {
                 {achievements.map((ach) => (
                   <div key={ach.id} className="p-6 rounded-2xl border bg-card flex items-start gap-4">
                     <span className="text-3xl flex-shrink-0">{ach.icon}</span>
-                    <div className="space-y-1">
+                    <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-2">
                         <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-muted text-muted-foreground border">
                           {ach.level}

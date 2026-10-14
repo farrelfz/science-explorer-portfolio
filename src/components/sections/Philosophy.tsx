@@ -53,7 +53,7 @@ export function Philosophy() {
                   className="group flex gap-5 p-5 rounded-2xl border bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-md transition-all duration-300"
                 >
                   {/* Icon */}
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center text-2xl"
+                  <div className="flex-shrink-0 size-12 rounded-xl flex items-center justify-center text-2xl"
                     style={{ background: "hsl(var(--muted))" }}>
                     {item.icon}
                   </div>

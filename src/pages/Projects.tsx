@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { projects, secondaryProjects } from "@/data/portfolio";
 import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
-import { ArrowRight, ExternalLink, GitBranch, Github, Layers, Sparkles } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Github, Layers, Sparkles } from "lucide-react";
 
 const ProjectsPage = () => {
   useEffect(() => {
@@ -49,30 +50,32 @@ const ProjectsPage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
               {projects.map((project) => (
-                <div
+                <Card
                   key={project.id}
-                  className="rounded-3xl border bg-card p-6 sm:p-8 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+                  className="rounded-3xl p-6 sm:p-8 flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden"
                 >
-                  <div>
+                  <CardHeader className="p-0">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-muted border text-muted-foreground">
+                      <Badge variant="secondary" className="px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider">
                         {project.category}
-                      </span>
+                      </Badge>
                       <span className="text-xs font-mono font-bold text-muted-foreground">{project.year}</span>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-foreground mb-1 leading-snug">
+                    <CardTitle className="text-2xl font-bold text-foreground mb-1 leading-snug">
                       {project.title}
-                    </h3>
-                    <div className="text-xs font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mb-3">
+                    </CardTitle>
+                    <CardDescription className="text-xs font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mb-3">
                       {project.subtitle}
-                    </div>
+                    </CardDescription>
+                  </CardHeader>
 
+                  <CardContent className="p-0">
                     <p className="text-xs text-muted-foreground leading-relaxed mb-5">
                       {project.summary}
                     </p>
 
-                    <div className="space-y-2 text-xs text-muted-foreground mb-6">
+                    <div className="flex flex-col gap-2 text-xs text-muted-foreground mb-6">
                       <div>
                         <strong className="text-foreground">Problem:</strong> {project.problem}
                       </div>
@@ -89,7 +92,7 @@ const ProjectsPage = () => {
                         <ul className="grid grid-cols-1 gap-1 text-[11px] text-muted-foreground">
                           {project.metrics.map((m) => (
                             <li key={m} className="flex items-center gap-1.5">
-                              <span className="w-1 h-1 rounded-full bg-[hsl(180_70%_38%)]" />
+                              <span className="size-1 rounded-full bg-accent" />
                               {m}
                             </li>
                           ))}
@@ -102,14 +105,14 @@ const ProjectsPage = () => {
                         * {project.note}
                       </div>
                     )}
-                  </div>
+                  </CardContent>
 
-                  <div className="pt-4 border-t border-border/60 mt-auto">
+                  <CardFooter className="flex flex-col items-stretch p-0 pt-4 border-t border-border/60 mt-auto">
                     <div className="flex flex-wrap gap-1.5 mb-5">
                       {project.techStack.map((tech) => (
-                        <span key={tech} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-muted text-muted-foreground border border-border/50">
+                        <Badge key={tech} variant="secondary" className="text-[10px] font-medium">
                           {tech}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
 
@@ -135,8 +138,8 @@ const ProjectsPage = () => {
                         </a>
                       )}
                     </div>
-                  </div>
-                </div>
+                  </CardFooter>
+                </Card>
               ))}
             </div>
 
@@ -154,7 +157,7 @@ const ProjectsPage = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {secondaryProjects.map((item) => (
-                  <div key={item.title} className="p-6 rounded-2xl border bg-card flex flex-col justify-between hover:border-[hsl(180_70%_38%/0.4)] transition-all">
+                  <Card key={item.title} className="p-6 rounded-2xl flex flex-col justify-between hover:border-[hsl(180_70%_38%/0.4)] transition-all">
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-bold text-base text-foreground">{item.title}</h4>
@@ -172,12 +175,12 @@ const ProjectsPage = () => {
 
                     <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border/50">
                       {item.tags.map((t) => (
-                        <span key={t} className="px-2 py-0.5 rounded-md text-[10px] font-mono bg-muted text-muted-foreground border border-border/50">
+                        <Badge key={t} variant="secondary" className="text-[10px] font-mono">
                           {t}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
-                  </div>
+                  </Card>
                 ))}
               </div>
             </div>

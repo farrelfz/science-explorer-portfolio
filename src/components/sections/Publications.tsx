@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { projects, profile } from "@/data/portfolio";
+import { projects } from "@/data/portfolio";
 import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
-import { ArrowRight, ExternalLink, GitBranch, Github, Layers, Sparkles } from "lucide-react";
+import { ArrowRight, Github, Layers } from "lucide-react";
 
 export function Publications() {
   return (
@@ -45,7 +45,7 @@ export function Publications() {
                 className="group p-6 sm:p-7 rounded-3xl border bg-card hover:border-[hsl(180_70%_38%/0.4)] hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between"
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-9 h-9 rounded-xl bg-muted border flex items-center justify-center text-xs font-mono font-bold text-muted-foreground flex-shrink-0">
+                  <div className="size-9 rounded-xl bg-muted border flex items-center justify-center text-xs font-mono font-bold text-muted-foreground flex-shrink-0">
                     {String(i + 1).padStart(2, "0")}
                   </div>
 
@@ -88,7 +88,7 @@ export function Publications() {
                       href={proj.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-9 h-9 flex items-center justify-center rounded-xl border text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
+                      className="size-9 flex items-center justify-center rounded-xl border text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
                       title="View GitHub Repository"
                     >
                       <Github size={15} />

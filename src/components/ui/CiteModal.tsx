@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Copy, Check, Quote, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Copy, Check, Quote } from "lucide-react";
 import { toast } from "sonner";
 
 export interface CitationItem {
@@ -70,17 +72,20 @@ export function CiteModal({ open, onOpenChange, citation }: CiteModalProps) {
         {/* Tab Selection */}
         <div className="flex items-center gap-2 pt-2">
           {(["apa", "bibtex", "ieee"] as const).map((tab) => (
-            <button
+            <Button
               key={tab}
+              variant="ghost"
+              size="sm"
               onClick={() => setActiveTab(tab)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase transition-all ${
+              className={cn(
+                "rounded-lg px-3 py-1.5 text-xs font-semibold uppercase",
                 activeTab === tab
-                  ? "bg-primary text-primary-foreground shadow-sm"
+                  ? "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground shadow-sm"
                   : "bg-muted/60 text-muted-foreground hover:bg-muted hover:text-foreground"
-              }`}
+              )}
             >
               {tab}
-            </button>
+            </Button>
           ))}
         </div>
 
@@ -94,14 +99,13 @@ export function CiteModal({ open, onOpenChange, citation }: CiteModalProps) {
           <span className="text-[11px] text-muted-foreground">
             {activeTab === "bibtex" ? "Siap di-import ke Zotero, Mendeley, atau LaTeX" : "Format standar publikasi akademik"}
           </span>
-          <button
+          <Button
             onClick={handleCopy}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white shadow-sm transition-all"
-            style={{ background: "hsl(180 70% 38%)" }}
+            className="rounded-xl bg-accent text-accent-foreground hover:bg-accent/90 font-bold shadow-sm"
           >
-            {copied ? <Check size={14} /> : <Copy size={14} />}
+            {copied ? <Check /> : <Copy />}
             {copied ? "Tersalin!" : "Salin Sitasi"}
-          </button>
+          </Button>
         </div>
       </DialogContent>
     </Dialog>

@@ -1,12 +1,10 @@
 import { useEffect } from "react";
-import { motion } from "framer-motion";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { researchInterests, technicalSkills, projects } from "@/data/portfolio";
-import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { researchInterests, technicalSkills } from "@/data/portfolio";
+import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
 import { ParticleCanvas } from "@/components/ui/ParticleCanvas";
-import { Atom, Brain, Cpu, Database, ExternalLink, FileSearch, GitBranch, Github, Layers, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Atom, Cpu, GitBranch, Layers } from "lucide-react";
 import { ResearchKnowledgeGraph } from "@/components/sections/ResearchKnowledgeGraph";
 
 const ResearchPage = () => {
@@ -103,8 +101,8 @@ const ResearchPage = () => {
             <FadeIn delay={0.2}>
               <div className="p-8 sm:p-10 rounded-3xl border bg-gradient-to-br from-card to-muted/30 shadow-md">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center md:text-left">
-                  <div className="p-5 rounded-2xl border bg-background/80 space-y-2">
-                    <div className="text-xs font-bold font-mono uppercase text-blue-600 dark:text-blue-400 flex items-center gap-1.5">
+                  <div className="p-5 rounded-2xl border bg-background/80 flex flex-col gap-2">
+                    <div className="text-xs font-bold font-mono uppercase text-primary flex items-center gap-1.5">
                       <Atom size={14} /> Domain Foundation
                     </div>
                     <div className="font-extrabold text-foreground text-base">Physics Education</div>
@@ -113,8 +111,8 @@ const ResearchPage = () => {
                     </p>
                   </div>
 
-                  <div className="p-5 rounded-2xl border bg-background/80 space-y-2">
-                    <div className="text-xs font-bold font-mono uppercase text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+                  <div className="p-5 rounded-2xl border bg-background/80 flex flex-col gap-2">
+                    <div className="text-xs font-bold font-mono uppercase text-primary flex items-center gap-1.5">
                       <Cpu size={14} /> Analytical Engines
                     </div>
                     <div className="font-extrabold text-foreground text-base">AI & NLP Methods</div>
@@ -123,8 +121,8 @@ const ResearchPage = () => {
                     </p>
                   </div>
 
-                  <div className="p-5 rounded-2xl border bg-background/80 space-y-2">
-                    <div className="text-xs font-bold font-mono uppercase text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
+                  <div className="p-5 rounded-2xl border bg-background/80 flex flex-col gap-2">
+                    <div className="text-xs font-bold font-mono uppercase text-primary flex items-center gap-1.5">
                       <Layers size={14} /> Learning Environment
                     </div>
                     <div className="font-extrabold text-foreground text-base">Educational Technology</div>
@@ -134,7 +132,7 @@ const ResearchPage = () => {
                   </div>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-muted/40 border text-xs text-muted-foreground space-y-2">
+                <div className="p-6 rounded-2xl bg-muted/40 border text-xs text-muted-foreground flex flex-col gap-2">
                   <div className="font-bold text-foreground flex items-center gap-1.5">
                     <GitBranch size={14} className="text-[hsl(180_70%_35%)]" /> Pemetaan Proyek terhadap Arsitektur:
                   </div>

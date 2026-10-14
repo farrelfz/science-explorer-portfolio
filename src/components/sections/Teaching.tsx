@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { teachingFramework } from "@/data/portfolio";
 import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { cn } from "@/lib/utils";
 import { BookOpen, Brain, Layers, Lightbulb } from "lucide-react";
 
 const icons = [BookOpen, Brain, Layers, Lightbulb];
@@ -49,7 +50,7 @@ export function Teaching() {
                       {/* Abbr badge */}
                       <div className="flex items-center gap-3 mb-4">
                         <div
-                          className={`w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${item.color} text-white`}
+                          className={cn("size-10 rounded-xl flex items-center justify-center bg-gradient-to-br text-white", item.color)}
                         >
                           <Icon size={18} strokeWidth={2} />
                         </div>
