@@ -6,7 +6,7 @@ Researcher & EdTech Developer). **MVP: a polished personal portfolio site.**
 ## Stack
 
 - Vite 6 + React 18 + TypeScript **strict** (`tsconfig.app.json` — all strict flags on; `tsc --noEmit` must pass, vite build does NOT typecheck)
-- Tailwind CSS **v3** (`tailwind.config.ts`)
+- Tailwind CSS **v4** (CSS-first config in `src/index.css` via `@theme inline`; **no `tailwind.config.ts`**; PostCSS plugin is `@tailwindcss/postcss`)
 - shadcn/ui (base **radix**, style `default`), icons **lucide-react**, framer-motion, react-router-dom **v7**
 - Package manager: **npm** (no bun.lockb). Import alias: `@/ → src/`
 - Deploy: GitHub Pages (`.github/workflows/deploy.yml`)
@@ -52,7 +52,7 @@ files from GitHub). After adding, verify imports and icon library.
    `Avatar` always pairs with `AvatarFallback`.
 9. No manual `z-*` on overlay components; Sheet/Dialog manage stacking.
 10. Toasts → `sonner` (`toast(...)`). There is no Radix toast anymore.
-11. Edit `src/index.css` for theme vars — never create new global CSS files. Google Fonts are loaded via `<link>` tags in `index.html` (preload + non-blocking); never add a CSS `@import` for fonts.
+11. Edit `src/index.css` for theme vars — never create new global CSS files. Theme is **CSS-first (Tailwind v4)**: semantic colors live as CSS vars in `:root`/`.dark`, mapped to Tailwind utility namespaces via the `@theme inline` block in the same file. There is **no `tailwind.config.ts`**. Google Fonts are loaded via `<link>` tags in `index.html` (preload + non-blocking); never add a CSS `@import` for fonts.
 12. Animations: keep framer-motion behavior intact; don't redesign during refactors.
 
 ### Intentional deviations (do NOT "fix" these)
