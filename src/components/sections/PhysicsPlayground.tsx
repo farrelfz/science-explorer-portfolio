@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Play, Pause, RotateCcw, Sparkles, Gauge, Compass, Scale, Globe2, Wind, Eye } from "lucide-react";
+import { getIcon } from "@/lib/icons";
+import { Play, Pause, RotateCcw, Sparkles, Gauge, Compass, Scale, Globe2, Wind, Eye, Lightbulb } from "lucide-react";
 
 interface Environment {
   name: string;
@@ -13,10 +14,10 @@ interface Environment {
 }
 
 const ENVIRONMENTS: Record<string, Environment> = {
-  earth: { name: "Bumi", g: 9.8, color: "text-blue-500", icon: "🌍" },
-  moon: { name: "Bulan", g: 1.62, color: "text-slate-400", icon: "🌑" },
-  mars: { name: "Mars", g: 3.71, color: "text-amber-500", icon: "🔴" },
-  jupiter: { name: "Jupiter", g: 24.79, color: "text-orange-600", icon: "🪐" },
+  earth: { name: "Bumi", g: 9.8, color: "text-blue-500", icon: "globe" },
+  moon: { name: "Bulan", g: 1.62, color: "text-slate-400", icon: "moon" },
+  mars: { name: "Mars", g: 3.71, color: "text-amber-500", icon: "circledot" },
+  jupiter: { name: "Jupiter", g: 24.79, color: "text-orange-600", icon: "orbit" },
 };
 
 export function PhysicsPlayground() {
@@ -50,6 +51,7 @@ export function PhysicsPlayground() {
   const trailRef = useRef<{ x: number; y: number }[]>([]);
 
   const g = ENVIRONMENTS[envKey].g;
+  const EnvIcon = getIcon(ENVIRONMENTS[envKey].icon);
   const rad = (angle * Math.PI) / 180;
   const v0x = speed * Math.cos(rad);
   const v0y = speed * Math.sin(rad);
@@ -404,10 +406,9 @@ export function PhysicsPlayground() {
       <div className="container-max relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <SectionLabel>Interactive Laboratory</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 mb-3 leading-tight">
-                Virtual Physics <span className="text-gradient-primary">Playground</span>
+                Virtual Physics <span className="text-accent-text">Playground</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -457,7 +458,7 @@ export function PhysicsPlayground() {
                 {/* Environment Badge Overlay */}
                 <div className="absolute top-4 right-4 pointer-events-none">
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border bg-card/90 backdrop-blur-md text-xs font-semibold shadow-sm">
-                    <span>{ENVIRONMENTS[envKey].icon}</span>
+                    <EnvIcon size={16} className={ENVIRONMENTS[envKey].color} aria-hidden="true" />
                     <span className="text-foreground">{ENVIRONMENTS[envKey].name}</span>
                     <span className="text-muted-foreground font-mono">({g} m/s²)</span>
                   </div>
@@ -552,8 +553,8 @@ export function PhysicsPlayground() {
               transition={{ duration: 0.3 }}
               className="p-5 rounded-2xl border bg-card/80 backdrop-blur-sm shadow-sm flex items-start gap-4"
             >
-              <div className="size-10 rounded-xl bg-accent/10 flex items-center justify-center text-xl flex-shrink-0">
-                💡
+              <div className="size-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <Lightbulb size={18} className="text-accent-text" aria-hidden="true" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
@@ -619,7 +620,9 @@ export function PhysicsPlayground() {
                   <Globe2 size={13} /> Gravitasi Benda Langit (g)
                 </label>
                 <div className="grid grid-cols-2 gap-2">
-                  {Object.entries(ENVIRONMENTS).map(([key, env]) => (
+                  {Object.entries(ENVIRONMENTS).map(([key, env]) => {
+                    const EnvOptionIcon = getIcon(env.icon);
+                    return (
                     <Button
                       key={key}
                       variant="outline"
@@ -632,13 +635,14 @@ export function PhysicsPlayground() {
                           : "border-border bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground"
                       )}
                     >
-                      <span className="text-base">{env.icon}</span>
+                      <EnvOptionIcon className={env.color} aria-hidden="true" />
                       <span className="flex flex-col text-left">
                         <span className="leading-tight">{env.name}</span>
                         <span className="text-[10px] font-mono opacity-75">{env.g} m/s²</span>
                       </span>
                     </Button>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

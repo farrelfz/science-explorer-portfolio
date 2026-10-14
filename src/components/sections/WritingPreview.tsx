@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { writings } from "@/data/portfolio";
-import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
 import { ArrowRight, Clock, PenLine } from "lucide-react";
 
 export function WritingPreview() {
@@ -11,10 +11,9 @@ export function WritingPreview() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <SectionLabel>Perspectives & Essays</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 leading-tight">
-                Writing & <span className="h-editorial italic text-gradient-warm">Perspectives</span>
+                Writing & <span className="h-editorial italic text-accent-text">Perspectives</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>

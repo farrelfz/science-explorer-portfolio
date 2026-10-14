@@ -54,19 +54,19 @@ Menggabungkan fondasi Physics Education dengan computational methods, data analy
       domain: "Physics Education",
       role: "Provides the Domain",
       description: "Grounded in conceptual change theory, misconception identification, and inquiry-based pedagogy.",
-      icon: "⚛️",
+      icon: "atom",
     },
     {
       domain: "Educational Technology",
       role: "Provides the Environment",
       description: "Designing active, reflective learning spaces with responsive interactive simulations and structured scaffolds.",
-      icon: "💻",
+      icon: "laptop",
     },
     {
       domain: "AI & Computational Methods",
       role: "Provides Analytical Tools",
       description: "Harnessing NLP, knowledge graphs, and local LLMs for systematic literature mining and evidence synthesis.",
-      icon: "🧠",
+      icon: "brain",
     },
   ],
   socials: {
@@ -78,28 +78,28 @@ Menggabungkan fondasi Physics Education dengan computational methods, data analy
   philosophy: [
     {
       id: "ph-1",
-      icon: "⚛️",
+      icon: "atom",
       statement: "Misconceptions are cognitive stepping stones, not deficiencies.",
       elaboration:
         "Students arrive with deeply held intuitive models. Effective physics instruction does not merely replace wrong ideas with formulas, but guides students to test, break, and rebuild their conceptual frameworks through inquiry.",
     },
     {
       id: "ph-2",
-      icon: "🧠",
+      icon: "brain",
       statement: "AI in education must preserve epistemic integrity and provenance.",
       elaboration:
         "Generative tools should augment human reasoning, not obscure evidence chains. In research and learning, AI systems must be verifiable, transparent, and grounded in domain knowledge.",
     },
     {
       id: "ph-3",
-      icon: "💻",
+      icon: "laptop",
       statement: "Simulations must foster active inquiry, not passive observation.",
       elaboration:
         "A virtual lab is only as powerful as the thinking it demands. By allowing parameter manipulation, visual feedback, and hypothesis testing, software transforms abstract physics into tangible phenomena.",
     },
     {
       id: "ph-4",
-      icon: "🌐",
+      icon: "globe",
       statement: "Open tools and reproducible science bridge educational disparities.",
       elaboration:
         "Lightweight, accessible, open-source educational software democratizes high-quality experimental physics for schools and learners regardless of laboratory infrastructure.",
@@ -111,32 +111,32 @@ export const coreExpertise = [
   {
     title: "Physics Education & Learning",
     description: "Pedagogy, conceptual change theory, student misconception diagnostics, and inquiry-based instructional frameworks.",
-    icon: "⚛️",
+    icon: "atom",
   },
   {
     title: "Research & Scientific Writing",
     description: "Systematic literature reviews, qualitative & quantitative methodology, empirical evidence synthesis, and academic writing.",
-    icon: "🔬",
+    icon: "microscope",
   },
   {
     title: "Educational Technology Development",
     description: "Web-native learning applications, Canvas 2D/WebGL simulation design, and interactive student engagement workflows.",
-    icon: "⚙️",
+    icon: "cog",
   },
   {
     title: "AI & Machine Learning (Applied)",
     description: "Applied NLP pipelines, transformer classification (IndoBERT), local LLM orchestration via Ollama, and semantic embeddings.",
-    icon: "🧠",
+    icon: "brain",
   },
   {
     title: "Data Science & Computational Methods",
     description: "Corpus analysis, discourse metrics, exploratory data analysis, DuckDB analytics, and statistical modeling with Python.",
-    icon: "📊",
+    icon: "chart",
   },
   {
     title: "Research Training Design",
     description: "Curriculum and multi-session slide decks for youth science programs (KIR/LDP) aligned with national OPSI standards.",
-    icon: "🎓",
+    icon: "graduation",
   },
 ];
 
@@ -147,7 +147,7 @@ export const researchInterests = [
     title: "Conceptual Change & Misconception Mapping",
     description:
       "Investigating how students construct and reconstruct mental models of physical phenomena, identifying persistent misconception variants, and designing targeted cognitive interventions.",
-    icon: "⚛️",
+    icon: "atom",
     color: "from-blue-500/10 to-blue-500/5",
     borderColor: "border-blue-500/20",
     topics: ["Conceptual Change", "Physics Misconceptions", "Learning Analytics", "Constructivism"],
@@ -158,7 +158,7 @@ export const researchInterests = [
     title: "LLM-Assisted Research & Semantic Scaffolding",
     description:
       "Developing conversational and epistemic AI systems that scaffold research workflows, extract academic claims from literature, and guide student scientific inquiry without replacing human thinking.",
-    icon: "🧠",
+    icon: "brain",
     color: "from-indigo-500/10 to-indigo-500/5",
     borderColor: "border-indigo-500/20",
     topics: ["LLM-Based Research Assistance", "Semantic Analysis", "Pedagogical Scaffolding", "Epistemic UI"],
@@ -169,7 +169,7 @@ export const researchInterests = [
     title: "Literature Mining & Scientific Knowledge Graphs",
     description:
       "Applying natural language processing to large-scale scientific publications, building structured domain knowledge graphs, and automating evidence synthesis for physics education scholars.",
-    icon: "🌌",
+    icon: "orbit",
     color: "from-cyan-500/10 to-cyan-500/5",
     borderColor: "border-cyan-500/20",
     topics: ["Literature Mining", "Knowledge Graphs", "Research Automation", "IMRAD Parsing"],
@@ -214,7 +214,7 @@ export const experiences = [
       "Penyusunan modul dan slide deck multi-sesi untuk pembina, mentor, dan siswa",
     ],
     tags: ["Pelatihan Riset", "Metodologi Penelitian", "LDP", "OPSI", "KIR"],
-    icon: "🔬",
+    icon: "microscope",
   },
   {
     id: "exp-2",
@@ -230,7 +230,7 @@ export const experiences = [
       "Penyusunan instrumen asesmen fisika & Panduan Tugas Proyek",
     ],
     tags: ["Pendidikan Fisika", "Hukum Newton", "Dinamika Gerak", "STEM", "Asesmen"],
-    icon: "⚛️",
+    icon: "atom",
   },
   {
     id: "exp-3",
@@ -246,7 +246,7 @@ export const experiences = [
       "Peningkatan visibilitas kegiatan penelitian di lingkungan universitas",
     ],
     tags: ["Komunikasi Ilmiah", "Diseminasi Riset", "Manajemen Publikasi", "Kepemimpinan"],
-    icon: "📢",
+    icon: "megaphone",
   },
 ];
 
@@ -257,7 +257,7 @@ export const achievements = [
     title: "Juara 2 — Lomba Essay Ilmiah Nasional",
     organizer: "Politeknik Negeri Malang",
     year: "2024",
-    icon: "🥈",
+    icon: "medal",
   },
   {
     id: "ach-2",
@@ -265,7 +265,7 @@ export const achievements = [
     title: "Peserta Terpilih — Program WiraWiri UNJ",
     organizer: "WMK Kemendikbudristek",
     year: "2024",
-    icon: "🌟",
+    icon: "sparkles",
   },
   {
     id: "ach-3",
@@ -273,7 +273,7 @@ export const achievements = [
     title: "Juara 3 — LKTIN UNIMED Bidang Pendidikan",
     organizer: "Universitas Negeri Medan",
     year: "2023",
-    icon: "🥉",
+    icon: "award",
   },
   {
     id: "ach-4",
@@ -281,7 +281,7 @@ export const achievements = [
     title: "Pendanaan Program Mahasiswa Wirausaha (PMW) — FisikaSeru",
     organizer: "Universitas Negeri Jakarta",
     year: "2024",
-    icon: "🚀",
+    icon: "rocket",
   },
   {
     id: "ach-5",
@@ -289,7 +289,7 @@ export const achievements = [
     title: "Pendanaan Program Mahasiswa Wirausaha (PMW) — Pick Your Teacher",
     organizer: "Universitas Negeri Jakarta",
     year: "2023",
-    icon: "💡",
+    icon: "lightbulb",
   },
 ];
 

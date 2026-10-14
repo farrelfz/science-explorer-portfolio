@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ExternalLink, RefreshCw } from "lucide-react";
 
@@ -374,10 +374,9 @@ export function ResearchKnowledgeGraph() {
       <div className="container-max">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
           <div>
-            <SectionLabel>Conceptual Architecture</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 mb-2">
-                Research <span className="text-gradient-primary">Knowledge Graph</span>
+                Research <span className="text-accent-text">Knowledge Graph</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>

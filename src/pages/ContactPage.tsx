@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Contact } from "@/components/sections/Contact";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
+import { Mail } from "lucide-react";
 
 const ContactPage = () => {
   useEffect(() => {
@@ -16,11 +17,14 @@ const ContactPage = () => {
           <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
           <div className="container-max relative z-10">
             <FadeIn>
-              <div className="label-research mb-6 w-fit">✉️ Get in Touch</div>
+              <div className="label-research mb-6 w-fit flex items-center gap-1.5">
+                <Mail size={13} aria-hidden="true" />
+                Get in Touch
+              </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-5 leading-tight">
-                Let's <span className="text-gradient-science">Connect</span>
+                Let's <span className="text-accent-text">Connect</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>

@@ -3,6 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
+import { Clock } from "lucide-react";
 
 const TimelinePage = () => {
   useEffect(() => {
@@ -16,11 +17,14 @@ const TimelinePage = () => {
           <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
           <div className="container-max relative z-10">
             <FadeIn>
-              <div className="label-science mb-6 w-fit">🕐 Journey</div>
+              <div className="label-science mb-6 w-fit flex items-center gap-1.5">
+                <Clock size={13} aria-hidden="true" />
+                Journey
+              </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-5 leading-tight">
-                The <span className="text-gradient-primary">Timeline</span>
+                The <span className="text-accent-text">Timeline</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>

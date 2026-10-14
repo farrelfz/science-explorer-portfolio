@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { timeline } from "@/data/portfolio";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Code2, FileText, GraduationCap, Star, Trophy, ChevronLeft, ChevronRight } from "lucide-react";
@@ -36,10 +36,9 @@ export function TimelineSection() {
       <div className="container-max mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <SectionLabel>Journey</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 mb-2">
-                Milestones & <span className="text-gradient-primary">History</span>
+                Milestones & <span className="text-accent-text">History</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>

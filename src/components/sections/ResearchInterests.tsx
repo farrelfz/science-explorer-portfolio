@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { researchInterests } from "@/data/portfolio";
-import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { getIcon } from "@/lib/icons";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
@@ -11,10 +12,9 @@ export function ResearchInterests() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <SectionLabel>Scientific Focus</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2">
-                Research <span className="text-gradient-primary">Interests</span>
+                Research <span className="text-accent-text">Interests</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -36,7 +36,9 @@ export function ResearchInterests() {
 
         {/* Grid */}
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {researchInterests.map((item) => (
+          {researchInterests.map((item) => {
+            const Icon = getIcon(item.icon);
+            return (
             <StaggerItem key={item.id}>
               <motion.div
                 whileHover={{ y: -4 }}
@@ -45,7 +47,9 @@ export function ResearchInterests() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-3xl">{item.icon}</span>
+                    <span className="inline-flex items-center justify-center text-accent-text">
+                      <Icon size={28} aria-hidden="true" />
+                    </span>
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-background/80 border text-foreground/80">
                       {item.category}
                     </span>
@@ -70,7 +74,8 @@ export function ResearchInterests() {
                 </div>
               </motion.div>
             </StaggerItem>
-          ))}
+            );
+          })}
         </StaggerContainer>
       </div>
     </section>

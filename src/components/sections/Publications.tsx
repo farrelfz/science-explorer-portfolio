@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { projects } from "@/data/portfolio";
-import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
 import { ArrowRight, Github, Layers } from "lucide-react";
 
 export function Publications() {
@@ -11,10 +11,9 @@ export function Publications() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <SectionLabel>Academic & Computational Output</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2">
-                Research & <span className="text-gradient-primary">Selected Works</span>
+                Research & <span className="text-accent-text">Selected Works</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>

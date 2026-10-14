@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { teachingFramework } from "@/data/portfolio";
-import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
 import { cn } from "@/lib/utils";
 import { BookOpen, Brain, Layers, Lightbulb } from "lucide-react";
 
@@ -13,11 +13,10 @@ export function Teaching() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-14 items-center">
           {/* Left: content */}
           <div className="lg:col-span-2">
-            <SectionLabel>Pedagogy</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 mb-5 leading-tight">
                 How I{" "}
-                <span className="text-gradient-science">Teach</span>
+                <span className="text-accent-text">Teach</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>

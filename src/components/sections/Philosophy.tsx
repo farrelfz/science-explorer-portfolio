@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { profile } from "@/data/portfolio";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
+import { getIcon } from "@/lib/icons";
 import { Quote } from "lucide-react";
 
 export function Philosophy() {
@@ -16,12 +17,11 @@ export function Philosophy() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: label + header */}
           <div>
-            <SectionLabel>What I Believe</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-4xl sm:text-5xl lg:text-[3.5rem] text-foreground mb-6 leading-[1.05]">
                 A Philosophy
                 <br />
-                <span className="text-gradient-primary">of Learning</span>
+                <span className="text-accent-text">of Learning</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -45,7 +45,9 @@ export function Philosophy() {
 
           {/* Right: philosophy pillars */}
           <div className="flex flex-col gap-4">
-            {profile.philosophy.map((item, i) => (
+            {profile.philosophy.map((item, i) => {
+              const Icon = getIcon(item.icon);
+              return (
               <FadeIn key={item.id} delay={i * 0.12} direction="left">
                 <motion.div
                   whileHover={{ x: 4 }}
@@ -53,9 +55,9 @@ export function Philosophy() {
                   className="group flex gap-5 p-5 rounded-2xl border bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-md transition-all duration-300"
                 >
                   {/* Icon */}
-                  <div className="flex-shrink-0 size-12 rounded-xl flex items-center justify-center text-2xl"
+                  <div className="flex-shrink-0 size-12 rounded-xl flex items-center justify-center"
                     style={{ background: "hsl(var(--muted))" }}>
-                    {item.icon}
+                    <Icon size={20} className="text-accent-text" aria-hidden="true" />
                   </div>
 
                   {/* Content */}
@@ -72,7 +74,8 @@ export function Philosophy() {
                   <div className="ml-auto self-stretch w-0.5 rounded-full bg-muted group-hover:bg-gradient-to-b group-hover:from-accent group-hover:to-[hsl(217_91%_60%)] transition-all duration-300 min-w-[2px]" />
                 </motion.div>
               </FadeIn>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

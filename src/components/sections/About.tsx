@@ -1,5 +1,6 @@
 import { profile, coreExpertise } from "@/data/portfolio";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
+import { getIcon } from "@/lib/icons";
 import { Sparkles } from "lucide-react";
 
 export function About() {
@@ -10,12 +11,11 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
           {/* Left: Bio & Narrative */}
           <div className="lg:col-span-7">
-            <SectionLabel>About & Background</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl lg:text-5xl text-foreground mt-2 mb-6 leading-tight">
-                Grounded in <span className="text-gradient-primary">Physics Education</span>,
+                Grounded in <span className="text-accent-text">Physics Education</span>,
                 <br />
-                Driven by <span className="text-gradient-science">Computational Systems</span>
+                Driven by <span className="text-accent-text">Computational Systems</span>
               </h2>
             </FadeIn>
 
@@ -74,19 +74,22 @@ export function About() {
           </FadeIn>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {coreExpertise.map((exp, index) => (
+            {coreExpertise.map((exp, index) => {
+              const Icon = getIcon(exp.icon);
+              return (
               <FadeIn key={exp.title} delay={index * 0.08}>
                 <div className="h-full p-6 rounded-2xl border bg-card hover:border-accent/40 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
                   <div>
-                    <div className="size-10 rounded-xl bg-muted flex items-center justify-center text-xl mb-4 shadow-sm">
-                      {exp.icon}
+                    <div className="size-10 rounded-xl bg-muted flex items-center justify-center mb-4 shadow-sm">
+                      <Icon size={18} className="text-accent-text" aria-hidden="true" />
                     </div>
                     <h4 className="text-base font-bold text-foreground mb-2 leading-snug">{exp.title}</h4>
                     <p className="text-xs text-muted-foreground leading-relaxed">{exp.description}</p>
                   </div>
                 </div>
               </FadeIn>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { projects } from "@/data/portfolio";
-import { FadeIn, SectionLabel, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
 import { FlaskConical, ExternalLink, ArrowRight } from "lucide-react";
 import { PhysicsPlayground } from "@/components/sections/PhysicsPlayground";
 
@@ -34,7 +34,7 @@ const LaboratoryPage = () => {
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-6 max-w-4xl leading-tight">
-                Simulating the <span className="text-gradient-primary">Physical World</span>
+                Simulating the <span className="text-accent-text">Physical World</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -50,7 +50,6 @@ const LaboratoryPage = () => {
         {/* Labs Grid */}
         <section className="section-padding border-t">
           <div className="container-max">
-            <SectionLabel>Active Simulations</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 mb-10">
                 Explore the Labs

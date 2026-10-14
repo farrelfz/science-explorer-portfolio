@@ -6,7 +6,7 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/Animation
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Github, Layers, AlertCircle, Quote } from "lucide-react";
+import { Github, Layers, AlertCircle, Quote, Microscope } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { CiteModal, type CitationItem } from "@/components/ui/CiteModal";
@@ -26,11 +26,14 @@ const PublicationsPage = () => {
           <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
           <div className="container-max relative z-10">
             <FadeIn>
-              <div className="label-research mb-6 w-fit">🔬 Academic & Research Output</div>
+              <div className="label-research mb-6 w-fit flex items-center gap-1.5">
+                <Microscope size={13} aria-hidden="true" />
+                Academic & Research Output
+              </div>
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight">
-                Research & <span className="text-gradient-primary">Selected Works</span>
+                Research & <span className="text-accent-text">Selected Works</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>

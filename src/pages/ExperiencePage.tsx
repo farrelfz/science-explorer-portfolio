@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { experiences, achievements } from "@/data/portfolio";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
+import { getIcon } from "@/lib/icons";
 import { CheckCircle, GraduationCap } from "lucide-react";
 
 const ExperiencePage = () => {
@@ -27,7 +28,7 @@ const ExperiencePage = () => {
             <FadeIn delay={0.1}>
               <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight">
                 Professional Experience & <br />
-                <span className="text-gradient-science">Selected Achievements</span>
+                <span className="text-accent-text">Selected Achievements</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -42,20 +43,23 @@ const ExperiencePage = () => {
         <section className="section-padding border-t">
           <div className="container-max">
             <div className="mb-10">
-              <SectionLabel>Verified Experience</SectionLabel>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2">
                 Professional & Academic Roles
               </h2>
             </div>
 
             <div className="flex flex-col gap-8 mb-20">
-              {experiences.map((exp, idx) => (
+              {experiences.map((exp, idx) => {
+                const Icon = getIcon(exp.icon);
+                return (
                 <FadeIn key={exp.id} delay={idx * 0.1}>
                   <div className="p-8 sm:p-10 rounded-3xl border bg-card shadow-sm flex flex-col gap-6">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border/60 pb-5">
                       <div>
                         <div className="flex items-center gap-3">
-                          <span className="text-3xl">{exp.icon}</span>
+                          <span className="inline-flex size-10 flex-shrink-0 items-center justify-center rounded-xl bg-muted text-accent-text">
+                            <Icon size={20} aria-hidden="true" />
+                          </span>
                           <div>
                             <h3 className="text-2xl font-bold text-foreground leading-tight">{exp.role}</h3>
                             <div className="text-sm font-semibold text-accent-text mt-0.5">
@@ -96,13 +100,13 @@ const ExperiencePage = () => {
                     </div>
                   </div>
                 </FadeIn>
-              ))}
+                );
+              })}
             </div>
 
             {/* Section 6: Selected Achievements */}
             <div>
               <div className="mb-8">
-                <SectionLabel>Competition & Funding Recognition</SectionLabel>
                 <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2">
                   Selected Achievements
                 </h2>
@@ -112,9 +116,13 @@ const ExperiencePage = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {achievements.map((ach) => (
+                {achievements.map((ach) => {
+                  const Icon = getIcon(ach.icon);
+                  return (
                   <div key={ach.id} className="p-6 rounded-2xl border bg-card flex items-start gap-4">
-                    <span className="text-3xl flex-shrink-0">{ach.icon}</span>
+                    <span className="inline-flex size-10 flex-shrink-0 items-center justify-center rounded-xl bg-muted text-accent-text">
+                      <Icon size={20} aria-hidden="true" />
+                    </span>
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-2">
                         <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-muted text-muted-foreground border">
@@ -126,7 +134,8 @@ const ExperiencePage = () => {
                       <p className="text-xs text-muted-foreground">{ach.organizer}</p>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

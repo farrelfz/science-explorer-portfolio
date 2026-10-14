@@ -78,16 +78,3 @@ export function StaggerItem({ children, className = "" }: { children: React.Reac
   );
 }
 
-export function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      className="label-science mb-4 w-fit"
-    >
-      {children}
-    </motion.div>
-  );
-}

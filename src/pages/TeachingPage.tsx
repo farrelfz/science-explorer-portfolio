@@ -26,7 +26,7 @@ const TeachingPage = () => {
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-6 max-w-4xl leading-tight">
-                Engineering <span className="text-gradient-science">Understanding</span>
+                Engineering <span className="text-accent-text">Understanding</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>

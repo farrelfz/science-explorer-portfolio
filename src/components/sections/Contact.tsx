@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { profile } from "@/data/portfolio";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Github, Instagram, Mail, MapPin, MessageSquare, Send, Twitter } from "lucide-react";
+import { Github, Instagram, Mail, MapPin, MessageSquare, Send, Twitter, CheckCircle2 } from "lucide-react";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -26,10 +26,9 @@ export function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-14">
           {/* Left info */}
           <div className="lg:col-span-2">
-            <SectionLabel>Contact</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-4xl sm:text-5xl text-foreground mt-2 mb-6 leading-tight">
-                Let's <span className="text-gradient-science">Connect</span>
+                Let's <span className="text-accent-text">Connect</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -102,7 +101,9 @@ export function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-12 text-center"
                 >
-                  <div className="size-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 text-2xl">✅</div>
+                  <div className="size-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                    <CheckCircle2 size={28} className="text-primary" aria-hidden="true" />
+                  </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Message Sent!</h3>
                   <p className="text-sm text-muted-foreground">Your email client should have opened. Looking forward to connecting.</p>
                 </motion.div>

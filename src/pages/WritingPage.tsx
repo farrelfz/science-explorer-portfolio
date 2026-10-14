@@ -38,7 +38,7 @@ const WritingPage = () => {
             </FadeIn>
             <FadeIn delay={0.1}>
               <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight">
-                Writing & <span className="text-gradient-warm">Perspectives</span>
+                Writing & <span className="text-accent-text">Perspectives</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>

@@ -2,7 +2,8 @@ import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { researchInterests, technicalSkills } from "@/data/portfolio";
-import { FadeIn, SectionLabel } from "@/components/ui/AnimationPrimitives";
+import { FadeIn } from "@/components/ui/AnimationPrimitives";
+import { getIcon } from "@/lib/icons";
 import { ParticleCanvas } from "@/components/ui/ParticleCanvas";
 import { Atom, Cpu, GitBranch, Layers } from "lucide-react";
 import { ResearchKnowledgeGraph } from "@/components/sections/ResearchKnowledgeGraph";
@@ -32,7 +33,7 @@ const ResearchPage = () => {
             <FadeIn delay={0.1}>
               <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-6 max-w-4xl leading-tight">
                 Computational Research for <br />
-                <span className="text-gradient-primary">Physics Education</span>
+                <span className="text-accent-text">Physics Education</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -46,7 +47,6 @@ const ResearchPage = () => {
         {/* Section 7: Three Core Research Pillars */}
         <section className="section-padding border-t bg-card/40">
           <div className="container-max">
-            <SectionLabel>Core Focus</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 mb-10">
                 Research Domains
@@ -54,12 +54,16 @@ const ResearchPage = () => {
             </FadeIn>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {researchInterests.map((pillar, i) => (
+              {researchInterests.map((pillar, i) => {
+                const Icon = getIcon(pillar.icon);
+                return (
                 <FadeIn key={pillar.id} delay={i * 0.1}>
                   <div className="h-full p-8 rounded-3xl border bg-card shadow-sm flex flex-col justify-between hover:border-accent/40 transition-all duration-300">
                     <div>
                       <div className="flex items-center justify-between mb-5">
-                        <span className="text-3xl">{pillar.icon}</span>
+                        <span className="inline-flex items-center justify-center text-accent-text">
+                          <Icon size={28} aria-hidden="true" />
+                        </span>
                         <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full border bg-muted/60 text-muted-foreground">
                           {pillar.category}
                         </span>
@@ -80,7 +84,8 @@ const ResearchPage = () => {
                     </div>
                   </div>
                 </FadeIn>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -88,7 +93,6 @@ const ResearchPage = () => {
         {/* Section 30: Conceptual Network */}
         <section className="section-padding border-t">
           <div className="container-max">
-            <SectionLabel>Conceptual Architecture</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 mb-4">
                 The Research & Systems Ecosystem
@@ -155,7 +159,6 @@ const ResearchPage = () => {
         {/* Section 8: Technical Skills Matrix */}
         <section className="section-padding border-t bg-muted/10">
           <div className="container-max">
-            <SectionLabel>Technical Skills</SectionLabel>
             <FadeIn delay={0.1}>
               <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 mb-10">
                 Methodology & Tech Stack

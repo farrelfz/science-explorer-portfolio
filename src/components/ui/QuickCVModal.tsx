@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { profile, experiences, projects } from "@/data/portfolio";
-import { Printer, Copy, Check, MapPin, GraduationCap } from "lucide-react";
+import { Printer, Copy, Check, MapPin, GraduationCap, Microscope, Cog, Wrench } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -135,7 +135,7 @@ FLAGSHIP PROJECTS:
           {/* Verified Roles & Teaching */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
-              🔬 Pengalaman Riset & Kepemimpinan
+              <Microscope size={13} aria-hidden="true" /> Pengalaman Riset & Kepemimpinan
             </h4>
             <div className="space-y-3">
               {experiences.map((exp) => (
@@ -165,7 +165,7 @@ FLAGSHIP PROJECTS:
           {/* Flagship Projects */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
-              ⚙️ Portofolio Sistem Unggulan
+              <Cog size={13} aria-hidden="true" /> Portofolio Sistem Unggulan
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {projects.slice(0, 4).map((p) => (
@@ -195,7 +195,7 @@ FLAGSHIP PROJECTS:
           {/* Skills Matrix */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
-              🛠️ Keahlian Teknis & Metodologi
+              <Wrench size={13} aria-hidden="true" /> Keahlian Teknis & Metodologi
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               <div className="p-2.5 rounded-xl border bg-card">
