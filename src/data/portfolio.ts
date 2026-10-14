@@ -496,7 +496,17 @@ export const secondaryProjects: SecondaryProject[] = [
   },
 ];
 
-export const writings = [
+export interface Writing {
+  id: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  readingTime: string;
+  date: string;
+  slug: string;
+}
+
+export const writings: Writing[] = [
   {
     id: "wr-1",
     title: "Mengapa Pendidikan Fisika Membutuhkan Rekonseptualisasi, Bukan Sekadar Alat Baru",
