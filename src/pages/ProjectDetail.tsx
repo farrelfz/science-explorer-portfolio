@@ -105,7 +105,7 @@ const ProjectDetail = () => {
 
                 {/* 02 Problem */}
                 <FadeIn delay={0.1}>
-                  <div className="p-6 rounded-2xl border-l-4 bg-destructive/5 border-destructive/40">
+                  <div className="p-6 rounded-2xl border bg-card">
                     <h2 className="text-base font-bold text-foreground mb-2 flex items-center gap-2">
                       <Target size={16} className="text-destructive" />
                       02 Problem Statement
@@ -118,10 +118,10 @@ const ProjectDetail = () => {
 
                 {/* 03 System Design & Approach */}
                 <FadeIn delay={0.15}>
-                  <div className="p-6 rounded-2xl border-l-4 bg-primary/5 border-primary/40">
+                  <div className="p-6 rounded-2xl border bg-card">
                     <h2 className="text-base font-bold text-foreground mb-2 flex items-center gap-2">
                       <Layers size={16} className="text-primary" />
-                      03 System Design & Approach
+                      03 System Design &amp; Approach
                     </h2>
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       {project.approach}

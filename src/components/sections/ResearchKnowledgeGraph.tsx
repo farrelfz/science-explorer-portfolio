@@ -462,10 +462,9 @@ export function ResearchKnowledgeGraph() {
                     href={selectedNode.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-bold text-white shadow-md hover:shadow-lg transition-all"
-                    style={{ background: "linear-gradient(135deg, hsl(217 91% 45%), hsl(180 70% 35%))" }}
+                    className="inline-flex items-center justify-between px-4 py-2.5 rounded-xl text-xs font-bold bg-primary text-primary-foreground shadow-md hover:shadow-lg transition-all"
                   >
-                    <span>Jelajahi Kode & Data Riset</span>
+                    <span>Jelajahi Kode &amp; Data Riset</span>
                     <ExternalLink size={14} />
                   </a>
                 )}

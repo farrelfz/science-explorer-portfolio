@@ -74,10 +74,9 @@ const LaboratoryPage = () => {
               )}
               {virtualLabs.map((lab) => (
                 <StaggerItem key={lab.id}>
-                  <div className="group flex flex-col h-full rounded-2xl overflow-hidden border bg-card hover:shadow-xl transition-all duration-300">
-                    {/* Visual Placeholder / Banner */}
+                  <div className="group flex flex-col h-full rounded-2xl overflow-hidden border bg-card hover:border-accent/40 transition-all duration-300">
+                    {/* Category banner — the title carries the identity, no grid under it */}
                     <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${lab.color}`}>
-                      <div className="absolute inset-0 bg-grid opacity-30" />
                       <div className="absolute inset-0 flex items-center justify-center">
                          <span className="text-5xl opacity-80 mix-blend-overlay font-display font-bold tracking-tighter">
                            {lab.title}

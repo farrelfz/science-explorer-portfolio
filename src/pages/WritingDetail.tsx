@@ -134,7 +134,7 @@ const WritingDetail = () => {
                 ))}
 
                 {content.quote && (
-                  <blockquote className="my-8 p-6 rounded-2xl border bg-muted/40 text-foreground font-medium italic border-l-4 border-l-[hsl(180_70%_35%)]">
+                  <blockquote className="my-8 p-6 rounded-2xl border bg-muted/40 text-foreground font-medium italic">
                     "{content.quote}"
                   </blockquote>
                 )}
