@@ -69,32 +69,6 @@ export function PhysicsPlayground() {
     maxH: 0,
   });
 
-  const resetSim = useCallback(() => {
-    if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
-    setIsRunning(false);
-    setIsFinished(false);
-    setTime(0);
-    trailRef.current = [];
-    simState.current = {
-      x: 0,
-      y: 0,
-      vx: speed * Math.cos((angle * Math.PI) / 180),
-      vy: speed * Math.sin((angle * Math.PI) / 180),
-      t: 0,
-      maxH: 0,
-    };
-    setTelemetry({
-      x: 0,
-      y: 0,
-      vx: simState.current.vx,
-      vy: simState.current.vy,
-      maxH: 0,
-      range: theoreticalRange,
-      flightTime: theoreticalFlightTime,
-    });
-    drawScene();
-  }, [speed, angle, g, theoreticalRange, theoreticalFlightTime]);
-
   const drawScene = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -226,6 +200,32 @@ export function PhysicsPlayground() {
       ctx.stroke();
     }
   }, [angle, g, theoreticalRange, theoreticalMaxH, showVectors, isRunning]);
+
+  const resetSim = useCallback(() => {
+    if (animationFrameRef.current) cancelAnimationFrame(animationFrameRef.current);
+    setIsRunning(false);
+    setIsFinished(false);
+    setTime(0);
+    trailRef.current = [];
+    simState.current = {
+      x: 0,
+      y: 0,
+      vx: speed * Math.cos((angle * Math.PI) / 180),
+      vy: speed * Math.sin((angle * Math.PI) / 180),
+      t: 0,
+      maxH: 0,
+    };
+    setTelemetry({
+      x: 0,
+      y: 0,
+      vx: simState.current.vx,
+      vy: simState.current.vy,
+      maxH: 0,
+      range: theoreticalRange,
+      flightTime: theoreticalFlightTime,
+    });
+    drawScene();
+  }, [speed, angle, theoreticalRange, theoreticalFlightTime, drawScene]);
 
   // Main Numerical Integration Loop
   useEffect(() => {

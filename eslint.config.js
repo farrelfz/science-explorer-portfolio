@@ -23,4 +23,14 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    // shadcn/ui components intentionally co-export variants/helpers with the
+    // component (e.g. buttonVariants + Button). Splitting them would diverge
+    // from the registry and break `shadcn add` updates. This rule only affects
+    // dev-time HMR granularity, so relax it for the kit directory.
+    files: ["src/components/ui/**/*.{ts,tsx}"],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
 );

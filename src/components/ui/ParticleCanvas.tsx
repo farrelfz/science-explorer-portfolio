@@ -16,6 +16,15 @@ interface ParticleCanvasProps {
   interactive?: boolean;
 }
 
+// Module-scope constant so the useCallback dependency list stays stable.
+const PARTICLE_COLORS = [
+  "hsl(180, 70%, 48%)",
+  "hsl(217, 91%, 65%)",
+  "hsl(263, 70%, 65%)",
+  "hsl(180, 70%, 60%)",
+  "hsl(217, 70%, 75%)",
+];
+
 export function ParticleCanvas({
   className = "",
   particleCount = 80,
@@ -27,14 +36,6 @@ export function ParticleCanvas({
   const animationRef = useRef<number>(0);
   const isDark = useRef(false);
 
-  const colors = [
-    "hsl(180, 70%, 48%)",
-    "hsl(217, 91%, 65%)",
-    "hsl(263, 70%, 65%)",
-    "hsl(180, 70%, 60%)",
-    "hsl(217, 70%, 75%)",
-  ];
-
   const initParticles = useCallback((w: number, h: number) => {
     particlesRef.current = Array.from({ length: particleCount }, () => ({
       x: Math.random() * w,
@@ -43,7 +44,7 @@ export function ParticleCanvas({
       vy: (Math.random() - 0.5) * 0.4,
       radius: Math.random() * 1.5 + 0.5,
       opacity: Math.random() * 0.5 + 0.1,
-      color: colors[Math.floor(Math.random() * colors.length)],
+      color: PARTICLE_COLORS[Math.floor(Math.random() * PARTICLE_COLORS.length)],
     }));
   }, [particleCount]);
 
