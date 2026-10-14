@@ -232,6 +232,7 @@ export function PhysicsPlayground() {
     if (!isRunning) return;
 
     const dtBase = 0.016; // 60 FPS baseline (seconds)
+    let lastTelemetryAt = -1;
 
     const loop = (currentTime: number) => {
       void currentTime; // timestamp kept for API compat, fixed-step integration below
@@ -278,21 +279,38 @@ export function PhysicsPlayground() {
         trailRef.current.shift();
       }
 
-      setTime(simState.current.t);
-      setTelemetry({
-        x: simState.current.x,
-        y: simState.current.y,
-        vx: simState.current.vx,
-        vy: simState.current.vy,
-        maxH: simState.current.maxH,
-        range: simState.current.x,
-        flightTime: simState.current.t,
-      });
+      // Throttle React state updates to ~15fps; the canvas keeps drawing at
+      // 60fps, so the HUD reads live without a full re-render every frame.
+      if (simState.current.t - lastTelemetryAt >= 0.066) {
+        lastTelemetryAt = simState.current.t;
+        setTime(simState.current.t);
+        setTelemetry({
+          x: simState.current.x,
+          y: simState.current.y,
+          vx: simState.current.vx,
+          vy: simState.current.vy,
+          maxH: simState.current.maxH,
+          range: simState.current.x,
+          flightTime: simState.current.t,
+        });
+      }
 
       drawScene();
 
       if (simState.current.y > 0 || simState.current.t <= 0.05) {
         animationFrameRef.current = requestAnimationFrame(loop);
+      } else {
+        // Final sync so the last frame's values are shown exactly.
+        setTime(simState.current.t);
+        setTelemetry({
+          x: simState.current.x,
+          y: simState.current.y,
+          vx: simState.current.vx,
+          vy: simState.current.vy,
+          maxH: simState.current.maxH,
+          range: simState.current.x,
+          flightTime: simState.current.t,
+        });
       }
     };
 
@@ -314,10 +332,12 @@ export function PhysicsPlayground() {
       const canvas = canvasRef.current;
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * window.devicePixelRatio;
-      canvas.height = rect.height * window.devicePixelRatio;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
       const ctx = canvas.getContext("2d");
-      if (ctx) ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      // resetTransform before scaling so repeated resizes don't compound DPR.
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       drawScene();
     };
 

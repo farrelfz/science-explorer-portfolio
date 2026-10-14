@@ -27,7 +27,7 @@ export function Publications() {
           <FadeIn delay={0.2} direction="left">
             <Link
               to="/research"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] hover:underline whitespace-nowrap"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-text hover:underline whitespace-nowrap"
             >
               Explore Research Profile
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -42,7 +42,7 @@ export function Publications() {
               <motion.div
                 whileHover={{ x: 4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                className="group p-6 sm:p-7 rounded-3xl border bg-card hover:border-[hsl(180_70%_38%/0.4)] hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between"
+                className="group p-6 sm:p-7 rounded-3xl border bg-card hover:border-accent/40 hover:shadow-md transition-all duration-300 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between"
               >
                 <div className="flex items-start gap-4">
                   <div className="size-9 rounded-xl bg-muted border flex items-center justify-center text-xs font-mono font-bold text-muted-foreground flex-shrink-0">
@@ -55,12 +55,12 @@ export function Publications() {
                         {proj.category}
                       </span>
                       <span className="text-xs font-mono text-muted-foreground">{proj.year}</span>
-                      <span className="text-[10px] font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)]">
+                      <span className="text-[10px] font-semibold text-accent-text">
                         · {proj.status}
                       </span>
                     </div>
 
-                    <h3 className="text-lg font-bold text-foreground mb-1 leading-snug group-hover:text-[hsl(180_70%_30%)] dark:group-hover:text-[hsl(180_70%_60%)] transition-colors">
+                    <h3 className="text-lg font-bold text-foreground mb-1 leading-snug group-hover:text-accent-text transition-colors">
                       {proj.title}
                     </h3>
                     <p className="text-xs font-medium text-muted-foreground mb-2">

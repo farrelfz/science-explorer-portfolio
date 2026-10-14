@@ -125,10 +125,10 @@ export function Hero() {
               transition={{ duration: 0.6, delay: 0.35 }}
               className="text-base sm:text-lg font-bold text-foreground/90 mb-3 flex flex-wrap items-center gap-2"
             >
-              <span className="text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)]">Physics Education Researcher</span>
-              <span className="text-muted-foreground/50 hidden sm:inline">·</span>
+              <span className="text-accent-text">Physics Education Researcher</span>
+              <span className="text-muted-foreground/70 hidden sm:inline">·</span>
               <span className="text-blue-600 dark:text-blue-400">EdTech Developer</span>
-              <span className="text-muted-foreground/50 hidden sm:inline">·</span>
+              <span className="text-muted-foreground/70 hidden sm:inline">·</span>
               <span className="text-indigo-600 dark:text-indigo-400">AI for Education</span>
             </motion.div>
 
@@ -276,7 +276,7 @@ export function Hero() {
 
               {/* Decorative dashed rings */}
               <div className="absolute -top-6 -left-6 size-24 rounded-full border-2 border-dashed border-[hsl(217_91%_60%/0.25)] opacity-60 pointer-events-none" />
-              <div className="absolute -bottom-6 -right-6 size-32 rounded-full border-2 border-dashed border-[hsl(180_70%_38%/0.25)] opacity-60 pointer-events-none" />
+              <div className="absolute -bottom-6 -right-6 size-32 rounded-full border-2 border-dashed border-accent/25 opacity-60 pointer-events-none" />
 
               {/* FLOATING CARD 1 — Top Left: Physics Education */}
               <motion.div

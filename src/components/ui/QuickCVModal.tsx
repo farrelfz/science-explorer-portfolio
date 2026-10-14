@@ -54,7 +54,7 @@ FLAGSHIP PROJECTS:
               <DialogTitle className="text-2xl font-bold tracking-tight text-foreground">
                 {profile.name}
               </DialogTitle>
-              <DialogDescription className="text-sm font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mt-1">
+              <DialogDescription className="text-sm font-semibold text-accent-text mt-1">
                 {profile.role}
               </DialogDescription>
               <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mt-2">

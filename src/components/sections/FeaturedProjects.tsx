@@ -36,7 +36,7 @@ export function FeaturedProjects() {
           <FadeIn delay={0.2} direction="left">
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] hover:underline whitespace-nowrap"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-text hover:underline whitespace-nowrap"
             >
               View Full Architecture & Projects
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -64,7 +64,7 @@ function ProjectCard({ project }: { project: typeof projects[0]; index: number }
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="h-full"
     >
-      <Card className="h-full flex flex-col justify-between rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-[hsl(180_70%_38%/0.4)] transition-all duration-300 relative overflow-hidden">
+      <Card className="h-full flex flex-col justify-between rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 relative overflow-hidden">
         <CardHeader className="p-0">
           {/* Top Meta Bar */}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -83,7 +83,7 @@ function ProjectCard({ project }: { project: typeof projects[0]; index: number }
           <CardTitle className="text-xl sm:text-2xl font-bold text-foreground mb-1 leading-snug">
             {project.title}
           </CardTitle>
-          <CardDescription className="text-xs font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mb-3">
+          <CardDescription className="text-xs font-semibold text-accent-text mb-3">
             {project.subtitle}
           </CardDescription>
 
@@ -141,7 +141,7 @@ function ProjectCard({ project }: { project: typeof projects[0]; index: number }
           <div className="flex items-center justify-between gap-4">
             <Link
               to={`/projects/${project.id}`}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group/link"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-accent transition-colors group/link"
             >
               <Layers size={13} />
               System Architecture

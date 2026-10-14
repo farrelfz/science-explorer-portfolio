@@ -38,7 +38,7 @@ export function About() {
           <div className="lg:col-span-5">
             <FadeIn delay={0.25} direction="left">
               <div className="p-6 sm:p-7 rounded-3xl border bg-card shadow-sm flex flex-col gap-4">
-                <div className="text-xs font-bold uppercase tracking-widest text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] flex items-center gap-1.5 mb-2">
+                <div className="text-xs font-bold uppercase tracking-widest text-accent-text flex items-center gap-1.5 mb-2">
                   <Sparkles size={14} />
                   Conceptual Framework
                 </div>
@@ -47,7 +47,7 @@ export function About() {
                   <div key={item.domain} className="p-4 rounded-2xl bg-muted/50 border border-border/40 flex flex-col gap-1">
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-extrabold text-foreground">{item.domain}</span>
-                      <span className="font-mono text-[11px] text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] font-semibold">
+                      <span className="font-mono text-[11px] text-accent-text font-semibold">
                         {item.role}
                       </span>
                     </div>
@@ -76,7 +76,7 @@ export function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {coreExpertise.map((exp, index) => (
               <FadeIn key={exp.title} delay={index * 0.08}>
-                <div className="h-full p-6 rounded-2xl border bg-card hover:border-[hsl(180_70%_38%/0.4)] hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+                <div className="h-full p-6 rounded-2xl border bg-card hover:border-accent/40 hover:shadow-md transition-all duration-200 flex flex-col justify-between">
                   <div>
                     <div className="size-10 rounded-xl bg-muted flex items-center justify-center text-xl mb-4 shadow-sm">
                       {exp.icon}

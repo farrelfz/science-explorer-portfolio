@@ -58,7 +58,7 @@ const ExperiencePage = () => {
                           <span className="text-3xl">{exp.icon}</span>
                           <div>
                             <h3 className="text-2xl font-bold text-foreground leading-tight">{exp.role}</h3>
-                            <div className="text-sm font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mt-0.5">
+                            <div className="text-sm font-semibold text-accent-text mt-0.5">
                               {exp.organization}
                             </div>
                           </div>

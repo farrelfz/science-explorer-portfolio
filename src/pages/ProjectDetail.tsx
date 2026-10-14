@@ -59,7 +59,7 @@ const ProjectDetail = () => {
               <h1 className="h-display text-3xl sm:text-4xl lg:text-5xl text-foreground mb-3 leading-tight">
                 {project.title}
               </h1>
-              <p className="text-base sm:text-lg text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] font-medium mb-4">
+              <p className="text-base sm:text-lg text-accent-text font-medium mb-4">
                 {project.subtitle}
               </p>
               <div className="text-xs font-mono text-muted-foreground">

@@ -65,7 +65,7 @@ const ProjectsPage = () => {
                     <CardTitle className="text-2xl font-bold text-foreground mb-1 leading-snug">
                       {project.title}
                     </CardTitle>
-                    <CardDescription className="text-xs font-semibold text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mb-3">
+                    <CardDescription className="text-xs font-semibold text-accent-text mb-3">
                       {project.subtitle}
                     </CardDescription>
                   </CardHeader>
@@ -119,7 +119,7 @@ const ProjectsPage = () => {
                     <div className="flex items-center justify-between gap-4">
                       <Link
                         to={`/projects/${project.id}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-accent transition-colors group"
                       >
                         <Layers size={13} />
                         View Full Case Study
@@ -157,7 +157,7 @@ const ProjectsPage = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {secondaryProjects.map((item) => (
-                  <Card key={item.title} className="p-6 rounded-2xl flex flex-col justify-between hover:border-[hsl(180_70%_38%/0.4)] transition-all">
+                  <Card key={item.title} className="p-6 rounded-2xl flex flex-col justify-between hover:border-accent/40 transition-all">
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-bold text-base text-foreground">{item.title}</h4>
@@ -165,9 +165,10 @@ const ProjectsPage = () => {
                           href={item.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors"
+                          aria-label={`${item.title} repository on GitHub`}
+                          className="-m-2 flex size-11 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground transition-colors"
                         >
-                          <Github size={15} />
+                          <Github size={16} aria-hidden="true" />
                         </a>
                       </div>
                       <p className="text-xs text-muted-foreground leading-relaxed mb-4">{item.description}</p>

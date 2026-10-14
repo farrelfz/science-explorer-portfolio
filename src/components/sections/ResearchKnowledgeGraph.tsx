@@ -163,7 +163,10 @@ const EDGES: Edge[] = [
 
 export function ResearchKnowledgeGraph() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [nodes, setNodes] = useState<Node[]>(INITIAL_NODES);
+  // Nodes live in a ref: the physics/relaxation loop mutates them 60x/sec and
+  // must not trigger React renders (which previously re-ran this effect every
+  // frame, tearing down and recreating the rAF loop).
+  const nodesRef = useRef<Node[]>(INITIAL_NODES);
   const [selectedNode, setSelectedNode] = useState<Node>(INITIAL_NODES[0]);
   const [hoveredNode, setHoveredNode] = useState<Node | null>(null);
   const draggedNodeRef = useRef<Node | null>(null);
@@ -173,21 +176,21 @@ export function ResearchKnowledgeGraph() {
   const initPositions = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const cx = canvas.width / (2 * window.devicePixelRatio);
-    const cy = canvas.height / (2 * window.devicePixelRatio);
+    const dpr = window.devicePixelRatio || 1;
+    const cx = canvas.width / (2 * dpr);
+    const cy = canvas.height / (2 * dpr);
 
-    setNodes(
-      INITIAL_NODES.map((n) => ({
-        ...n,
-        x: cx + n.x,
-        y: cy + n.y,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-      }))
-    );
+    nodesRef.current = INITIAL_NODES.map((n) => ({
+      ...n,
+      x: cx + n.x,
+      y: cy + n.y,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+    }));
   }, []);
 
-  // Render network loop
+  // Render network loop. Depends only on selection/hover (which change rarely),
+  // so the loop is stable instead of re-subscribing every frame.
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -195,43 +198,43 @@ export function ResearchKnowledgeGraph() {
     if (!ctx) return;
 
     const render = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       const dpr = window.devicePixelRatio || 1;
       const width = canvas.width / dpr;
       const height = canvas.height / dpr;
       const cx = width / 2;
       const cy = height / 2;
 
-      // Force-directed relaxation & gentle orbital drift
-      setNodes((prevNodes) =>
-        prevNodes.map((node) => {
-          if (draggedNodeRef.current && draggedNodeRef.current.id === node.id) {
-            return node;
-          }
+      ctx.clearRect(0, 0, width, height);
 
-          // Spring pull toward home anchor
-          const original = INITIAL_NODES.find((on) => on.id === node.id);
-          const homeX = cx + (original ? original.x : 0);
-          const homeY = cy + (original ? original.y : 0);
+      // Force-directed relaxation & gentle orbital drift (mutates the ref)
+      nodesRef.current = nodesRef.current.map((node) => {
+        if (draggedNodeRef.current && draggedNodeRef.current.id === node.id) {
+          return node;
+        }
 
-          const kSpring = 0.015;
-          const fx = (homeX - node.x) * kSpring;
-          const fy = (homeY - node.y) * kSpring;
+        // Spring pull toward home anchor
+        const original = INITIAL_NODES.find((on) => on.id === node.id);
+        const homeX = cx + (original ? original.x : 0);
+        const homeY = cy + (original ? original.y : 0);
 
-          const damping = 0.88;
-          const newVx = (node.vx + fx) * damping;
-          const newVy = (node.vy + fy) * damping;
+        const kSpring = 0.015;
+        const fx = (homeX - node.x) * kSpring;
+        const fy = (homeY - node.y) * kSpring;
 
-          return {
-            ...node,
-            x: node.x + newVx,
-            y: node.y + newVy,
-            vx: newVx,
-            vy: newVy,
-          };
-        })
-      );
+        const damping = 0.88;
+        const newVx = (node.vx + fx) * damping;
+        const newVy = (node.vy + fy) * damping;
+
+        return {
+          ...node,
+          x: node.x + newVx,
+          y: node.y + newVy,
+          vx: newVx,
+          vy: newVy,
+        };
+      });
+
+      const nodes = nodesRef.current;
 
       // 1. Draw Edges
       EDGES.forEach((edge) => {
@@ -305,7 +308,7 @@ export function ResearchKnowledgeGraph() {
     return () => {
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
-  }, [nodes, selectedNode, hoveredNode]);
+  }, [selectedNode, hoveredNode]);
 
   // Handle Resize
   useEffect(() => {
@@ -313,10 +316,12 @@ export function ResearchKnowledgeGraph() {
       const canvas = canvasRef.current;
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * window.devicePixelRatio;
-      canvas.height = rect.height * window.devicePixelRatio;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
       const ctx = canvas.getContext("2d");
-      if (ctx) ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      // resetTransform before scaling so repeated resizes don't compound DPR.
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       initPositions();
     };
 
@@ -338,7 +343,7 @@ export function ResearchKnowledgeGraph() {
 
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const { x, y } = getCanvasCoords(e);
-    const clicked = nodes.find((n) => Math.hypot(n.x - x, n.y - y) <= n.radius + 6);
+    const clicked = nodesRef.current.find((n) => Math.hypot(n.x - x, n.y - y) <= n.radius + 6);
     if (clicked) {
       draggedNodeRef.current = clicked;
       setSelectedNode(clicked);
@@ -349,11 +354,13 @@ export function ResearchKnowledgeGraph() {
     const { x, y } = getCanvasCoords(e);
     if (draggedNodeRef.current) {
       const draggedId = draggedNodeRef.current.id;
-      setNodes((prev) =>
-        prev.map((n) => (n.id === draggedId ? { ...n, x, y, vx: 0, vy: 0 } : n))
+      const updated = nodesRef.current.map((n) =>
+        n.id === draggedId ? { ...n, x, y, vx: 0, vy: 0 } : n
       );
+      nodesRef.current = updated;
+      draggedNodeRef.current = updated.find((n) => n.id === draggedId) || null;
     } else {
-      const hovered = nodes.find((n) => Math.hypot(n.x - x, n.y - y) <= n.radius + 6);
+      const hovered = nodesRef.current.find((n) => Math.hypot(n.x - x, n.y - y) <= n.radius + 6);
       setHoveredNode(hovered || null);
     }
   };

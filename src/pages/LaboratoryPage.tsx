@@ -79,7 +79,7 @@ const LaboratoryPage = () => {
                         <span className="text-xs font-mono text-muted-foreground">{lab.year}</span>
                       </div>
                       
-                      <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-[hsl(180_70%_40%)] transition-colors">
+                      <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">
                         {lab.title}
                       </h3>
                       <p className="text-sm font-medium text-foreground mb-4">{lab.subtitle}</p>
@@ -90,7 +90,7 @@ const LaboratoryPage = () => {
 
                       <div className="flex flex-wrap items-center gap-3 mt-auto pt-6 border-t border-border">
                         {lab.demoUrl && (
-                          <a href={lab.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-[hsl(180_70%_35%)] hover:bg-[hsl(180_70%_30%)] transition-colors">
+                          <a href={lab.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-white bg-accent hover:bg-accent transition-colors">
                             <ExternalLink size={14} /> Launch Lab
                           </a>
                         )}

@@ -69,7 +69,7 @@ export function Philosophy() {
                   </div>
 
                   {/* Indicator line */}
-                  <div className="ml-auto self-stretch w-0.5 rounded-full bg-muted group-hover:bg-gradient-to-b group-hover:from-[hsl(180_70%_38%)] group-hover:to-[hsl(217_91%_60%)] transition-all duration-300 min-w-[2px]" />
+                  <div className="ml-auto self-stretch w-0.5 rounded-full bg-muted group-hover:bg-gradient-to-b group-hover:from-accent group-hover:to-[hsl(217_91%_60%)] transition-all duration-300 min-w-[2px]" />
                 </motion.div>
               </FadeIn>
             ))}

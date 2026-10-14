@@ -93,7 +93,7 @@ export function TimelineSection() {
               
               <div className="flex flex-col h-full justify-center">
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="font-mono text-2xl font-black text-muted-foreground/30">{currentItem.year}</span>
+                  <span className="font-mono text-2xl font-black text-muted-foreground/60">{currentItem.year}</span>
                   <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold border ${cfg.color}`}>
                     {cfg.icon}
                     {currentItem.type.charAt(0).toUpperCase() + currentItem.type.slice(1)}
@@ -116,7 +116,7 @@ export function TimelineSection() {
         </div>
         
         {/* Progress Dots */}
-        <div className="flex justify-center items-center gap-2 mt-8">
+        <div className="flex justify-center items-center gap-1 mt-8">
           {timeline.map((_, i) => (
             <Button
               key={i}
@@ -125,14 +125,18 @@ export function TimelineSection() {
                 setDirection(i > activeIndex ? 1 : -1);
                 setActiveIndex(i);
               }}
-              className={cn(
-                "rounded-full p-0 transition-all duration-300",
-                i === activeIndex
-                  ? "h-2 w-8 bg-accent hover:bg-accent"
-                  : "size-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-              )}
+              className="size-11 rounded-full p-0 group/dot hover:bg-transparent"
               aria-label={`Go to milestone ${i + 1}`}
-            />
+            >
+              <span
+                className={cn(
+                  "block rounded-full transition-all duration-300",
+                  i === activeIndex
+                    ? "h-2 w-8 bg-accent"
+                    : "size-2 bg-muted-foreground/30 group-hover/dot:bg-muted-foreground/50"
+                )}
+              />
+            </Button>
           ))}
         </div>
       </div>

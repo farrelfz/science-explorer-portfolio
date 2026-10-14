@@ -26,7 +26,7 @@ export function WritingPreview() {
           <FadeIn delay={0.2} direction="left">
             <Link
               to="/writing"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] hover:underline whitespace-nowrap"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-text hover:underline whitespace-nowrap"
             >
               View All Articles
               <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -41,7 +41,7 @@ export function WritingPreview() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="group flex flex-col justify-between h-full p-6 sm:p-7 rounded-3xl border bg-card hover:shadow-lg hover:border-[hsl(180_70%_38%/0.4)] transition-all duration-300"
+                className="group flex flex-col justify-between h-full p-6 sm:p-7 rounded-3xl border bg-card hover:shadow-lg hover:border-accent/40 transition-all duration-300"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -53,7 +53,7 @@ export function WritingPreview() {
                     </span>
                   </div>
 
-                  <h3 className="text-lg sm:text-xl font-bold text-foreground leading-snug mb-3 group-hover:text-[hsl(180_70%_35%)] dark:group-hover:text-[hsl(180_70%_55%)] transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground leading-snug mb-3 group-hover:text-accent-text dark:group-hover:text-accent-text transition-colors">
                     {article.title}
                   </h3>
 
@@ -66,7 +66,7 @@ export function WritingPreview() {
                   <span className="text-xs font-mono text-muted-foreground">{article.date}</span>
                   <Link
                     to={`/writing/${article.slug}`}
-                    className="flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group/link"
+                    className="flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-accent transition-colors group/link"
                   >
                     <PenLine size={13} />
                     Read Article

@@ -47,7 +47,7 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="text-xs text-muted-foreground">Email</div>
-                    <a href={`mailto:${profile.email}`} className="text-sm font-semibold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors">
+                    <a href={`mailto:${profile.email}`} className="text-sm font-semibold text-foreground hover:text-accent transition-colors">
                       {profile.email}
                     </a>
                   </div>

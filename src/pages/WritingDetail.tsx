@@ -77,7 +77,7 @@ const WritingDetail = () => {
     <div className="min-h-screen bg-background">
       {/* Top Reading Progress Bar */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[hsl(180_70%_38%)] via-[hsl(217_91%_60%)] to-[hsl(263_70%_60%)] origin-left z-[60] pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-accent via-[hsl(217_91%_60%)] to-[hsl(263_70%_60%)] origin-left z-[60] pointer-events-none"
         style={{ scaleX }}
       />
       <Navbar />
@@ -115,7 +115,7 @@ const WritingDetail = () => {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-12 font-medium italic border-l-4 border-[hsl(180_70%_35%)] pl-6">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-12 font-medium italic border-l-4 border-accent pl-6">
                 {article.excerpt}
               </p>
             </FadeIn>

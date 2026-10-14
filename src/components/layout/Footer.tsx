@@ -42,7 +42,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2.5 mb-5 group w-fit">
               <div className="relative flex items-center justify-center size-9 rounded-xl overflow-hidden shadow-sm">
-                <div className="absolute inset-0 bg-gradient-to-br from-[hsl(180_70%_38%)] to-[hsl(217_91%_60%)]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-accent to-[hsl(217_91%_60%)]" />
                 <Atom size={18} className="relative z-10 text-white" strokeWidth={2} />
               </div>
               <div>

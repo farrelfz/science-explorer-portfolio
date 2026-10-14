@@ -56,11 +56,22 @@ export function ParticleCanvas({
 
     isDark.current = document.documentElement.classList.contains("dark");
 
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Cache CSS-pixel size; avoids a forced layout read (getBoundingClientRect)
+    // on every animation frame.
+    let cssW = 0;
+    let cssH = 0;
+
     const resize = () => {
       const { width, height } = canvas.getBoundingClientRect();
-      canvas.width = width * window.devicePixelRatio;
-      canvas.height = height * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+      cssW = width;
+      cssH = height;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      // resetTransform before scaling so repeated resizes don't compound DPR.
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       initParticles(width, height);
     };
 
@@ -94,9 +105,8 @@ export function ParticleCanvas({
       ctx.stroke();
     };
 
-    const animate = () => {
-      const { width, height } = canvas.getBoundingClientRect();
-      ctx.clearRect(0, 0, width, height);
+    const drawFrame = () => {
+      ctx.clearRect(0, 0, cssW, cssH);
 
       const particles = particlesRef.current;
       const mouse = mouseRef.current;
@@ -127,10 +137,10 @@ export function ParticleCanvas({
         p.vy *= 0.98;
 
         // Wrap edges
-        if (p.x < 0) p.x = width;
-        if (p.x > width) p.x = 0;
-        if (p.y < 0) p.y = height;
-        if (p.y > height) p.y = 0;
+        if (p.x < 0) p.x = cssW;
+        if (p.x > cssW) p.x = 0;
+        if (p.y < 0) p.y = cssH;
+        if (p.y > cssH) p.y = 0;
 
         // Draw particle
         ctx.beginPath();
@@ -148,14 +158,42 @@ export function ParticleCanvas({
           if (dist < maxDist) drawLine(p, p2, dist, maxDist);
         }
       }
+    };
 
+    let running = false;
+    let cleanupIo: (() => void) | undefined;
+    const animate = () => {
+      drawFrame();
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    const start = () => {
+      if (running || prefersReduced) return;
+      running = true;
+      animationRef.current = requestAnimationFrame(animate);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(animationRef.current);
+    };
+
+    if (prefersReduced) {
+      // Respect reduced motion: render a single static frame, no rAF loop.
+      drawFrame();
+    } else {
+      // Only animate while the canvas is on screen.
+      const io = new IntersectionObserver(
+        ([entry]) => (entry.isIntersecting ? start() : stop()),
+        { threshold: 0 }
+      );
+      io.observe(canvas);
+      start();
+      cleanupIo = () => io.disconnect();
+    }
 
     return () => {
-      cancelAnimationFrame(animationRef.current);
+      stop();
+      cleanupIo?.();
       window.removeEventListener("resize", resize);
       if (interactive) {
         window.removeEventListener("mousemove", onMouseMove);

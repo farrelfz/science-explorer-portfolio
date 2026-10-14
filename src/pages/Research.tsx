@@ -56,7 +56,7 @@ const ResearchPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {researchInterests.map((pillar, i) => (
                 <FadeIn key={pillar.id} delay={i * 0.1}>
-                  <div className="h-full p-8 rounded-3xl border bg-card shadow-sm flex flex-col justify-between hover:border-[hsl(180_70%_38%/0.4)] transition-all duration-300">
+                  <div className="h-full p-8 rounded-3xl border bg-card shadow-sm flex flex-col justify-between hover:border-accent/40 transition-all duration-300">
                     <div>
                       <div className="flex items-center justify-between mb-5">
                         <span className="text-3xl">{pillar.icon}</span>
@@ -134,7 +134,7 @@ const ResearchPage = () => {
 
                 <div className="p-6 rounded-2xl bg-muted/40 border text-xs text-muted-foreground flex flex-col gap-2">
                   <div className="font-bold text-foreground flex items-center gap-1.5">
-                    <GitBranch size={14} className="text-[hsl(180_70%_35%)]" /> Pemetaan Proyek terhadap Arsitektur:
+                    <GitBranch size={14} className="text-accent-text" /> Pemetaan Proyek terhadap Arsitektur:
                   </div>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                     <li><strong className="text-foreground">Conceptra:</strong> Knowledge Graph Miskonsepsi Fisika (17.755 artikel + OpenAlex audit)</li>

@@ -7,7 +7,7 @@ import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Clock, PenLine } from "lucide-react";
+import { ArrowRight, Clock, FileText, PenLine } from "lucide-react";
 
 const categories = ["All", ...Array.from(new Set(writings.map((w) => w.category)))];
 
@@ -73,10 +73,25 @@ const WritingPage = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {filtered.length === 0 && (
+                <div className="md:col-span-2 flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-border py-20 text-center">
+                  <FileText size={28} className="text-muted-foreground" aria-hidden="true" />
+                  <p className="text-sm font-semibold text-foreground">
+                    Belum ada tulisan di kategori ini
+                  </p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setActiveCategory("All")}
+                  >
+                    Tampilkan semua tulisan
+                  </Button>
+                </div>
+              )}
               {filtered.map((item) => (
                 <Card
                   key={item.id}
-                  className="p-8 rounded-3xl flex flex-col justify-between hover:shadow-lg hover:border-[hsl(180_70%_38%/0.4)] transition-all"
+                  className="p-8 rounded-3xl flex flex-col justify-between hover:shadow-lg hover:border-accent/40 transition-all"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
@@ -101,7 +116,7 @@ const WritingPage = () => {
                     <span className="text-xs font-mono text-muted-foreground">{item.date}</span>
                     <Link
                       to={`/writing/${item.slug}`}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-foreground hover:text-[hsl(180_70%_38%)] transition-colors group"
+                      className="inline-flex items-center gap-1 text-xs font-bold text-foreground hover:text-accent transition-colors group"
                     >
                       Baca Selengkapnya
                       <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />

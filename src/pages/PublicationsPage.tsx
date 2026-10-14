@@ -46,7 +46,7 @@ const PublicationsPage = () => {
             {/* Academic Integrity Notice */}
             <FadeIn>
               <div className="flex items-start gap-3.5 p-5 rounded-2xl border bg-card/60 text-xs text-muted-foreground mb-10">
-                <AlertCircle size={18} className="text-[hsl(180_70%_35%)] flex-shrink-0 mt-0.5" />
+                <AlertCircle size={18} className="text-accent-text flex-shrink-0 mt-0.5" />
                 <div className="leading-relaxed">
                   <strong className="text-foreground font-semibold">Catatan Integritas Akademik:</strong> Publikasi artikel jurnal dan prosiding konferensi saat ini sedang dalam proses penyusunan manuskrip dan penelaahan sejawat (peer-review). Seluruh karya komputasional, dataset, dan arsitektur di bawah ini dapat diverifikasi langsung melalui repositori kode sumber terbuka di GitHub.
                 </div>
@@ -72,7 +72,7 @@ const PublicationsPage = () => {
                     <h2 className="text-xl font-bold text-foreground mb-1 leading-snug">
                       {item.title}
                     </h2>
-                    <p className="text-xs font-medium text-[hsl(180_70%_35%)] dark:text-[hsl(180_70%_55%)] mb-3">
+                    <p className="text-xs font-medium text-accent-text mb-3">
                       {item.subtitle}
                     </p>
 
@@ -101,7 +101,7 @@ const PublicationsPage = () => {
                       <div className="flex items-center gap-3">
                         <Link
                           to={`/projects/${item.id}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-[hsl(180_70%_38%)]"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground hover:text-accent"
                         >
                           <Layers size={13} /> Arsitektur Sistem
                         </Link>
