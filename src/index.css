@@ -1,6 +1,10 @@
 /* Fonts are loaded via <link> tags in index.html (preload + swap) —
    do NOT add a render-blocking @import here. */
 @import "tailwindcss";
+/* Enter/exit animation utilities used by shadcn Dialog/Sheet/Tooltip
+   (animate-in, fade-in-0, zoom-in-95, slide-in-from-*). This is the
+   Tailwind v4 replacement for the old `tailwindcss-animate` plugin. */
+@import "tw-animate-css";
 
 /* Class-based dark mode (toggled by hooks/useTheme on <html>). */
 @custom-variant dark (&:is(.dark *));
