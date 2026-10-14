@@ -33,7 +33,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t bg-card/50 backdrop-blur-sm overflow-hidden">
+    <footer className="relative border-t bg-card overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
 
       <div className="container-max relative z-10 py-16">
@@ -47,7 +47,7 @@ export function Footer() {
               </div>
               <div>
                 <span className="text-base font-bold tracking-tight text-foreground block">Muhamad Farrel Dava Fauzan</span>
-                <span className="text-[11px] text-muted-foreground font-mono">Physics Education · UNJ</span>
+                <span className="text-[11px] text-muted-foreground">Physics Education · UNJ</span>
               </div>
             </Link>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-sm mb-6">

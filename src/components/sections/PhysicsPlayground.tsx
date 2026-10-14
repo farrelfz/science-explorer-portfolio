@@ -431,7 +431,7 @@ export function PhysicsPlayground() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Main Simulation Viewport (Canvas + HUD) */}
           <div className="lg:col-span-8 flex flex-col gap-4">
-            <div className="relative rounded-3xl overflow-hidden border bg-card shadow-xl">
+            <div className="relative rounded-2xl overflow-hidden border bg-card">
               {/* Canvas Viewport */}
               <div className="relative w-full h-[360px] sm:h-[420px] bg-gradient-to-b from-background via-card to-background">
                 <canvas
@@ -551,14 +551,14 @@ export function PhysicsPlayground() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="p-5 rounded-2xl border bg-card/80 backdrop-blur-sm shadow-sm flex items-start gap-4"
+              className="p-5 rounded-2xl border bg-card flex items-start gap-4"
             >
               <div className="size-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                 <Lightbulb size={18} className="text-accent-text" aria-hidden="true" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
+                  <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-accent/10 text-accent-text border border-accent/20">
                     {insight.highlight}
                   </span>
                   <h4 className="text-xs font-bold text-foreground">{insight.title}</h4>
@@ -572,7 +572,7 @@ export function PhysicsPlayground() {
 
           {/* Controls & Telemetry Dashboard */}
           <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="p-6 rounded-3xl border bg-card shadow-xl flex flex-col gap-6">
+            <div className="p-6 rounded-2xl border bg-card flex flex-col gap-6">
               <h3 className="text-sm font-bold text-foreground flex items-center gap-2 border-b pb-3">
                 <Compass size={16} className="text-primary" />
                 Parameter Eksperimen
@@ -695,7 +695,7 @@ export function PhysicsPlayground() {
             </div>
 
             {/* Live Telemetry Summary Card */}
-            <div className="p-5 rounded-3xl border bg-card/90 shadow-md flex flex-col gap-3">
+            <div className="p-5 rounded-2xl border bg-card/90 flex flex-col gap-3">
               <h4 className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
                 <Sparkles size={12} className="text-amber-500" />
                 Hasil Prediksi Teoretis (Vakum)

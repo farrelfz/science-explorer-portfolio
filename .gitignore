@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Impeccable local runtime state (critique snapshots, build state, seeds).
+# These are per-run archives read by `$impeccable polish`; they are not
+# source. PRODUCT.md / DESIGN.md at the repo root ARE committed.
+.impeccable/
+

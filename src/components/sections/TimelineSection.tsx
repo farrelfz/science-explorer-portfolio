@@ -83,7 +83,7 @@ export function TimelineSection() {
               exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className={cn(
-                "absolute inset-0 p-8 sm:p-10 rounded-3xl border bg-card shadow-xl overflow-hidden",
+                "absolute inset-0 p-8 sm:p-10 rounded-2xl border bg-card overflow-hidden",
                 currentItem.highlight && "ring-2 ring-accent/50"
               )}
             >

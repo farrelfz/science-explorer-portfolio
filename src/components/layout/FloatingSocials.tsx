@@ -29,7 +29,7 @@ export function FloatingSocials() {
           aria-label={label}
           title={label}
           className={cn(
-            "size-9 flex items-center justify-center rounded-xl border bg-card/80 backdrop-blur-sm text-muted-foreground border-border hover:border-foreground/20 hover:bg-card hover:shadow-md transition-all duration-200 hover:-translate-x-0.5",
+            "size-9 flex items-center justify-center rounded-xl border bg-card text-muted-foreground hover:border-accent/40 hover:text-foreground transition-all duration-200 hover:-translate-x-0.5",
             color
           )}
         >

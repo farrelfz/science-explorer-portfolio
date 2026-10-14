@@ -88,7 +88,7 @@ const ProjectsPage = () => {
 
                     <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border/50">
                       {item.tags.map((t) => (
-                        <Badge key={t} variant="secondary" className="text-[10px] font-mono">
+                        <Badge key={t} variant="secondary" className="text-[10px]">
                           {t}
                         </Badge>
                       ))}

@@ -32,7 +32,7 @@ export function Philosophy() {
               </p>
             </FadeIn>
             <FadeIn delay={0.3}>
-              <div className="p-5 rounded-2xl border bg-card/60 backdrop-blur-sm">
+              <div className="p-5 rounded-2xl border bg-card">
                 <Quote size={20} className="text-muted-foreground/40 mb-3" />
                 <p className="text-sm text-muted-foreground leading-relaxed italic">
                   "The goal of education is not to fill a bucket but to light a fire — and in physics,
@@ -52,7 +52,7 @@ export function Philosophy() {
                 <motion.div
                   whileHover={{ x: 4 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="group flex gap-5 p-5 rounded-2xl border bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-md transition-all duration-300"
+                  className="group flex gap-5 p-5 rounded-2xl border bg-card hover:border-accent/40 transition-all duration-300"
                 >
                   {/* Icon */}
                   <div className="flex-shrink-0 size-12 rounded-xl flex items-center justify-center"

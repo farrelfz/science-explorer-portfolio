@@ -53,7 +53,7 @@ const ExperiencePage = () => {
                 const Icon = getIcon(exp.icon);
                 return (
                 <FadeIn key={exp.id} delay={idx * 0.1}>
-                  <div className="p-8 sm:p-10 rounded-3xl border bg-card shadow-sm flex flex-col gap-6">
+                  <div className="p-8 sm:p-10 rounded-2xl border bg-card shadow-sm flex flex-col gap-6">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-border/60 pb-5">
                       <div>
                         <div className="flex items-center gap-3">
@@ -68,7 +68,7 @@ const ExperiencePage = () => {
                           </div>
                         </div>
                       </div>
-                      <span className="font-mono text-xs font-bold px-3 py-1.5 rounded-full border bg-muted/70 text-foreground self-start sm:self-center">
+                      <span className="text-xs font-bold px-3 py-1.5 rounded-full border bg-muted/70 text-foreground self-start sm:self-center">
                         {exp.period}
                       </span>
                     </div>
@@ -83,7 +83,7 @@ const ExperiencePage = () => {
                       </div>
                       <ul className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
                         {exp.highlights.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 p-3 rounded-xl bg-muted/40 text-xs text-muted-foreground">
+                          <li key={i} className="flex items-start gap-2 p-3 rounded-xl bg-muted/40 text-xs text-foreground/75">
                             <CheckCircle size={14} className="text-primary flex-shrink-0 mt-0.5" />
                             <span>{item}</span>
                           </li>
@@ -93,7 +93,7 @@ const ExperiencePage = () => {
 
                     <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border/50">
                       {exp.tags.map((tag) => (
-                        <span key={tag} className="badge-tag text-[10px] font-mono">
+                        <span key={tag} className="badge-tag text-[10px]">
                           {tag}
                         </span>
                       ))}
@@ -125,10 +125,10 @@ const ExperiencePage = () => {
                     </span>
                     <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-muted text-muted-foreground border">
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-muted text-foreground/70 border">
                           {ach.level}
                         </span>
-                        <span className="text-xs font-mono font-bold text-muted-foreground">{ach.year}</span>
+                        <span className="text-xs font-bold text-muted-foreground">{ach.year}</span>
                       </div>
                       <h4 className="font-bold text-base text-foreground leading-snug">{ach.title}</h4>
                       <p className="text-xs text-muted-foreground">{ach.organizer}</p>

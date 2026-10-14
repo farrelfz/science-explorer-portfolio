@@ -13,7 +13,7 @@ export function ResearchInterests() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <FadeIn delay={0.1}>
-              <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2">
+              <h2 className="h-display text-3xl sm:text-4xl text-foreground">
                 Research <span className="text-accent-text">Interests</span>
               </h2>
             </FadeIn>
@@ -43,14 +43,14 @@ export function ResearchInterests() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className={`h-full p-6 sm:p-7 rounded-3xl border bg-gradient-to-br ${item.color} ${item.borderColor} flex flex-col justify-between shadow-sm`}
+                className={`h-full p-6 sm:p-7 rounded-2xl border bg-gradient-to-br ${item.color} ${item.borderColor} flex flex-col justify-between shadow-sm`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="inline-flex items-center justify-center text-accent-text">
                       <Icon size={28} aria-hidden="true" />
                     </span>
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-background/80 border text-foreground/80">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-background/80 border text-foreground/80">
                       {item.category}
                     </span>
                   </div>

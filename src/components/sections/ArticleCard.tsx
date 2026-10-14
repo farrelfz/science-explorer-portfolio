@@ -25,10 +25,10 @@ export function ArticleCard({ article, headingLevel = "h3" }: ArticleCardProps) 
       <article className="group flex h-full flex-col justify-between rounded-2xl border bg-card p-6 sm:p-7 transition-all duration-300 hover:border-accent/40 hover:shadow-lg">
         <div>
           <div className="mb-4 flex items-center justify-between">
-            <Badge variant="secondary" className="text-[10px] font-mono font-bold uppercase tracking-wider">
+            <Badge variant="secondary" className="text-[10px] font-bold uppercase tracking-wider">
               {article.category}
             </Badge>
-            <span className="flex items-center gap-1 font-mono text-xs text-muted-foreground">
+            <span className="flex items-center gap-1 text-xs text-muted-foreground">
               <Clock size={11} aria-hidden="true" /> {article.readingTime}
             </span>
           </div>
@@ -43,7 +43,7 @@ export function ArticleCard({ article, headingLevel = "h3" }: ArticleCardProps) 
         </div>
 
         <div className="mt-auto flex items-center justify-between border-t border-border/60 pt-4">
-          <span className="font-mono text-xs text-muted-foreground">{article.date}</span>
+          <span className="text-xs text-muted-foreground">{article.date}</span>
           <Link
             to={`/writing/${article.slug}`}
             className="group/link flex items-center gap-1.5 text-xs font-bold text-foreground transition-colors hover:text-accent"

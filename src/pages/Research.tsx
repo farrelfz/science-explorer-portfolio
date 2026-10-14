@@ -58,13 +58,13 @@ const ResearchPage = () => {
                 const Icon = getIcon(pillar.icon);
                 return (
                 <FadeIn key={pillar.id} delay={i * 0.1}>
-                  <div className="h-full p-8 rounded-3xl border bg-card shadow-sm flex flex-col justify-between hover:border-accent/40 transition-all duration-300">
+                  <div className="h-full p-8 rounded-2xl border bg-card shadow-sm flex flex-col justify-between hover:border-accent/40 transition-all duration-300">
                     <div>
                       <div className="flex items-center justify-between mb-5">
                         <span className="inline-flex items-center justify-center text-accent-text">
                           <Icon size={28} aria-hidden="true" />
                         </span>
-                        <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full border bg-muted/60 text-muted-foreground">
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border bg-muted/60 text-foreground/70">
                           {pillar.category}
                         </span>
                       </div>
@@ -76,7 +76,7 @@ const ResearchPage = () => {
                       <div className="text-xs font-semibold text-foreground/80 mb-2 uppercase tracking-wider">Focus Areas</div>
                       <div className="flex flex-wrap gap-1.5">
                         {pillar.topics.map((t) => (
-                          <span key={t} className="px-2.5 py-1 rounded-md text-xs font-medium bg-muted text-muted-foreground border border-border/50">
+                          <span key={t} className="px-2.5 py-1 rounded-md text-xs font-medium bg-muted text-foreground/70 border border-border/50">
                             {t}
                           </span>
                         ))}
@@ -103,10 +103,10 @@ const ResearchPage = () => {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <div className="p-8 sm:p-10 rounded-3xl border bg-gradient-to-br from-card to-muted/30 shadow-md">
+              <div className="p-8 sm:p-10 rounded-2xl border bg-gradient-to-br from-card to-muted/30">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center md:text-left">
                   <div className="p-5 rounded-2xl border bg-background/80 flex flex-col gap-2">
-                    <div className="text-xs font-bold font-mono uppercase text-primary flex items-center gap-1.5">
+                    <div className="text-xs font-bold uppercase text-primary flex items-center gap-1.5">
                       <Atom size={14} /> Domain Foundation
                     </div>
                     <div className="font-extrabold text-foreground text-base">Physics Education</div>
@@ -116,7 +116,7 @@ const ResearchPage = () => {
                   </div>
 
                   <div className="p-5 rounded-2xl border bg-background/80 flex flex-col gap-2">
-                    <div className="text-xs font-bold font-mono uppercase text-primary flex items-center gap-1.5">
+                    <div className="text-xs font-bold uppercase text-primary flex items-center gap-1.5">
                       <Cpu size={14} /> Analytical Engines
                     </div>
                     <div className="font-extrabold text-foreground text-base">AI & NLP Methods</div>
@@ -126,7 +126,7 @@ const ResearchPage = () => {
                   </div>
 
                   <div className="p-5 rounded-2xl border bg-background/80 flex flex-col gap-2">
-                    <div className="text-xs font-bold font-mono uppercase text-primary flex items-center gap-1.5">
+                    <div className="text-xs font-bold uppercase text-primary flex items-center gap-1.5">
                       <Layers size={14} /> Learning Environment
                     </div>
                     <div className="font-extrabold text-foreground text-base">Educational Technology</div>
@@ -136,7 +136,7 @@ const ResearchPage = () => {
                   </div>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-muted/40 border text-xs text-muted-foreground flex flex-col gap-2">
+                <div className="p-6 rounded-2xl bg-muted/40 border text-xs text-foreground/75 flex flex-col gap-2">
                   <div className="font-bold text-foreground flex items-center gap-1.5">
                     <GitBranch size={14} className="text-accent-text" /> Pemetaan Proyek terhadap Arsitektur:
                   </div>

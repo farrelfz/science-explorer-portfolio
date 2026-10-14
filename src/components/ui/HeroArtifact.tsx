@@ -17,7 +17,7 @@ const G = 9.81; // m/s²
 
 const W = 520;
 const H = 300;
-const PAD = { top: 28, right: 28, bottom: 44, left: 46 };
+const PAD = { top: 28, right: 28, bottom: 56, left: 46 };
 
 export function HeroArtifact() {
   const rad = (THETA * Math.PI) / 180;
@@ -222,7 +222,7 @@ export function HeroArtifact() {
         />
         <text
           x={sx(range / 2)}
-          y={sy(0) + 34}
+          y={sy(0) + 30}
           textAnchor="middle"
           className="fill-muted-foreground font-mono"
           fontSize={10}
@@ -230,8 +230,8 @@ export function HeroArtifact() {
           R = {range.toFixed(1)} m
         </text>
 
-        {/* Axis labels */}
-        <text x={W / 2} y={H - 6} textAnchor="middle" className="fill-muted-foreground font-mono" fontSize={9}>
+        {/* Axis label — own baseline, clear of the range annotation above it */}
+        <text x={W / 2} y={sy(0) + 42} textAnchor="middle" className="fill-muted-foreground" fontSize={9}>
           horizontal distance (m)
         </text>
       </svg>

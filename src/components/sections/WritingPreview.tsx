@@ -12,7 +12,7 @@ export function WritingPreview() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <FadeIn delay={0.1}>
-              <h2 className="h-display text-3xl sm:text-4xl text-foreground mt-2 leading-tight">
+              <h2 className="h-display text-3xl sm:text-4xl text-foreground leading-tight">
                 Writing &amp; <span className="h-editorial italic text-accent-text">Perspectives</span>
               </h2>
             </FadeIn>

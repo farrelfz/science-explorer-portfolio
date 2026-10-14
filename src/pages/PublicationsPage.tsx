@@ -59,13 +59,13 @@ const PublicationsPage = () => {
             <StaggerContainer className="flex flex-col gap-6">
               {projects.map((item) => (
                 <StaggerItem key={item.id}>
-                  <Card className="p-7 rounded-3xl hover:shadow-lg transition-all duration-300">
+                  <Card className="p-7 rounded-2xl hover:shadow-lg transition-all duration-300">
                     <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                       <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="font-mono text-[10px] uppercase">
+                        <Badge variant="outline" className="text-[10px] uppercase">
                           {item.category}
                         </Badge>
-                        <Badge variant="outline" className="font-mono">{item.year}</Badge>
+                        <Badge variant="outline">{item.year}</Badge>
                       </div>
                       <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 font-semibold">
                         {item.status}
@@ -84,7 +84,7 @@ const PublicationsPage = () => {
                     </p>
 
                     {item.metrics && (
-                      <div className="p-3 rounded-xl bg-muted/40 border text-xs text-muted-foreground mb-4">
+                      <div className="p-3 rounded-xl bg-muted/40 border text-xs text-foreground/75 mb-4">
                         <strong className="text-foreground">Bukti & Metrik Terverifikasi:</strong>
                         <ul className="mt-1 flex flex-col gap-0.5">
                           {item.metrics.map((m) => (

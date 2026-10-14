@@ -4,6 +4,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { projects } from "@/data/portfolio";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
+import { Button } from "@/components/ui/button";
 import { FlaskConical, ExternalLink, ArrowRight } from "lucide-react";
 import { PhysicsPlayground } from "@/components/sections/PhysicsPlayground";
 
@@ -56,9 +57,24 @@ const LaboratoryPage = () => {
               </h2>
             </FadeIn>
             <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {virtualLabs.length === 0 && (
+                <div className="md:col-span-2 flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-border py-20 text-center">
+                  <FlaskConical size={28} className="text-muted-foreground" aria-hidden="true" />
+                  <p className="text-sm font-semibold text-foreground">
+                    No simulations are published yet
+                  </p>
+                  <p className="text-xs text-muted-foreground max-w-sm">
+                    The virtual laboratory catalogue is being built. In the meantime, try the
+                    interactive playground on the homepage.
+                  </p>
+                  <Button asChild variant="outline" size="sm">
+                    <a href="/#laboratory">Open the physics playground</a>
+                  </Button>
+                </div>
+              )}
               {virtualLabs.map((lab) => (
                 <StaggerItem key={lab.id}>
-                  <div className="group flex flex-col h-full rounded-3xl overflow-hidden border bg-card hover:shadow-xl transition-all duration-300">
+                  <div className="group flex flex-col h-full rounded-2xl overflow-hidden border bg-card hover:shadow-xl transition-all duration-300">
                     {/* Visual Placeholder / Banner */}
                     <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${lab.color}`}>
                       <div className="absolute inset-0 bg-grid opacity-30" />
@@ -75,7 +91,7 @@ const LaboratoryPage = () => {
                         <span className="px-3 py-1 rounded-full text-xs font-semibold bg-background border shadow-sm">
                           {lab.category}
                         </span>
-                        <span className="text-xs font-mono text-muted-foreground">{lab.year}</span>
+                        <span className="text-xs font-bold text-muted-foreground">{lab.year}</span>
                       </div>
                       
                       <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-accent transition-colors">

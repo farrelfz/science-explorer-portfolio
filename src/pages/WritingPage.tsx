@@ -73,7 +73,7 @@ const WritingPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {filtered.length === 0 && (
-                <div className="md:col-span-2 flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-border py-20 text-center">
+                <div className="md:col-span-2 flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-border py-20 text-center">
                   <FileText size={28} className="text-muted-foreground" aria-hidden="true" />
                   <p className="text-sm font-semibold text-foreground">
                     Belum ada tulisan di kategori ini

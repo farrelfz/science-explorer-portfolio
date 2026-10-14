@@ -37,7 +37,7 @@ export function About() {
           {/* Right: Conceptual Relationship Triad */}
           <div className="lg:col-span-5">
             <FadeIn delay={0.25} direction="left">
-              <div className="p-6 sm:p-7 rounded-3xl border bg-card shadow-sm flex flex-col gap-4">
+              <div className="p-6 sm:p-7 rounded-2xl border bg-card shadow-sm flex flex-col gap-4">
                 <div className="text-xs font-bold uppercase tracking-widest text-accent-text flex items-center gap-1.5 mb-2">
                   <Sparkles size={14} />
                   Conceptual Framework
@@ -47,7 +47,7 @@ export function About() {
                   <div key={item.domain} className="p-4 rounded-2xl bg-muted/50 border border-border/40 flex flex-col gap-1">
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-extrabold text-foreground">{item.domain}</span>
-                      <span className="font-mono text-[11px] text-accent-text font-semibold">
+                      <span className="text-[11px] text-accent-text font-semibold">
                         {item.role}
                       </span>
                     </div>

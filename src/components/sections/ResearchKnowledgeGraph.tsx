@@ -395,7 +395,7 @@ export function ResearchKnowledgeGraph() {
         {/* Canvas & Node Detail Inspector */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Visual Graph Viewport */}
-          <div className="lg:col-span-8 relative rounded-3xl overflow-hidden border bg-card/60 shadow-xl h-[420px] sm:h-[480px]">
+          <div className="lg:col-span-8 relative rounded-2xl overflow-hidden border bg-card/60 h-[420px] sm:h-[480px]">
             <canvas
               ref={canvasRef}
               onMouseDown={handleMouseDown}
@@ -430,14 +430,14 @@ export function ResearchKnowledgeGraph() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.25 }}
-                className="p-6 rounded-3xl border bg-card shadow-xl flex flex-col h-full"
+                className="p-6 rounded-2xl border bg-card flex flex-col h-full"
               >
                 <div className="flex items-center gap-2 mb-3">
                   <span
                     className="size-3 rounded-full"
                     style={{ backgroundColor: selectedNode.color }}
                   />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted border text-muted-foreground">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted border text-foreground/70">
                     {selectedNode.category}
                   </span>
                 </div>

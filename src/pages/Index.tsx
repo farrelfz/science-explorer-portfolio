@@ -6,7 +6,7 @@ import { About } from "@/components/sections/About";
 import { Philosophy } from "@/components/sections/Philosophy";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { ResearchInterests } from "@/components/sections/ResearchInterests";
-import { Publications } from "@/components/sections/Publications";
+import { Recognition } from "@/components/sections/Recognition";
 import { WritingPreview } from "@/components/sections/WritingPreview";
 import { TimelineSection } from "@/components/sections/TimelineSection";
 import { PhysicsPlayground } from "@/components/sections/PhysicsPlayground";
@@ -35,7 +35,7 @@ const Index = () => {
         <ResearchInterests />
         <FeaturedProjects />
         <PhysicsPlayground />
-        <Publications />
+        <Recognition />
         <WritingPreview />
         <TimelineSection />
         <Contact />

@@ -96,14 +96,14 @@ const WritingDetail = () => {
 
             <FadeIn delay={0.1}>
               <div className="flex flex-wrap items-center gap-3 mb-5">
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold border bg-card text-foreground">
+                <span className="px-3 py-1 rounded-full text-xs font-bold border bg-card text-foreground">
                   {article.category}
                 </span>
-                <span className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
-                  <Clock size={12} /> {article.readingTime}
+                <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <Clock size={12} aria-hidden="true" /> {article.readingTime}
                 </span>
-                <span className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
-                  <CalendarDays size={12} /> {article.date}
+                <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <CalendarDays size={12} aria-hidden="true" /> {article.date}
                 </span>
               </div>
             </FadeIn>

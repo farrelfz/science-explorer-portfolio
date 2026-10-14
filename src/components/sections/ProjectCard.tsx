@@ -32,7 +32,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
       <Card className="h-full flex flex-col justify-between rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 relative overflow-hidden">
         <CardHeader className="p-0">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-            <Badge variant="secondary" className="px-2.5 py-1 text-[10px] font-mono font-bold uppercase tracking-wider">
+            <Badge variant="secondary" className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider">
               {project.category}
             </Badge>
             <div className="flex items-center gap-2">
@@ -46,7 +46,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
                   {project.status}
                 </span>
               )}
-              <span className="text-xs font-mono font-bold text-muted-foreground">{project.year}</span>
+              <span className="text-xs font-bold text-muted-foreground">{project.year}</span>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
           </CardDescription>
 
           {variant === "featured" ? (
-            <div className="text-[11px] font-mono text-muted-foreground mb-4 pb-3 border-b border-border/60">
+            <div className="text-[11px] text-muted-foreground mb-4 pb-3 border-b border-border/60">
               <strong className="text-foreground/80">Domain:</strong> {project.domain}
             </div>
           ) : null}
@@ -80,7 +80,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
 
           {project.metrics && project.metrics.length > 0 && (
             <div className="p-3.5 rounded-2xl bg-muted/50 border border-border/50 mb-6">
-              <div className="text-[10px] font-mono uppercase tracking-wider font-bold text-foreground mb-1.5 flex items-center gap-1">
+              <div className="text-[10px] uppercase tracking-wider font-bold text-foreground mb-1.5 flex items-center gap-1">
                 <Sparkles size={12} className="text-accent-text" aria-hidden="true" /> Evidence &amp; Metrics:
               </div>
               <ul className="grid grid-cols-1 gap-1 text-[11px] text-muted-foreground">
@@ -95,7 +95,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
           )}
 
           {project.note && (
-            <div className="p-3 rounded-xl bg-muted/50 border border-border/60 text-[11px] text-muted-foreground mb-6 italic leading-relaxed">
+            <div className="p-3 rounded-xl bg-muted/50 border border-border/60 text-[11px] text-foreground/75 mb-6 italic leading-relaxed">
               * {project.note}
             </div>
           )}

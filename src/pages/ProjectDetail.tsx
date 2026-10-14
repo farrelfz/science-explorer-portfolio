@@ -45,10 +45,10 @@ const ProjectDetail = () => {
 
             <FadeIn delay={0.1}>
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="px-3 py-1 rounded-full text-xs font-mono font-bold uppercase bg-muted border text-muted-foreground">
+                <span className="px-3 py-1 rounded-full text-xs font-bold uppercase bg-muted border text-foreground/70">
                   {project.category}
                 </span>
-                <span className="text-xs font-mono text-muted-foreground">{project.year}</span>
+                <span className="text-xs font-bold text-muted-foreground">{project.year}</span>
                 <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold border bg-primary/10 text-primary border-primary/20">
                   {project.status}
                 </span>
@@ -62,7 +62,7 @@ const ProjectDetail = () => {
               <p className="text-base sm:text-lg text-accent-text font-medium mb-4">
                 {project.subtitle}
               </p>
-              <div className="text-xs font-mono text-muted-foreground">
+              <div className="text-xs text-muted-foreground">
                 <strong className="text-foreground">Domain:</strong> {project.domain}
               </div>
             </FadeIn>
@@ -162,7 +162,7 @@ const ProjectDetail = () => {
               {/* Sidebar */}
               <div className="flex flex-col gap-6">
                 <FadeIn direction="left">
-                  <div className="p-6 rounded-3xl border bg-card shadow-sm flex flex-col gap-4">
+                  <div className="p-6 rounded-2xl border bg-card shadow-sm flex flex-col gap-4">
                     <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest pb-3 border-b border-border">
                       Project Metadata
                     </h3>
@@ -174,7 +174,7 @@ const ProjectDetail = () => {
 
                     <div>
                       <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Year</div>
-                      <div className="text-xs font-mono font-bold text-foreground">{project.year}</div>
+                      <div className="text-xs font-bold text-foreground">{project.year}</div>
                     </div>
 
                     <div>
@@ -186,7 +186,7 @@ const ProjectDetail = () => {
                       <div className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">Tech Stack</div>
                       <div className="flex flex-wrap gap-1">
                         {project.techStack.map((tech) => (
-                          <span key={tech} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-muted text-muted-foreground border border-border/50">
+                          <span key={tech} className="px-2 py-0.5 rounded-md text-[10px] font-medium bg-muted text-foreground/70 border border-border/50">
                             {tech}
                           </span>
                         ))}

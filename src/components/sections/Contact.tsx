@@ -6,18 +6,31 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Github, Instagram, Mail, MapPin, MessageSquare, Send, Twitter, CheckCircle2 } from "lucide-react";
+import { Github, Instagram, Mail, MapPin, MessageSquare, Send, Twitter, CheckCircle2, Copy } from "lucide-react";
 
 export function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [mailtoOpened, setMailtoOpened] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const mailtoHref = `mailto:${profile.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`From: ${form.name} (${form.email})\n\n${form.message}`)}`;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Build mailto link
-    const mailto = `mailto:${profile.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`From: ${form.name} (${form.email})\n\n${form.message}`)}`;
-    window.location.href = mailto;
-    setSubmitted(true);
+    // We can only *offer* to open the visitor's mail client — we cannot confirm
+    // delivery. So the UI says exactly that, and always provides a fallback.
+    window.location.href = mailtoHref;
+    setMailtoOpened(true);
+  };
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(`${form.subject}\n\n${form.message}\n\n— ${form.name} (${form.email})`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
   };
 
   return (
@@ -57,7 +70,7 @@ export function Contact() {
                   </div>
                   <div>
                     <div className="text-xs text-muted-foreground">WhatsApp</div>
-                    <a href={profile.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-foreground hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                    <a href={profile.socials.whatsapp} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-foreground hover:text-accent-text transition-colors">
                       +62 812-9016-7472
                     </a>
                   </div>
@@ -94,18 +107,33 @@ export function Contact() {
 
           {/* Right: form */}
           <FadeIn delay={0.2} direction="left" className="lg:col-span-3">
-            <div className="p-6 sm:p-8 rounded-3xl border bg-card shadow-sm">
-              {submitted ? (
+            <div className="p-6 sm:p-8 rounded-2xl border bg-card shadow-sm">
+              {mailtoOpened ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-12 text-center"
+                  className="flex flex-col items-center justify-center py-10 text-center"
                 >
-                  <div className="size-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
-                    <CheckCircle2 size={28} className="text-primary" aria-hidden="true" />
+                  <div className="size-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-4">
+                    <Mail size={28} className="text-accent-text" aria-hidden="true" />
                   </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Message Sent!</h3>
-                  <p className="text-sm text-muted-foreground">Your email client should have opened. Looking forward to connecting.</p>
+                  <h3 className="text-lg font-bold text-foreground mb-2">Your email app should be opening</h3>
+                  <p className="text-sm text-muted-foreground max-w-sm mb-6">
+                    Nothing happened? Copy the message and send it to{" "}
+                    <a href={`mailto:${profile.email}`} className="font-semibold text-accent-text hover:underline">
+                      {profile.email}
+                    </a>{" "}
+                    from any client.
+                  </p>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <Button type="button" variant="outline" onClick={handleCopy}>
+                      {copied ? <CheckCircle2 data-icon="inline-start" /> : <Copy data-icon="inline-start" />}
+                      {copied ? "Copied" : "Copy message"}
+                    </Button>
+                    <Button type="button" variant="ghost" onClick={() => setMailtoOpened(false)}>
+                      Edit message
+                    </Button>
+                  </div>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
