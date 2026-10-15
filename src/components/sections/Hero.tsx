@@ -36,7 +36,7 @@ function RotatingWord() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -24, opacity: 0 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="text-gradient-primary absolute inset-0 whitespace-nowrap"
+          className="text-accent-text absolute inset-0 whitespace-nowrap"
         >
           {rotatingWords[index]}
         </m.span>
@@ -115,7 +115,7 @@ export function Hero() {
             >
               Muhamad Farrel
               <br />
-              <span className="text-gradient-primary">Dava Fauzan</span>
+              Dava Fauzan
             </m.h1>
 
             {/* Exact Professional Positioning */}
@@ -127,9 +127,9 @@ export function Hero() {
             >
               <span className="text-accent-text">Physics Education Researcher</span>
               <span className="text-muted-foreground/70 hidden sm:inline">·</span>
-              <span className="text-blue-600 dark:text-blue-400">EdTech Developer</span>
+              <span className="text-foreground">EdTech Developer</span>
               <span className="text-muted-foreground/70 hidden sm:inline">·</span>
-              <span className="text-indigo-600 dark:text-indigo-400">AI for Education</span>
+              <span className="text-foreground">AI for Education</span>
             </m.div>
 
             {/* Dynamic Rotating Headline */}
@@ -295,23 +295,8 @@ export function Hero() {
                 </div>
               </m.div>
 
-              {/* FLOATING CARD 2 — Bottom Right: Open to Collaborate */}
-              <m.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-                className="absolute -right-6 sm:-right-8 bottom-12 z-20 px-3.5 py-2.5 rounded-2xl border bg-card/95 backdrop-blur-md shadow-xl hover:shadow-2xl transition-all"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="relative flex size-2.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full size-2.5 bg-primary"></span>
-                  </span>
-                  <div>
-                    <div className="text-[11px] font-bold text-primary">Open to Collaborate</div>
-                    <div className="text-[10px] text-muted-foreground">Research & EdTech</div>
-                  </div>
-                </div>
-              </m.div>
+              {/* FLOATING CARD 2 — removed: it overlapped the photo card's
+                  info rows. Kept: cards 1, 3, 4 which frame without covering. */}
 
               {/* FLOATING CARD 3 — Top Right: AI for Education */}
               <m.div
