@@ -5,6 +5,7 @@ import { experiences, achievements } from "@/data/portfolio";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { getIcon } from "@/lib/icons";
 import { CheckCircle, GraduationCap } from "lucide-react";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const ExperiencePage = () => {
   useEffect(() => {
@@ -16,28 +17,18 @@ const ExperiencePage = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-16 bg-hero-light relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
-          <div className="container-max relative z-10">
-            <FadeIn>
-              <div className="label-science mb-6 w-fit flex items-center gap-1.5">
-                <GraduationCap size={13} />
-                Academic & Educational Roles
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight">
-                Professional Experience & <br />
-                <span className="text-accent-text">Selected Achievements</span>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-base text-muted-foreground max-w-2xl leading-relaxed">
-                Peran nyata dalam memfasilitasi riset siswa (KIR/OPSI), pengajaran fisika terintegrasi STEM di sekolah menengah, dan kepemimpinan komunikasi ilmiah mahasiswa.
-              </p>
-            </FadeIn>
-          </div>
-        </section>
+        <PageHeader
+          className="pt-32 pb-16 bg-hero-light relative overflow-hidden"
+          gridClass="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none"
+          labelClass="label-science"
+          labelIcon={GraduationCap}
+          label="Academic & Educational Roles"
+          titleClass="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight"
+          title={<>Professional Experience & <br />
+            <span className="text-accent-text">Selected Achievements</span></>}
+          leadClass="text-base text-muted-foreground max-w-2xl leading-relaxed"
+          lead="Peran nyata dalam memfasilitasi riset siswa (KIR/OPSI), pengajaran fisika terintegrasi STEM di sekolah menengah, dan kepemimpinan komunikasi ilmiah mahasiswa."
+        />
 
         {/* Section 4: Professional Experience */}
         <section className="section-padding border-t">

@@ -7,6 +7,7 @@ import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/Animation
 import { Button } from "@/components/ui/button";
 import { FlaskConical, ExternalLink, ArrowRight } from "lucide-react";
 import { PhysicsPlayground } from "@/components/sections/PhysicsPlayground";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const LaboratoryPage = () => {
   useEffect(() => {
@@ -24,29 +25,18 @@ const LaboratoryPage = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="relative pt-32 pb-20 overflow-hidden bg-hero-light">
-          <div className="absolute inset-0 bg-grid opacity-40 dark:opacity-20 pointer-events-none" />
-          <div className="container-max relative z-10">
-            <FadeIn>
-              <div className="label-primary mb-6 w-fit flex items-center gap-1.5">
-                <FlaskConical size={12} />
-                Virtual Laboratory
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-6 max-w-4xl leading-tight">
-                Simulating the <span className="text-accent-text">Physical World</span>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-base text-muted-foreground leading-relaxed max-w-2xl mb-8">
-                High-fidelity physics simulations designed for deep conceptual understanding. 
-                These virtual laboratories recreate authentic scientific practice with realistic measurement noise, 
-                uncertainty, and exploratory autonomy.
-              </p>
-            </FadeIn>
-          </div>
-        </section>
+        <PageHeader
+          className="relative pt-32 pb-20 overflow-hidden bg-hero-light"
+          gridClass="absolute inset-0 bg-grid opacity-40 dark:opacity-20 pointer-events-none"
+          labelClass="label-primary"
+          labelIcon={FlaskConical}
+          labelIconSize={12}
+          label="Virtual Laboratory"
+          titleClass="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-6 max-w-4xl leading-tight"
+          title={<>Simulating the <span className="text-accent-text">Physical World</span></>}
+          leadClass="text-base text-muted-foreground leading-relaxed max-w-2xl mb-8"
+          lead="High-fidelity physics simulations designed for deep conceptual understanding. These virtual laboratories recreate authentic scientific practice with realistic measurement noise, uncertainty, and exploratory autonomy."
+        />
 
         {/* Labs Grid */}
         <section className="section-padding border-t">

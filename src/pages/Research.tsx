@@ -7,6 +7,7 @@ import { getIcon } from "@/lib/icons";
 import { ParticleCanvas } from "@/components/ui/ParticleCanvas";
 import { Atom, Cpu, GitBranch, Layers } from "lucide-react";
 import { ResearchKnowledgeGraph } from "@/components/sections/ResearchKnowledgeGraph";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const ResearchPage = () => {
   useEffect(() => {
@@ -18,31 +19,19 @@ const ResearchPage = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="relative pt-32 pb-20 overflow-hidden bg-hero-light">
-          <div className="absolute inset-0 bg-grid opacity-35 dark:opacity-20 pointer-events-none" />
-          <div className="absolute inset-0 opacity-40">
-            <ParticleCanvas particleCount={40} interactive={false} />
-          </div>
-          <div className="container-max relative z-10">
-            <FadeIn>
-              <div className="label-research mb-6 w-fit flex items-center gap-1.5">
-                <Atom size={13} />
-                Scientific Framework & Investigations
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-6 max-w-4xl leading-tight">
-                Computational Research for <br />
-                <span className="text-accent-text">Physics Education</span>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
-                Membangun pendekatan terukur yang menggabungkan teori perubahan konseptual fisika dengan pemrosesan bahasa alami (NLP), rekayasa knowledge graph, dan sistem AI untuk mempercepat sintesis bukti riset pendidikan.
-              </p>
-            </FadeIn>
-          </div>
-        </section>
+        <PageHeader
+          className="relative pt-32 pb-20 overflow-hidden bg-hero-light"
+          gridClass="absolute inset-0 bg-grid opacity-35 dark:opacity-20 pointer-events-none"
+          background={<div className="absolute inset-0 opacity-40"><ParticleCanvas particleCount={40} interactive={false} /></div>}
+          labelClass="label-research"
+          labelIcon={Atom}
+          label="Scientific Framework & Investigations"
+          titleClass="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-6 max-w-4xl leading-tight"
+          title={<>Computational Research for <br />
+            <span className="text-accent-text">Physics Education</span></>}
+          leadClass="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl"
+          lead="Membangun pendekatan terukur yang menggabungkan teori perubahan konseptual fisika dengan pemrosesan bahasa alami (NLP), rekayasa knowledge graph, dan sistem AI untuk mempercepat sintesis bukti riset pendidikan."
+        />
 
         {/* Section 7: Three Core Research Pillars */}
         <section className="section-padding border-t bg-card/40">

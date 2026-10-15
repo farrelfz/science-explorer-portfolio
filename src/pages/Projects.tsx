@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { projects, secondaryProjects } from "@/data/portfolio";
-import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { ProjectCard } from "@/components/sections/ProjectCard";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Github, Microscope } from "lucide-react";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const ProjectsPage = () => {
   useEffect(() => {
@@ -18,28 +18,19 @@ const ProjectsPage = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-16 bg-hero-light relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
-          <div className="container-max relative z-10">
-            <FadeIn>
-              <div className="label-science mb-6 w-fit flex items-center gap-1.5">
-                <Microscope size={13} aria-hidden="true" />
-                Systems & Engineering
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight">
-                Research Systems & <br />
-                <span className="text-accent-text">Educational Platforms</span>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-base text-muted-foreground max-w-2xl leading-relaxed">
-                Koleksi sistem komputasional, knowledge graph miskonsepsi fisika, analitik diskursus sains publik, serta platform pembelajaran interaktif berbasis riset.
-              </p>
-            </FadeIn>
-          </div>
-        </section>
+        <PageHeader
+          className="pt-32 pb-16 bg-hero-light relative overflow-hidden"
+          gridClass="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none"
+          labelClass="label-science"
+          labelIcon={Microscope}
+          labelIconAriaHidden
+          label="Systems & Engineering"
+          titleClass="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight"
+          title={<>Research Systems & <br />
+            <span className="text-accent-text">Educational Platforms</span></>}
+          leadClass="text-base text-muted-foreground max-w-2xl leading-relaxed"
+          lead="Koleksi sistem komputasional, knowledge graph miskonsepsi fisika, analitik diskursus sains publik, serta platform pembelajaran interaktif berbasis riset."
+        />
 
         {/* Flagship Projects Section */}
         <section className="section-padding border-t">

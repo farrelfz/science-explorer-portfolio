@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { TimelineSection } from "@/components/sections/TimelineSection";
-import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Clock } from "lucide-react";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const TimelinePage = () => {
   useEffect(() => {
@@ -13,28 +13,18 @@ const TimelinePage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main>
-        <section className="pt-32 pb-12 bg-hero-light relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
-          <div className="container-max relative z-10">
-            <FadeIn>
-              <div className="label-science mb-6 w-fit flex items-center gap-1.5">
-                <Clock size={13} aria-hidden="true" />
-                Journey
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-5 leading-tight">
-                The <span className="text-accent-text">Timeline</span>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-base text-muted-foreground max-w-xl leading-relaxed">
-                A chronological story of research, building, publishing, and growth —
-                from first simulations to founding a physics education ecosystem.
-              </p>
-            </FadeIn>
-          </div>
-        </section>
+        <PageHeader
+          className="pt-32 pb-12 bg-hero-light relative overflow-hidden"
+          gridClass="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none"
+          labelClass="label-science"
+          labelIcon={Clock}
+          labelIconAriaHidden
+          label="Journey"
+          titleClass="h-display text-5xl sm:text-6xl lg:text-7xl text-foreground mb-5 leading-tight"
+          title={<>The <span className="text-accent-text">Timeline</span></>}
+          leadClass="text-base text-muted-foreground max-w-xl leading-relaxed"
+          lead="A chronological story of research, building, publishing, and growth — from first simulations to founding a physics education ecosystem."
+        />
         <TimelineSection />
       </main>
       <Footer />

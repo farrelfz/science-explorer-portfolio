@@ -10,6 +10,7 @@ import { Github, Layers, AlertCircle, Quote, Microscope } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { CiteModal, type CitationItem } from "@/components/ui/CiteModal";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const PublicationsPage = () => {
   const [selectedCitation, setSelectedCitation] = useState<CitationItem | null>(null);
@@ -22,27 +23,18 @@ const PublicationsPage = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       <main>
-        <section className="pt-32 pb-16 bg-hero-light relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
-          <div className="container-max relative z-10">
-            <FadeIn>
-              <div className="label-research mb-6 w-fit flex items-center gap-1.5">
-                <Microscope size={13} aria-hidden="true" />
-                Academic & Research Output
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight">
-                Research & <span className="text-accent-text">Selected Works</span>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-base text-muted-foreground max-w-2xl leading-relaxed">
-                Kompilasi sistem riset komputasional, pipeline analisis wacana sains, dan repositori pengetahuan pendidikan fisika.
-              </p>
-            </FadeIn>
-          </div>
-        </section>
+        <PageHeader
+          className="pt-32 pb-16 bg-hero-light relative overflow-hidden"
+          gridClass="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none"
+          labelClass="label-research"
+          labelIcon={Microscope}
+          labelIconAriaHidden
+          label="Academic & Research Output"
+          titleClass="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight"
+          title={<>Research & <span className="text-accent-text">Selected Works</span></>}
+          leadClass="text-base text-muted-foreground max-w-2xl leading-relaxed"
+          lead="Kompilasi sistem riset komputasional, pipeline analisis wacana sains, dan repositori pengetahuan pendidikan fisika."
+        />
 
         <section className="section-padding">
           <div className="container-max">

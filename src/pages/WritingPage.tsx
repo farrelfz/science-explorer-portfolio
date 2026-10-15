@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { writings } from "@/data/portfolio";
-import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { ArticleCard } from "@/components/sections/ArticleCard";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { FileText, PenLine } from "lucide-react";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const categories = ["All", ...Array.from(new Set(writings.map((w) => w.category)))];
 
@@ -26,27 +26,18 @@ const WritingPage = () => {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-32 pb-16 bg-hero-light relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none" />
-          <div className="container-max relative z-10">
-            <FadeIn>
-              <div className="label-research mb-6 w-fit flex items-center gap-1.5">
-                <PenLine size={12} />
-                Critical Perspectives & Essays
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h1 className="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight">
-                Writing & <span className="text-accent-text">Perspectives</span>
-              </h1>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-base text-muted-foreground max-w-2xl leading-relaxed">
-                Tulisan konseptual, analisis pedagogi, dan catatan teknis di seputar pendidikan fisika, penerapan kecerdasan buatan, dan komunikasi sains.
-              </p>
-            </FadeIn>
-          </div>
-        </section>
+        <PageHeader
+          className="pt-32 pb-16 bg-hero-light relative overflow-hidden"
+          gridClass="absolute inset-0 bg-grid opacity-30 dark:opacity-15 pointer-events-none"
+          labelClass="label-research"
+          labelIcon={PenLine}
+          labelIconSize={12}
+          label="Critical Perspectives & Essays"
+          titleClass="h-display text-4xl sm:text-5xl lg:text-6xl text-foreground mb-5 leading-tight"
+          title={<>Writing & <span className="text-accent-text">Perspectives</span></>}
+          leadClass="text-base text-muted-foreground max-w-2xl leading-relaxed"
+          lead="Tulisan konseptual, analisis pedagogi, dan catatan teknis di seputar pendidikan fisika, penerapan kecerdasan buatan, dan komunikasi sains."
+        />
 
         {/* Filter & Articles */}
         <section className="section-padding border-t">
