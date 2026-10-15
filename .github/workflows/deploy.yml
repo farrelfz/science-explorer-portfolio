@@ -34,6 +34,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: SPA fallback page
+        # GitHub Pages has no rewrite rules: serve the app shell with 404
+        # status for unknown paths so React Router can render deep links.
+        run: cp dist/index.html dist/404.html
+
       - name: Deploy to farrelfz.github.io
         # Push dist/ to the user-site repo using a dedicated deploy key.
         env:
