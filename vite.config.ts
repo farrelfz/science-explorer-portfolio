@@ -2,8 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-// GitHub Pages serves this site from a subpath, not the domain root.
-const BASE = "/science-explorer-portfolio/";
+// The canonical URL is the GitHub Pages root (farrelfz.github.io). For a
+// subpath build (e.g. local parity testing), override with BASE_URL env var.
+const BASE = process.env.BASE_URL ?? "/";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
