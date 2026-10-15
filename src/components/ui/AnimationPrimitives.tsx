@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -25,7 +25,7 @@ export function FadeIn({
   const { x, y } = dirMap[direction];
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, x, y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once, margin: "-40px" }}
@@ -37,7 +37,7 @@ export function FadeIn({
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -49,7 +49,7 @@ interface StaggerContainerProps {
 
 export function StaggerContainer({ children, className = "", staggerDelay = 0.08 }: StaggerContainerProps) {
   return (
-    <motion.div
+    <m.div
       className={className}
       initial="hidden"
       whileInView="visible"
@@ -60,13 +60,13 @@ export function StaggerContainer({ children, className = "", staggerDelay = 0.08
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
 export function StaggerItem({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <motion.div
+    <m.div
       className={className}
       variants={{
         hidden: { opacity: 0, y: 20 },
@@ -74,7 +74,7 @@ export function StaggerItem({ children, className = "" }: { children: React.Reac
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 

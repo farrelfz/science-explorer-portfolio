@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { profile } from "@/data/portfolio";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { getIcon } from "@/lib/icons";
@@ -49,7 +49,7 @@ export function Philosophy() {
               const Icon = getIcon(item.icon);
               return (
               <FadeIn key={item.id} delay={i * 0.12} direction="left">
-                <motion.div
+                <m.div
                   whileHover={{ x: 4 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   className="group flex gap-5 p-5 rounded-2xl border bg-card hover:border-accent/40 transition-all duration-300"
@@ -72,7 +72,7 @@ export function Philosophy() {
 
                   {/* Indicator line */}
                   <div className="ml-auto self-stretch w-0.5 rounded-full bg-muted group-hover:bg-gradient-to-b group-hover:from-accent group-hover:to-[hsl(217_91%_60%)] transition-all duration-300 min-w-[2px]" />
-                </motion.div>
+                </m.div>
               </FadeIn>
               );
             })}

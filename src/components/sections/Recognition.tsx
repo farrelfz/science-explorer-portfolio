@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { achievements } from "@/data/portfolio";
 import { getIcon } from "@/lib/icons";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
@@ -50,7 +50,7 @@ export function Recognition() {
             const Icon = getIcon(item.icon);
             return (
               <StaggerItem key={item.id}>
-                <motion.article
+                <m.article
                   whileHover={{ y: -3 }}
                   transition={{ type: "spring", stiffness: 300, damping: 24 }}
                   className="flex h-full flex-col gap-3 rounded-2xl border bg-card p-6 transition-colors duration-300 hover:border-accent/40"
@@ -71,7 +71,7 @@ export function Recognition() {
                   <p className="mt-auto text-xs text-muted-foreground">
                     {item.organizer} · {item.year}
                   </p>
-                </motion.article>
+                </m.article>
               </StaggerItem>
             );
           })}

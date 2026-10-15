@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Lightbulb } from "lucide-react";
 
 /**
@@ -226,7 +226,7 @@ export function HeroArtifact() {
       </svg>
 
       {/* The pedagogical payoff — his actual research subject */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.9, duration: 0.5 }}
@@ -246,7 +246,7 @@ export function HeroArtifact() {
             </>
           )}
         </p>
-      </motion.div>
+      </m.div>
     </figure>
   );
 }

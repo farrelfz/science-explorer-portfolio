@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { m, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, Atom, Search, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navigation } from "@/data/portfolio";
@@ -36,7 +36,7 @@ export function Navbar() {
 
   return (
     <>
-      <motion.header
+      <m.header
         initial={{ y: -100 }}
         animate={{ y: hidden ? -100 : 0 }}
         transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
@@ -71,7 +71,7 @@ export function Navbar() {
                 )}
               >
                 {isActive(item.href) && (
-                  <motion.div
+                  <m.div
                     layoutId="nav-indicator"
                     className="absolute inset-0 rounded-lg bg-muted"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
@@ -150,7 +150,7 @@ export function Navbar() {
                 </SheetHeader>
                 <nav className="flex flex-col gap-1">
                   {navigation.map((item, i) => (
-                    <motion.div
+                    <m.div
                       key={item.href}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -167,7 +167,7 @@ export function Navbar() {
                       >
                         {item.label}
                       </Link>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </nav>
                 <div className="mt-auto">
@@ -182,7 +182,7 @@ export function Navbar() {
             </Sheet>
           </div>
         </div>
-      </motion.header>
+      </m.header>
 
       {/* Global Command Palette */}
       <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />

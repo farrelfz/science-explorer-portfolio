@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -595,7 +595,7 @@ export function PhysicsPlayground() {
             </div>
 
             {/* Pedagogical Misconception Callout Box */}
-            <motion.div
+            <m.div
               key={insight.title}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -616,7 +616,7 @@ export function PhysicsPlayground() {
                   {insight.text}
                 </p>
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Controls & Telemetry Dashboard */}

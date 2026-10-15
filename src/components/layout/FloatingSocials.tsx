@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Github, Instagram, Mail, MessageCircle, Twitter } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ const socialItems = [
 
 export function FloatingSocials() {
   return (
-    <motion.aside
+    <m.aside
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1.2, duration: 0.5 }}
@@ -37,6 +37,6 @@ export function FloatingSocials() {
         </a>
       ))}
       <div className="w-px h-10 bg-gradient-to-t from-transparent to-border mt-1" />
-    </motion.aside>
+    </m.aside>
   );
 }

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,7 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
       title={isDark ? "Mode Terang (Clean Academic)" : "Mode Gelap (Scientific Terminal)"}
       className={cn("size-11 rounded-xl border bg-card/80 hover:bg-muted text-foreground shadow-sm", className)}
     >
-      <motion.div
+      <m.div
         key={isDark ? "dark" : "light"}
         initial={{ rotate: -90, scale: 0.5, opacity: 0 }}
         animate={{ rotate: 0, scale: 1, opacity: 1 }}
@@ -29,7 +29,7 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
         className="flex items-center justify-center text-foreground"
       >
         {isDark ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
-      </motion.div>
+      </m.div>
     </Button>
   );
 }

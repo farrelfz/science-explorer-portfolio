@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
 import { Sparkles, ExternalLink, RefreshCw } from "lucide-react";
@@ -441,7 +441,7 @@ export function ResearchKnowledgeGraph() {
           {/* Node Inspector Panel */}
           <div className="lg:col-span-4 flex flex-col gap-4">
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={selectedNode.id}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -485,7 +485,7 @@ export function ResearchKnowledgeGraph() {
                     <ExternalLink size={14} />
                   </a>
                 )}
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { profile } from "@/data/portfolio";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
@@ -109,7 +109,7 @@ export function Contact() {
           <FadeIn delay={0.2} direction="left" className="lg:col-span-3">
             <div className="p-6 sm:p-8 rounded-2xl border bg-card shadow-sm">
               {mailtoOpened ? (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-10 text-center"
@@ -134,7 +134,7 @@ export function Contact() {
                       Edit message
                     </Button>
                   </div>
-                </motion.div>
+                </m.div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

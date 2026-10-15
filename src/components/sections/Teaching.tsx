@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { teachingFramework } from "@/data/portfolio";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
 import { cn } from "@/lib/utils";
@@ -41,7 +41,7 @@ export function Teaching() {
                 const Icon = icons[i];
                 return (
                   <StaggerItem key={item.id}>
-                    <motion.div
+                    <m.div
                       whileHover={{ y: -4, scale: 1.01 }}
                       transition={{ type: "spring", stiffness: 300, damping: 20 }}
                       className="group p-5 rounded-2xl border bg-card hover:shadow-lg transition-all duration-300"
@@ -65,7 +65,7 @@ export function Teaching() {
                       <p className="text-xs text-muted-foreground leading-relaxed">
                         {item.description}
                       </p>
-                    </motion.div>
+                    </m.div>
                   </StaggerItem>
                 );
               })}

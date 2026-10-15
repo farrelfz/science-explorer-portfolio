@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { researchInterests } from "@/data/portfolio";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/AnimationPrimitives";
 import { getIcon } from "@/lib/icons";
@@ -40,7 +40,7 @@ export function ResearchInterests() {
             const Icon = getIcon(item.icon);
             return (
             <StaggerItem key={item.id}>
-              <motion.div
+              <m.div
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className={`h-full p-6 sm:p-7 rounded-2xl border bg-gradient-to-br ${item.color} ${item.borderColor} flex flex-col justify-between shadow-sm`}
@@ -72,7 +72,7 @@ export function ResearchInterests() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             </StaggerItem>
             );
           })}

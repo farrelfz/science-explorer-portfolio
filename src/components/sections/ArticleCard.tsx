@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, Clock, PenLine } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Writing } from "@/data/portfolio";
@@ -17,7 +17,7 @@ interface ArticleCardProps {
 export function ArticleCard({ article, headingLevel = "h3" }: ArticleCardProps) {
   const Heading = headingLevel;
   return (
-    <motion.div
+    <m.div
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="h-full"
@@ -58,6 +58,6 @@ export function ArticleCard({ article, headingLevel = "h3" }: ArticleCardProps) 
           </Link>
         </div>
       </article>
-    </motion.div>
+    </m.div>
   );
 }

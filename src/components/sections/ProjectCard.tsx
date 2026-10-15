@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ArrowRight, Github, Layers, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,7 +28,7 @@ interface ProjectCardProps {
  */
 export function ProjectCard({ project, variant = "featured" }: ProjectCardProps) {
   return (
-    <motion.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="h-full">
+    <m.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300, damping: 20 }} className="h-full">
       <Card className="h-full flex flex-col justify-between rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 relative overflow-hidden">
         <CardHeader className="p-0">
           <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -139,6 +139,6 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
           </div>
         </CardFooter>
       </Card>
-    </motion.div>
+    </m.div>
   );
 }

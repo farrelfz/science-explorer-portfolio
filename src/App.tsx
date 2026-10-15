@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, LazyMotion, m } from "framer-motion";
 import { FloatingSocials } from "./components/layout/FloatingSocials";
 
 // Route-level code splitting — each page becomes its own chunk.
@@ -22,14 +22,14 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 
 function PageTransition({ children }: { children: React.ReactNode }) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -68,11 +68,13 @@ function AppRoutes() {
 
 const App = () => (
   <TooltipProvider>
-    <Sonner />
-    <BrowserRouter>
-      <FloatingSocials />
-      <AppRoutes />
-    </BrowserRouter>
+    <LazyMotion features={() => import("@/lib/motion-features").then((m) => m.domMax)} strict>
+      <Sonner />
+      <BrowserRouter>
+        <FloatingSocials />
+        <AppRoutes />
+      </BrowserRouter>
+    </LazyMotion>
   </TooltipProvider>
 );
 

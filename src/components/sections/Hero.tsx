@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Github, Mail } from "lucide-react";
 import { profile } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
@@ -23,11 +23,11 @@ export function Hero() {
       <div className="absolute inset-0 bg-grid opacity-40 dark:opacity-25 pointer-events-none" />
 
       {/* Main content */}
-      <motion.div style={{ y: yContent, opacity }} className="container-max relative z-10 pt-28 pb-16">
+      <m.div style={{ y: yContent, opacity }} className="container-max relative z-10 pt-28 pb-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
           {/* Left: identity, positioning, one primary action */}
           <div className="lg:col-span-5">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -40,9 +40,9 @@ export function Hero() {
               <span className="text-xs font-medium text-muted-foreground">
                 {profile.institution} · {profile.department}
               </span>
-            </motion.div>
+            </m.div>
 
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -52,28 +52,28 @@ export function Hero() {
               Muhamad Farrel
               <br />
               Dava Fauzan
-            </motion.h1>
+            </m.h1>
 
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-base sm:text-lg font-semibold text-foreground/90 mb-3"
             >
               Physics Education Researcher · EdTech Developer
-            </motion.p>
+            </m.p>
 
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl mb-8"
             >
               {profile.tagline}
-            </motion.p>
+            </m.p>
 
             {/* One primary action, one secondary — no third competing weight */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -91,9 +91,9 @@ export function Hero() {
                   Get in touch
                 </Link>
               </Button>
-            </motion.div>
+            </m.div>
 
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -118,20 +118,20 @@ export function Hero() {
               >
                 X / Twitter
               </a>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Right: the artifact leads */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7"
           >
             <HeroArtifact />
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

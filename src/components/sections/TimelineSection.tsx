@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { timeline } from "@/data/portfolio";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/button";
@@ -75,7 +75,7 @@ export function TimelineSection() {
       <div className="container-max">
         <div className="relative h-[320px] sm:h-[280px] w-full max-w-4xl mx-auto">
           <AnimatePresence mode="popLayout" initial={false} custom={direction}>
-            <motion.div
+            <m.div
               key={activeIndex}
               custom={direction}
               initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
@@ -110,7 +110,7 @@ export function TimelineSection() {
                 {/* Dot indicator */}
                 <div className={`absolute bottom-6 right-6 size-3 rounded-full ${cfg.dot} opacity-50`} />
               </div>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
         
