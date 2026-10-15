@@ -70,7 +70,8 @@ const App = () => (
   <TooltipProvider>
     <LazyMotion features={() => import("@/lib/motion-features").then((m) => m.domMax)} strict>
       <Sonner />
-      <BrowserRouter>
+      {/* basename follows the Vite base: "/" in dev, the Pages subpath in prod */}
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <FloatingSocials />
         <AppRoutes />
       </BrowserRouter>

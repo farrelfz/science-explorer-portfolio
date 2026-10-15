@@ -2,8 +2,12 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
+// GitHub Pages serves this site from a subpath, not the domain root.
+const BASE = "/science-explorer-portfolio/";
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: BASE,
   server: {
     host: "::",
     port: 8080,
@@ -33,7 +37,7 @@ export default defineConfig(({ mode }) => ({
         const source = typeof html.source === "string" ? html.source : "";
         html.source = source.replace(
           "<head>",
-          `<head>\n    <link rel="modulepreload" href="/${featureChunk.fileName}">`
+          `<head>\n    <link rel="modulepreload" href="${BASE}${featureChunk.fileName}">`
         );
       },
     },
