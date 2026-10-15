@@ -27,7 +27,7 @@ export function ResearchInterests() {
           <FadeIn delay={0.3}>
             <Link
               to="/research"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-text hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent-text hover:underline"
             >
               Explore Full Research Profile <ArrowRight size={14} />
             </Link>

@@ -130,7 +130,7 @@ export function ProjectCard({ project, variant = "featured" }: ProjectCardProps)
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${project.title} repository on GitHub`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border bg-background hover:bg-muted text-xs font-semibold text-foreground transition-all"
+                className="inline-flex h-11 items-center gap-1.5 px-4 rounded-xl border bg-background hover:bg-muted text-xs font-semibold text-foreground transition-all"
               >
                 <Github size={13} aria-hidden="true" />
                 Repository

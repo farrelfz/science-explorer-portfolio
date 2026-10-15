@@ -197,43 +197,14 @@ export function ResearchKnowledgeGraph() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const render = () => {
+    let running = false;
+
+    const draw = () => {
       const dpr = window.devicePixelRatio || 1;
       const width = canvas.width / dpr;
       const height = canvas.height / dpr;
-      const cx = width / 2;
-      const cy = height / 2;
 
       ctx.clearRect(0, 0, width, height);
-
-      // Force-directed relaxation & gentle orbital drift (mutates the ref)
-      nodesRef.current = nodesRef.current.map((node) => {
-        if (draggedNodeRef.current && draggedNodeRef.current.id === node.id) {
-          return node;
-        }
-
-        // Spring pull toward home anchor
-        const original = INITIAL_NODES.find((on) => on.id === node.id);
-        const homeX = cx + (original ? original.x : 0);
-        const homeY = cy + (original ? original.y : 0);
-
-        const kSpring = 0.015;
-        const fx = (homeX - node.x) * kSpring;
-        const fy = (homeY - node.y) * kSpring;
-
-        const damping = 0.88;
-        const newVx = (node.vx + fx) * damping;
-        const newVy = (node.vy + fy) * damping;
-
-        return {
-          ...node,
-          x: node.x + newVx,
-          y: node.y + newVy,
-          vx: newVx,
-          vy: newVy,
-        };
-      });
-
       const nodes = nodesRef.current;
 
       // 1. Draw Edges
@@ -299,14 +270,60 @@ export function ResearchKnowledgeGraph() {
         ctx.textAlign = "center";
         ctx.fillText(node.label, node.x, node.y + node.radius + 14);
       });
-
-      animFrameRef.current = requestAnimationFrame(render);
     };
 
-    render();
+    // One physics tick: spring relaxation toward each node's home anchor.
+    const step = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const cx = canvas.width / dpr / 2;
+      const cy = canvas.height / dpr / 2;
+      nodesRef.current = nodesRef.current.map((node) => {
+        if (draggedNodeRef.current && draggedNodeRef.current.id === node.id) return node;
+        const original = INITIAL_NODES.find((on) => on.id === node.id);
+        const homeX = cx + (original ? original.x : 0);
+        const homeY = cy + (original ? original.y : 0);
+        const kSpring = 0.015;
+        const fx = (homeX - node.x) * kSpring;
+        const fy = (homeY - node.y) * kSpring;
+        const damping = 0.88;
+        const newVx = (node.vx + fx) * damping;
+        const newVy = (node.vy + fy) * damping;
+        return { ...node, x: node.x + newVx, y: node.y + newVy, vx: newVx, vy: newVy };
+      });
+    };
+
+    const render = () => {
+      if (running) step();
+      draw();
+      if (running) animFrameRef.current = requestAnimationFrame(render);
+    };
+
+    // Respect reduced motion: draw one static frame, no rAF loop.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      draw();
+      return;
+    }
+
+    // Only animate while the graph is on screen.
+    const start = () => {
+      if (running) return;
+      running = true;
+      render();
+    };
+    const stop = () => {
+      running = false;
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    };
+    const io = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+    start();
 
     return () => {
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      io.disconnect();
+      stop();
     };
   }, [selectedNode, hoveredNode]);
 

@@ -25,7 +25,7 @@ export function WritingPreview() {
           <FadeIn delay={0.2} direction="left">
             <Link
               to="/writing"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-accent-text hover:underline whitespace-nowrap"
+              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent-text hover:underline whitespace-nowrap"
             >
               View All Articles
               <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />

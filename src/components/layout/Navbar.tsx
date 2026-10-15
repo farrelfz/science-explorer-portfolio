@@ -128,7 +128,7 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               onClick={() => setPaletteOpen(true)}
-              className="rounded-lg border bg-card hover:bg-muted"
+              className="size-11 rounded-lg border bg-card hover:bg-muted"
               aria-label="Cari (Ctrl + K)"
             >
               <Search />
@@ -138,7 +138,7 @@ export function Navbar() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="lg:hidden rounded-lg bg-muted/80 hover:bg-muted"
+                  className="size-11 lg:hidden rounded-lg bg-muted/80 hover:bg-muted"
                   aria-label="Toggle menu"
                 >
                   <Menu />

@@ -18,7 +18,7 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
       size="icon"
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Mode Terang (Clean Academic)" : "Mode Gelap (Scientific Terminal)"}
-      className={cn("rounded-xl border bg-card/80 hover:bg-muted text-foreground shadow-sm", className)}
+      className={cn("size-11 rounded-xl border bg-card/80 hover:bg-muted text-foreground shadow-sm", className)}
     >
       <motion.div
         key={isDark ? "dark" : "light"}
@@ -28,11 +28,7 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
         transition={{ duration: 0.25 }}
         className="flex items-center justify-center text-foreground"
       >
-        {isDark ? (
-          <Sun className="text-amber-400" />
-        ) : (
-          <Moon className="text-slate-700" />
-        )}
+        {isDark ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
       </motion.div>
     </Button>
   );

@@ -8,7 +8,8 @@ colors:
   primary: "hsl(231 64% 22%)"
   primary-foreground: "hsl(210 40% 98%)"
   accent: "hsl(180 70% 38%)"
-  accent-text: "hsl(180 70% 30%)"
+  accent-foreground: "hsl(224 71% 4%)"
+  accent-text: "hsl(180 70% 28%)"
   muted: "hsl(220 14% 93%)"
   muted-foreground: "hsl(220 9% 46%)"
   destructive: "hsl(0 84% 60%)"
@@ -93,7 +94,7 @@ Semantic tokens only in application code. `background`/`foreground` carry the pa
 actions; `accent` (`hsl(180 70% 38%)`, electric teal) is the brand fill; `muted`
 + `muted-foreground` carry secondary text; `destructive` marks problems and errors.
 
-**`accent-text` (`hsl(180 70% 30%)`) exists because `accent` is only 3.02:1 on a
+**`accent-text` (`hsl(180 70% 28%)`) exists because `accent` is only 3.02:1 on a
 light ground and fails WCAG AA as small text.** Rule: teal *text* uses
 `text-accent-text`; teal *fills* use `bg-accent`.
 

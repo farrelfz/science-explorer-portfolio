@@ -19,14 +19,14 @@ export function Hero() {
       id="home"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-hero-light"
     >
-      {/* Subtle grid — decorative, kept low-contrast */}
-      <div className="absolute inset-0 bg-grid opacity-25 dark:opacity-15 pointer-events-none" />
+      {/* Graph-paper field — the artifact is drawn onto this, not into a card */}
+      <div className="absolute inset-0 bg-grid opacity-40 dark:opacity-25 pointer-events-none" />
 
       {/* Main content */}
       <motion.div style={{ y: yContent, opacity }} className="container-max relative z-10 pt-28 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
           {/* Left: identity, positioning, one primary action */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -46,8 +46,8 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="font-black tracking-tight text-foreground mb-5 leading-[1.05]"
-              style={{ fontSize: "clamp(2.4rem, 5vw, 4.2rem)", letterSpacing: "-0.03em" }}
+              className="font-black tracking-tight text-foreground mb-5 leading-[1.03]"
+              style={{ fontSize: "clamp(2.4rem, 4.6vw, 3.9rem)", letterSpacing: "-0.035em" }}
             >
               Muhamad Farrel
               <br />
@@ -126,7 +126,7 @@ export function Hero() {
             initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-6"
+            className="lg:col-span-7"
           >
             <HeroArtifact />
           </motion.div>

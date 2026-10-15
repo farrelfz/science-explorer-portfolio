@@ -236,6 +236,12 @@ export function PhysicsPlayground() {
     const dtBase = 0.016; // 60 FPS baseline (seconds)
     let lastTelemetryAt = -1;
 
+    // Respect reduced motion: integrate the whole flight in one pass and render
+    // the final state, instead of animating frame by frame.
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     const loop = (currentTime: number) => {
       void currentTime; // timestamp kept for API compat, fixed-step integration below
 
@@ -299,7 +305,8 @@ export function PhysicsPlayground() {
 
       drawScene();
 
-      if (simState.current.y > 0 || simState.current.t <= 0.05) {
+      const stillFlying = simState.current.y > 0 || simState.current.t <= 0.05;
+      if (stillFlying) {
         animationFrameRef.current = requestAnimationFrame(loop);
       } else {
         // Final sync so the last frame's values are shown exactly.
@@ -315,6 +322,48 @@ export function PhysicsPlayground() {
         });
       }
     };
+
+    if (prefersReduced) {
+      // Integrate the whole flight in one synchronous pass, then draw the final
+      // state — no animation, but the physics result is identical.
+      let guard = 0;
+      while ((simState.current.y > 0 || simState.current.t <= 0.05) && guard++ < 2000) {
+        const subSteps = 4;
+        const dt = dtBase / subSteps;
+        for (let s = 0; s < subSteps; s++) {
+          let ay = -g;
+          if (airResistance) {
+            const vMag = Math.hypot(simState.current.vx, simState.current.vy);
+            const kDrag = 0.015 / mass;
+            ay -= kDrag * vMag * simState.current.vy;
+          }
+          simState.current.vy += ay * dt;
+          simState.current.x += simState.current.vx * dt;
+          simState.current.y += simState.current.vy * dt;
+          simState.current.t += dt;
+          if (simState.current.y > simState.current.maxH) simState.current.maxH = simState.current.y;
+          if (simState.current.y <= 0 && simState.current.t > 0.05) {
+            simState.current.y = 0;
+            break;
+          }
+        }
+      }
+      trailRef.current.push({ x: simState.current.x, y: simState.current.y });
+      setIsRunning(false);
+      setIsFinished(true);
+      setTime(simState.current.t);
+      setTelemetry({
+        x: simState.current.x,
+        y: simState.current.y,
+        vx: simState.current.vx,
+        vy: simState.current.vy,
+        maxH: simState.current.maxH,
+        range: simState.current.x,
+        flightTime: simState.current.t,
+      });
+      drawScene();
+      return;
+    }
 
     animationFrameRef.current = requestAnimationFrame(loop);
 
@@ -592,6 +641,8 @@ export function PhysicsPlayground() {
                   max="60"
                   value={speed}
                   onChange={(e) => setSpeed(Number(e.target.value))}
+                  aria-label="Kecepatan awal"
+                  aria-valuetext={`${speed} meter per sekon`}
                   className="w-full accent-accent cursor-pointer"
                 />
               </div>
@@ -610,6 +661,8 @@ export function PhysicsPlayground() {
                   max="85"
                   value={angle}
                   onChange={(e) => setAngle(Number(e.target.value))}
+                  aria-label="Sudut elevasi"
+                  aria-valuetext={`${angle} derajat`}
                   className="w-full accent-accent cursor-pointer"
                 />
               </div>
@@ -660,6 +713,8 @@ export function PhysicsPlayground() {
                   max="20"
                   value={mass}
                   onChange={(e) => setMass(Number(e.target.value))}
+                  aria-label="Massa proyektil"
+                  aria-valuetext={`${mass} kilogram`}
                   className="w-full accent-accent cursor-pointer"
                 />
               </div>

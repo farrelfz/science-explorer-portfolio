@@ -37,7 +37,7 @@ export function Recognition() {
           <FadeIn delay={0.2} direction="left">
             <Link
               to="/experience"
-              className="inline-flex items-center gap-2 whitespace-nowrap text-xs font-bold uppercase tracking-wider text-accent-text hover:underline"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-bold uppercase tracking-wider text-accent-text hover:underline"
             >
               Full Experience &amp; Awards
               <ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
